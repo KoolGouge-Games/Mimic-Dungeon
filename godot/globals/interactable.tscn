@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bbjo8503ramx0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q013p"]
+size = Vector2(32, 32)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a2a47"]
+size = Vector2(16, 16)
+
+[node name="Interactable" type="Area2D" unique_id=577584369]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1734458856]
+shape = SubResource("RectangleShape2D_q013p")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=567078256]
+texture = SubResource("PlaceholderTexture2D_a2a47")

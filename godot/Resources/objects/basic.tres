@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="interactable" format=3 uid="uid://di1nvweao78ta"]
+
+[ext_resource type="Script" uid="uid://gnakt1yych0" path="res://globals/interactable.gd" id="1_i3q4g"]
+
+[resource]
+script = ExtResource("1_i3q4g")
+metadata/_custom_type_script = "uid://gnakt1yych0"
