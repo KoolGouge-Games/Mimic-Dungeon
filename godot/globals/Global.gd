@@ -7,3 +7,10 @@ enum ObjectTypes {
 	CURSED,
 	MAGICAL
 	}
+
+enum NPCTypes {
+	KNIGHT,
+	ROGUE,
+	CLERIC,
+	MAGE
+	}

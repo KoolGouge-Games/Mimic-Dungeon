@@ -1,9 +1,114 @@
 [gd_scene format=3 uid="uid://bkwvammdgf7uc"]
 
+[ext_resource type="Script" uid="uid://d0flob88nqxnq" path="res://globals/world.gd" id="1_c7ac0"]
 [ext_resource type="PackedScene" uid="uid://cihpie45hwukk" path="res://Levels/level_1.tscn" id="1_ldosu"]
+[ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="2_dy5jq"]
+[ext_resource type="Script" uid="uid://cfln05e4xl6b1" path="res://globals/NPCAlert.gd" id="2_iaa3o"]
+[ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/UI Elements/Rogue-Portrait.png" id="4_c7ac0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpsyu"]
+bg_color = Color(0.2159017, 0.21590173, 0.21590161, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgfpr"]
+bg_color = Color(0.87329835, 0.87329847, 0.87329817, 1)
 
 [node name="World" type="Node2D" unique_id=802943821]
+script = ExtResource("1_c7ac0")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=320680658]
 
 [node name="Level1" parent="." unique_id=617526436 instance=ExtResource("1_ldosu")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1616854312]
+
+[node name="NPCAlert" type="Control" parent="CanvasLayer" unique_id=1785213978]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 481.0
+offset_bottom = 271.0
+script = ExtResource("2_iaa3o")
+
+[node name="TimerBar" type="ProgressBar" parent="CanvasLayer/NPCAlert" unique_id=698977530]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = -31.0
+offset_right = -11.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_tpsyu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sgfpr")
+value = 50.0
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NPCAlert" unique_id=812817775]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -71.0
+offset_right = 69.0
+offset_bottom = -7.0
+grow_vertical = 0
+texture = ExtResource("2_dy5jq")
+
+[node name="NPCProfile" type="TextureRect" parent="CanvasLayer/NPCAlert/TextureRect" unique_id=205893208]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_c7ac0")
+
+[node name="NPCTimer" type="Timer" parent="CanvasLayer/NPCAlert" unique_id=1133341176]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=617459854]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Knight"
+
+[node name="Button2" type="Button" parent="CanvasLayer" unique_id=1773856581]
+offset_left = 70.0
+offset_top = 38.0
+offset_right = 129.0
+offset_bottom = 69.0
+text = "Mage"
+
+[node name="Button3" type="Button" parent="CanvasLayer" unique_id=737464317]
+offset_top = 38.0
+offset_right = 59.0
+offset_bottom = 69.0
+text = "Cleric"
+
+[node name="Button4" type="Button" parent="CanvasLayer" unique_id=651819032]
+offset_left = 69.0
+offset_right = 128.0
+offset_bottom = 31.0
+text = "Rogue"
+
+[connection signal="queueNPC" from="CanvasLayer/NPCAlert" to="." method="_on_npc_queue"]
+[connection signal="timeout" from="CanvasLayer/NPCAlert/NPCTimer" to="CanvasLayer/NPCAlert" method="_on_npc_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button4" to="." method="_on_button_4_pressed"]
