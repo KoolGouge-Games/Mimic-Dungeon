@@ -1,0 +1,38 @@
+# FMOD local-only files
+/fmod/.fmod/
+/fmod/Build/
+/fmod/Metadata/ProfilerSession
+
+# System files
+/fmod/.DS_Store
+/fmod/Thumbs.db
+/fmod/desktop.ini
+
+# Game Engine Junk
+/fmod/[Aa]sset[Ll]og.txt
+/fmod/*.log
+
+# FMOD User and Cache data
+/fmod/.cache/
+/fmod/.user/
+/fmod/.unsaved/
+
+# Godot 4+ specific ignores
+/godot/.godot/
+/godot/.nomedia
+
+# Godot-specific ignores
+/godot/.import/
+/godot/export.cfg
+/godot/export_credentials.cfg
+/godot/*.tmp
+
+# Imported translations (automatically generated from CSV files)
+/godot/*.translation
+
+# Mono-specific ignores
+/godot/.mono/
+/godot/data_*/
+/godot/mono_crash.*.json
+
+
