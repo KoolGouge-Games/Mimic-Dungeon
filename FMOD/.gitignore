@@ -1,0 +1,18 @@
+# FMOD local-only files
+.fmod/
+/Build/
+/Metadata/ProfilerSession
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Game Engine Junk
+[Aa]sset[Ll]og.txt
+*.log
+
+# FMOD User and Cache data
+.cache/
+.user/
+.unsaved/
