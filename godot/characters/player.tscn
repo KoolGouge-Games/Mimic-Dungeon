@@ -3,6 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://d1eyqyjgxhbbl" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cp2vm7eddf3lc" path="res://characters/player.gd" id="1_onrkg"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_3eadt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4flbx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(63, 64)
 
@@ -11,10 +22,13 @@ motion_mode = 1
 script = ExtResource("1_onrkg")
 player_speed = 200.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=903716375]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_4flbx")
+[node name="FmodListener2D" type="FmodListener2D" parent="." unique_id=498211185]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2062709653]
+[node name="MimicSprites" type="AnimatedSprite2D" parent="." unique_id=604007131]
+position = Vector2(0.5000005, 9.536743e-07)
+scale = Vector2(0.4921875, 0.5)
+sprite_frames = SubResource("SpriteFrames_3eadt")
+
+[node name="WorldCollision" type="CollisionShape2D" parent="." unique_id=2062709653]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_onrkg")

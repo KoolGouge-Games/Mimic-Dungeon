@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("1_wylej")
+FearValue = 5
+Speed = 2
+FavoredType = 1
 metadata/_custom_type_script = "uid://0g23mppslrfq"

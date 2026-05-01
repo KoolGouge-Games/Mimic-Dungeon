@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("1_ibpmp")
+FearValue = 3
+Speed = 4
+FavoredType = 4
 metadata/_custom_type_script = "uid://0g23mppslrfq"

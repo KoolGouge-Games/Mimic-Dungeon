@@ -18,6 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*uid://cdqjv6cvxi76r"
+BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
+BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
+FmodManager="*uid://cds10pm7hwn3p"
 
 [display]
 
@@ -27,6 +30,10 @@ window/size/mode=2
 window/size/sharp_corners=true
 window/stretch/mode="viewport"
 window/per_pixel_transparency/allowed=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/fmod/plugin.cfg")
 
 [input]
 
