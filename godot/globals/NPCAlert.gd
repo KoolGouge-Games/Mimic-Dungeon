@@ -4,7 +4,7 @@ extends Control
 @onready var TimerBar: ProgressBar = %TimerBar
 @onready var portriatElement: TextureRect = %NPCProfile
 
-signal queueNPC
+signal spawnNPC
 
 func _process(_delta: float) -> void:
 	TimerBar.value = NPCTimer.time_left
@@ -31,4 +31,4 @@ func startNPCTimer(duration: float, NPCType: Global.NPCTypes):
 
 func _on_npc_timer_timeout() -> void:
 	self.visible = false
-	queueNPC.emit(Global.NPCTypes.ROGUE)
+	spawnNPC.emit(Global.NPCTypes.ROGUE)

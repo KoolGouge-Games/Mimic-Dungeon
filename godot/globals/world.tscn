@@ -82,33 +82,6 @@ texture = ExtResource("4_c7ac0")
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Button" type="Button" parent="CanvasLayer" unique_id=617459854]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Knight"
-
-[node name="Button2" type="Button" parent="CanvasLayer" unique_id=1773856581]
-offset_left = 70.0
-offset_top = 38.0
-offset_right = 129.0
-offset_bottom = 69.0
-text = "Mage"
-
-[node name="Button3" type="Button" parent="CanvasLayer" unique_id=737464317]
-offset_top = 38.0
-offset_right = 59.0
-offset_bottom = 69.0
-text = "Cleric"
-
-[node name="Button4" type="Button" parent="CanvasLayer" unique_id=651819032]
-offset_left = 69.0
-offset_right = 128.0
-offset_bottom = 31.0
-text = "Rogue"
-
-[connection signal="queueNPC" from="CanvasLayer/NPCAlert" to="." method="_on_npc_queue"]
+[connection signal="queue_adventurer" from="Level1" to="." method="_on_queue_adventurer"]
+[connection signal="spawnNPC" from="CanvasLayer/NPCAlert" to="." method="_on_npc_alert_spawn_npc"]
 [connection signal="timeout" from="CanvasLayer/NPCAlert/NPCTimer" to="CanvasLayer/NPCAlert" method="_on_npc_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button4" to="." method="_on_button_4_pressed"]
