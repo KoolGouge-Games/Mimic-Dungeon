@@ -38,3 +38,4 @@
 # Ignore final export builds
 /export/
 
+/godot/export_presets.cfg
