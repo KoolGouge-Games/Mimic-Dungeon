@@ -16,6 +16,7 @@ bg_color = Color(0.87329835, 0.87329847, 0.87329817, 1)
 script = ExtResource("1_c7ac0")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=320680658]
+bank_paths = ["res://assets/fmod/Master.bank", "res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.assets.bank"]
 
 [node name="Level1" parent="." unique_id=617526436 instance=ExtResource("1_ldosu")]
 
