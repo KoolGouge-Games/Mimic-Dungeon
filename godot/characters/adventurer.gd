@@ -1,8 +1,11 @@
 extends Area2D
 
-var sprite: AnimatedSprite2D 
+@onready var navigation: NavigationAgent2D = $NavigationAgent2D
 
+var sprite: AnimatedSprite2D 
 var stats: NPCStats
+
+var nearest_poi: Area2D
 
 var speed := 5
 var fear : int
@@ -39,3 +42,6 @@ func initialize(type: Global.NPCTypes) -> void:
 
 func _process(delta: float) -> void:
 	position += move_direction * speed * delta
+
+func get_closest_POI() -> void:
+	nearest_poi = Global.get_nearest_node_in_group("object", self.position)

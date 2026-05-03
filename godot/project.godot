@@ -33,7 +33,13 @@ window/per_pixel_transparency/allowed=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/fmod/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/ldtk-importer/plugin.cfg")
+
+[global_group]
+
+player=""
+object=""
+adventurers=""
 
 [input]
 

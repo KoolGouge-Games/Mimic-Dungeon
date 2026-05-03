@@ -2,6 +2,19 @@
 
 [ext_resource type="Script" uid="uid://btn2ytft7oul6" path="res://characters/adventurer.gd" id="1_o4l1e"]
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_relmg"]
+[ext_resource type="Texture2D" uid="uid://clyuld6r02rca" path="res://assets/characters/adventurer-placeholder.png" id="2_u4d0k"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_o4l1e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g50n2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_u4d0k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4l1e"]
 size = Vector2(16, 16)
@@ -9,10 +22,11 @@ size = Vector2(16, 16)
 [node name="Adventurer" type="Area2D" unique_id=1911767388]
 script = ExtResource("1_o4l1e")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1275747233]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1281409735]
 texture_filter = 1
-animation = &"idle"
-autoplay = "idle"
+sprite_frames = SubResource("SpriteFrames_g50n2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1589068814]
 shape = SubResource("RectangleShape2D_o4l1e")
@@ -21,6 +35,10 @@ shape = SubResource("RectangleShape2D_o4l1e")
 script = ExtResource("1_relmg")
 tick_rate = 5
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@18829")
+blackboard = NodePath("@Node@21168")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
+
+[node name="Loot Sequence" type="Node" parent="BeehaveTree" unique_id=2128196675]
+script = ExtResource("3_o4l1e")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
