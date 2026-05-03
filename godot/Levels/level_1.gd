@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var spawner: Marker2D = $NPCSpawner
+@onready var music_player: FmodEventEmitter2D = $MusicPlayer
 
 signal queue_adventurer
 
@@ -15,6 +16,16 @@ func spawn_npc(type: Global.NPCTypes) -> void:
 	npc.initialize(type)
 	npc.position = spawner.position
 	add_child(npc)
+
+	match type:
+		Global.NPCTypes.KNIGHT:
+			music_player.set_parameter("Knight-Active", true)
+		Global.NPCTypes.ROGUE:
+			music_player.set_parameter("Rogue Active", true)
+		Global.NPCTypes.CLERIC:
+			music_player.set_parameter("Cleric Active", true)
+		Global.NPCTypes.MAGE:
+			music_player.set_parameter("Mage Active", true)
 
 func _on_button_pressed() -> void:
 	queue_npc(Global.NPCTypes.KNIGHT)

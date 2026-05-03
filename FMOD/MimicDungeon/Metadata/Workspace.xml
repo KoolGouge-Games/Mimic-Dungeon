@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
 	<object class="Workspace" id="{b18a9623-444f-42cb-b703-bd108c51ef91}">
+		<property name="builtBanksOutputDirectory">
+			<value>../../godot/assets</value>
+		</property>
+		<property name="builtBanksSeparateAssets">
+			<value>true</value>
+		</property>
 		<relationship name="masterEventFolder">
 			<destination>{fb9f9ea7-5781-4ef4-afc4-cac09ed95874}</destination>
 		</relationship>
