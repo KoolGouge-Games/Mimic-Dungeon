@@ -6,12 +6,15 @@ extends Control
 
 signal spawnNPC
 
+var npc_type: Global.NPCTypes
+
 func _process(_delta: float) -> void:
 	TimerBar.value = NPCTimer.time_left
 
 func startNPCTimer(duration: float, NPCType: Global.NPCTypes):
 	var npcString: String
 	var pathString := "res://assets/UI Elements/%s-Portrait.png"
+	npc_type = NPCType
 
 	match NPCType:
 		Global.NPCTypes.KNIGHT:
@@ -31,4 +34,4 @@ func startNPCTimer(duration: float, NPCType: Global.NPCTypes):
 
 func _on_npc_timer_timeout() -> void:
 	self.visible = false
-	spawnNPC.emit(Global.NPCTypes.ROGUE)
+	spawnNPC.emit(npc_type)

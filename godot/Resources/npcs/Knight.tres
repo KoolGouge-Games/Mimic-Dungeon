@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="NPCStats" format=3 uid="uid://de0n2vk6257ju"]
 
+[ext_resource type="SpriteFrames" uid="uid://d35srxs3broiq" path="res://Resources/npcs/knight_sprite_frames.tres" id="1_sni6r"]
 [ext_resource type="Script" uid="uid://0g23mppslrfq" path="res://globals/NPC-Class.gd" id="1_wylej"]
 
 [resource]
@@ -7,4 +8,5 @@ script = ExtResource("1_wylej")
 FearValue = 5
 Speed = 2
 FavoredType = 1
+SpriteSheet = ExtResource("1_sni6r")
 metadata/_custom_type_script = "uid://0g23mppslrfq"

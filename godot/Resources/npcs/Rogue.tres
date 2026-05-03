@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="NPCStats" format=3 uid="uid://rystaf3v2geo"]
 
+[ext_resource type="SpriteFrames" uid="uid://c88yjkm2dq77g" path="res://Resources/npcs/rogue_sprite_frames.tres" id="1_axcww"]
 [ext_resource type="Script" uid="uid://0g23mppslrfq" path="res://globals/NPC-Class.gd" id="1_icbym"]
 
 [resource]
@@ -7,4 +8,5 @@ script = ExtResource("1_icbym")
 FearValue = 2
 Speed = 5
 FavoredType = 2
+SpriteSheet = ExtResource("1_axcww")
 metadata/_custom_type_script = "uid://0g23mppslrfq"
