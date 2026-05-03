@@ -8,7 +8,7 @@
 			<value>UI Cancel</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{b4fa88f2-cd63-4c14-b532-e494a8324700}</destination>
@@ -87,7 +87,7 @@
 	</object>
 	<object class="MultiSound" id="{a10f4456-c589-47f1-befc-4668d3966449}">
 		<relationship name="sounds">
-			<destination>{fd9a5757-90ab-4dc5-8f90-b011f3954684}</destination>
+			<destination>{6fa64d5c-bc86-4abd-bddc-f1b345d36206}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{4ca3b71a-6761-48e7-8978-6f19bdd0a3b6}">
@@ -102,7 +102,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{92737507-ebc8-4831-94a2-a5232f054696}" />
-	<object class="SingleSound" id="{fd9a5757-90ab-4dc5-8f90-b011f3954684}" />
+	<object class="SingleSound" id="{6fa64d5c-bc86-4abd-bddc-f1b345d36206}">
+		<relationship name="audioFile">
+			<destination>{e9089284-141d-442f-9a5c-4fd7981b2a3c}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{1954876d-b422-43c6-8371-73018623cc69}" />
 	<object class="MixerBusFader" id="{46c6fb1f-a1c3-4eca-8adc-5f256502bd68}" />
 </objects>

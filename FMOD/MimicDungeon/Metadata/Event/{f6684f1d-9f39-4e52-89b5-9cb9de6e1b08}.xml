@@ -8,7 +8,7 @@
 			<value>PC_Move</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1ccea6e8-0f7c-4ae2-a2d0-0bb1ab19991b}</destination>
@@ -102,7 +102,28 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{a16ace70-91db-492a-84df-4ae3a14cc884}" />
-	<object class="MultiSound" id="{5b9dd33a-4366-4e0b-af61-d7e92b9bd6c9}" />
+	<object class="MultiSound" id="{5b9dd33a-4366-4e0b-af61-d7e92b9bd6c9}">
+		<relationship name="sounds">
+			<destination>{bdd11f14-8f9f-470b-80a7-97ce3863f201}</destination>
+			<destination>{8c545e9b-c401-4508-9452-c8d82d7b76e4}</destination>
+			<destination>{3f999b0a-dc28-43b1-87e5-acd0c3698a04}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{73412459-f151-4b42-9a07-a50c6c759d84}" />
 	<object class="MixerBusFader" id="{6d5eb21e-dd54-467d-a210-429a72206ad9}" />
+	<object class="SingleSound" id="{bdd11f14-8f9f-470b-80a7-97ce3863f201}">
+		<relationship name="audioFile">
+			<destination>{694677fa-ecef-4ed1-8f5f-4794164e0951}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{8c545e9b-c401-4508-9452-c8d82d7b76e4}">
+		<relationship name="audioFile">
+			<destination>{f5429ada-0201-4698-acdc-7ec947dfc73a}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{3f999b0a-dc28-43b1-87e5-acd0c3698a04}">
+		<relationship name="audioFile">
+			<destination>{5c588c10-d008-479f-bc17-67d0471a3f5c}</destination>
+		</relationship>
+	</object>
 </objects>

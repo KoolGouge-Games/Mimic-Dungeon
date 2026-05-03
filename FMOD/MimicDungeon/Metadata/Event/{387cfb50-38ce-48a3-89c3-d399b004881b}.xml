@@ -8,7 +8,7 @@
 			<value>UI Highlight</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{b4fa88f2-cd63-4c14-b532-e494a8324700}</destination>
@@ -102,7 +102,34 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{49767d5a-3f5c-4c45-bbaf-299c53aa0d91}" />
-	<object class="MultiSound" id="{eeebe676-b234-4724-885f-4b05733e3106}" />
+	<object class="MultiSound" id="{eeebe676-b234-4724-885f-4b05733e3106}">
+		<relationship name="sounds">
+			<destination>{159244d7-286a-41d6-a5fe-9118d5d84997}</destination>
+			<destination>{ac4f1edb-443f-4974-9eba-3080617df757}</destination>
+			<destination>{8530faae-97b5-4cac-a27b-513a8c7327c4}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{03962c55-7679-4fcc-8b12-bb3e6a106644}" />
 	<object class="MixerBusFader" id="{8b4d63df-21e1-4106-bbb1-87a056286965}" />
+	<object class="SingleSound" id="{159244d7-286a-41d6-a5fe-9118d5d84997}">
+		<relationship name="audioFile">
+			<destination>{b8426e53-d9a3-47b5-aef1-c41be20114cb}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{ac4f1edb-443f-4974-9eba-3080617df757}">
+		<property name="pitch">
+			<value>-2</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{b8426e53-d9a3-47b5-aef1-c41be20114cb}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{8530faae-97b5-4cac-a27b-513a8c7327c4}">
+		<property name="pitch">
+			<value>2</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{b8426e53-d9a3-47b5-aef1-c41be20114cb}</destination>
+		</relationship>
+	</object>
 </objects>

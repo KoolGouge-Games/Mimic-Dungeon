@@ -8,7 +8,7 @@
 			<value>PC_Eat_Fail</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1ccea6e8-0f7c-4ae2-a2d0-0bb1ab19991b}</destination>
@@ -87,7 +87,7 @@
 	</object>
 	<object class="MultiSound" id="{323b9a9e-d880-44ac-ab81-d423525b6875}">
 		<relationship name="sounds">
-			<destination>{4afd4c4d-bcad-4f09-8bb7-7fc607d40887}</destination>
+			<destination>{2354b799-eb9a-4a66-8c75-095897767ff6}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{e8877d8a-349f-4108-b595-76c5edd3ef7e}">
@@ -102,7 +102,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{94c41b6f-78af-484c-80f9-d838696f2fad}" />
-	<object class="SingleSound" id="{4afd4c4d-bcad-4f09-8bb7-7fc607d40887}" />
+	<object class="SingleSound" id="{2354b799-eb9a-4a66-8c75-095897767ff6}">
+		<relationship name="audioFile">
+			<destination>{996b5f8f-6469-4b3c-8809-6618142e0c2e}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{c6675810-6e30-4463-ae15-fc0ca622f5c5}" />
 	<object class="MixerBusFader" id="{7dd0e688-0343-4318-b376-9041e9894933}" />
 </objects>
