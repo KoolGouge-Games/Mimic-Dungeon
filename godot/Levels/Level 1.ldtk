@@ -1270,7 +1270,10 @@
 							"height": 16,
 							"defUid": 116,
 							"px": [224,256],
-							"fieldInstances": [{ "__identifier": "NPC_type", "__type": "LocalEnum.NPC_type", "__value": "Knight", "__tile": null, "defUid": 123, "realEditorValues": [null] }],
+							"fieldInstances": [{ "__identifier": "NPC_type", "__type": "LocalEnum.NPC_type", "__value": "Knight", "__tile": null, "defUid": 123, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["Knight"]
+							}] }],
 							"__worldX": -16,
 							"__worldY": 128
 						},

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MixerGroup" id="{2e57688a-5afd-4759-b10f-66a4606252f6}">
+		<property name="color">
+			<value>Purple</value>
+		</property>
+		<property name="name">
+			<value>MUSIC</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{bd95dbf0-5d7e-4b5c-bce8-9bb2e39477f0}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{938c31fa-fb19-46dc-b430-7333a89b187b}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{0535372e-6010-40ce-8542-218906b52c07}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{bd95dbf0-5d7e-4b5c-bce8-9bb2e39477f0}">
+		<relationship name="effects">
+			<destination>{cae0c4ea-6b28-4f52-954c-7d361d5390ee}</destination>
+			<destination>{4dc95969-7dd5-4c12-903b-65e3789fc8ef}</destination>
+			<destination>{04acdbec-ea8e-401f-a9b6-99da5fa22332}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{938c31fa-fb19-46dc-b430-7333a89b187b}" />
+	<object class="MixerBusFader" id="{cae0c4ea-6b28-4f52-954c-7d361d5390ee}" />
+	<object class="ThreeEQEffect" id="{4dc95969-7dd5-4c12-903b-65e3789fc8ef}" />
+	<object class="CompressorEffect" id="{04acdbec-ea8e-401f-a9b6-99da5fa22332}">
+		<property name="threshold">
+			<value>-30</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{921a29f7-59f0-44e5-a33c-6b37fed3ef75}</destination>
+		</relationship>
+	</object>
+</objects>
