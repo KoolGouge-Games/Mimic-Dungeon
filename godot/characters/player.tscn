@@ -15,9 +15,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(16, 16)
+size = Vector2(32, 32)
 
-[node name="Player" type="CharacterBody2D" unique_id=717767978]
+[node name="Player" type="CharacterBody2D" unique_id=717767978 groups=["player"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_onrkg")
 player_speed = 100.0
@@ -25,7 +26,8 @@ player_speed = 100.0
 [node name="FmodListener2D" type="FmodListener2D" parent="." unique_id=498211185]
 
 [node name="MimicSprites" type="AnimatedSprite2D" parent="." unique_id=604007131]
-scale = Vector2(0.12500001, 0.12499999)
+position = Vector2(2.1457672e-06, -1.4305115e-06)
+scale = Vector2(0.25, 0.24999999)
 sprite_frames = SubResource("SpriteFrames_3eadt")
 
 [node name="WorldCollision" type="CollisionShape2D" parent="." unique_id=2062709653]

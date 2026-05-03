@@ -4,6 +4,12 @@
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_relmg"]
 [ext_resource type="Texture2D" uid="uid://clyuld6r02rca" path="res://assets/characters/adventurer-placeholder.png" id="2_u4d0k"]
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_o4l1e"]
+[ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="4_kq6e1"]
+[ext_resource type="Script" uid="uid://c4sxubyv7fhwa" path="res://characters/adventurer-behavior/los_to_player_bh.gd" id="6_itu75"]
+[ext_resource type="Script" uid="uid://cbnbvj8prv63i" path="res://addons/beehave/nodes/leaves/condition.gd" id="7_e06qe"]
+[ext_resource type="Script" uid="uid://cv74jjdrwevpr" path="res://addons/beehave/nodes/leaves/action.gd" id="8_blp6y"]
+[ext_resource type="Script" uid="uid://bbaojjriq676j" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="9_o8pjp"]
+[ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="10_itu75"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g50n2"]
 animations = [{
@@ -17,15 +23,31 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4l1e"]
-size = Vector2(16, 16)
+size = Vector2(32, 32)
 
-[node name="Adventurer" type="Area2D" unique_id=1911767388]
+[node name="Adventurer" type="CharacterBody2D" unique_id=1649974806 node_paths=PackedStringArray("visionCone")]
 script = ExtResource("1_o4l1e")
+visionCone = NodePath("VisionCone2D/VisionConeRenderer")
+alertColor = Color(0.6, 0.27058825, 0.24705882, 0.36862746)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1275747233]
 
+[node name="VisionCone2D" parent="." unique_id=692985966 instance=ExtResource("10_itu75")]
+angle_deg = 45
+ray_count = 45
+max_distance = 200.0
+collision_layer_mask = 1
+minimum_recalculate_time_msec = 1
+
+[node name="VisionConeArea" parent="VisionCone2D" index="1"]
+collision_mask = 2
+
+[node name="VisionConeCollider" parent="VisionCone2D/VisionConeArea" index="0"]
+polygon = PackedVector2Array(0, 0, -76, 185, 76, 184)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1281409735]
 texture_filter = 1
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_g50n2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1589068814]
@@ -33,12 +55,56 @@ shape = SubResource("RectangleShape2D_o4l1e")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1906228765 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_relmg")
-tick_rate = 5
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@21168")
-actor = NodePath("..")
+blackboard = NodePath("@Node@54688")
+actor = NodePath("")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
-[node name="Loot Sequence" type="Node" parent="BeehaveTree" unique_id=2128196675]
+[node name="SelectorComposite" type="Node" parent="BeehaveTree" unique_id=1031388384]
+script = ExtResource("4_kq6e1")
+metadata/_custom_type_script = "uid://8hn4kne15ac5"
+
+[node name="Notice Sequence" type="Node" parent="BeehaveTree/SelectorComposite" unique_id=1882558195]
 script = ExtResource("3_o4l1e")
 metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="LOS to Player" type="Node" parent="BeehaveTree/SelectorComposite/Notice Sequence" unique_id=1822810521]
+script = ExtResource("6_itu75")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="Either" type="Node" parent="BeehaveTree/SelectorComposite/Notice Sequence" unique_id=787774350]
+script = ExtResource("4_kq6e1")
+metadata/_custom_type_script = "uid://8hn4kne15ac5"
+
+[node name="Player Is Moving" type="Node" parent="BeehaveTree/SelectorComposite/Notice Sequence/Either" unique_id=1248733169]
+script = ExtResource("7_e06qe")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="Player Is Mimic" type="Node" parent="BeehaveTree/SelectorComposite/Notice Sequence/Either" unique_id=1165899798]
+script = ExtResource("7_e06qe")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="Resolve Fear" type="Node" parent="BeehaveTree/SelectorComposite/Notice Sequence" unique_id=1290922347]
+script = ExtResource("8_blp6y")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="Loot Sequence" type="Node" parent="BeehaveTree/SelectorComposite" unique_id=1343768041]
+script = ExtResource("9_o8pjp")
+metadata/_custom_type_script = "uid://bbaojjriq676j"
+
+[node name="Choose POI" type="Node" parent="BeehaveTree/SelectorComposite/Loot Sequence" unique_id=1940751508]
+script = ExtResource("7_e06qe")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="Walk to POI" type="Node" parent="BeehaveTree/SelectorComposite/Loot Sequence" unique_id=2119344469]
+script = ExtResource("8_blp6y")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="Loot POI" type="Node" parent="BeehaveTree/SelectorComposite/Loot Sequence" unique_id=1247063586]
+script = ExtResource("8_blp6y")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
+[connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]
+
+[editable path="VisionCone2D"]
