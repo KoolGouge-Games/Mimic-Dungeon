@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{cddd9d44-1ad4-4b46-8e56-80c7b565b25a}">
+		<property name="name">
+			<value>rogue-active</value>
+		</property>
+		<relationship name="folder">
+			<destination>{332cb292-a1e6-4124-ab7b-f7aba4576569}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{137c557c-6a79-4ace-9c6b-ce86b8f3c2d9}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{137c557c-6a79-4ace-9c6b-ce86b8f3c2d9}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>false</value>
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
