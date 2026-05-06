@@ -26,6 +26,7 @@ animations = [{
 size = Vector2(32, 32)
 
 [node name="Adventurer" type="CharacterBody2D" unique_id=1649974806 node_paths=PackedStringArray("visionCone")]
+collision_layer = 4
 script = ExtResource("1_o4l1e")
 visionCone = NodePath("VisionCone2D/VisionConeRenderer")
 alertColor = Color(0.6, 0.27058825, 0.24705882, 0.36862746)
@@ -56,8 +57,8 @@ shape = SubResource("RectangleShape2D_o4l1e")
 [node name="BeehaveTree" type="Node" parent="." unique_id=1906228765 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_relmg")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@54688")
-actor = NodePath("")
+blackboard = NodePath("@Node@18831")
+actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree" unique_id=1031388384]

@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://d1eyqyjgxhbbl" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cp2vm7eddf3lc" path="res://characters/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://d2as5erfr7tji" path="res://addons/input_prompts/icons/keyboard/e.png" id="3_x0jl3"]
+[ext_resource type="Script" uid="uid://beanwg2i2vcef" path="res://addons/input_prompts/key_prompt/key_prompt.gd" id="4_x0jl3"]
+[ext_resource type="Script" uid="uid://u4bqu2f3b86g" path="res://UI/eating_qte.gd" id="5_j31ep"]
+[ext_resource type="Texture2D" uid="uid://1csmd0dxwr2e" path="res://assets/UI Elements/QTE-Bar.png" id="6_6t23p"]
+[ext_resource type="Texture2D" uid="uid://bx7hjjmeix3if" path="res://assets/UI Elements/QTE-Arrow.png" id="7_n8jd0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3eadt"]
 animations = [{
@@ -14,8 +19,71 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eadt"]
+size = Vector2(64, 64)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(32, 32)
+
+[sub_resource type="InputEventKey" id="InputEventKey_evndh"]
+keycode = 69
+
+[sub_resource type="Animation" id="Animation_q605b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QTEArrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eho78"]
+resource_name = "eating_qte"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QTEArrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-3.355, 0), Vector2(56.53, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.43333334, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"green"
+}, {
+"args": [],
+"method": &"red"
+}, {
+"args": [],
+"method": &"finish"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8sqrr"]
+_data = {
+&"RESET": SubResource("Animation_q605b"),
+&"eating_qte": SubResource("Animation_eho78")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=717767978 groups=["player"]]
 collision_layer = 2
@@ -30,5 +98,94 @@ position = Vector2(2.1457672e-06, -1.4305115e-06)
 scale = Vector2(0.25, 0.24999999)
 sprite_frames = SubResource("SpriteFrames_3eadt")
 
+[node name="EatingRange" type="Area2D" parent="." unique_id=547941446]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EatingRange" unique_id=1877460289]
+shape = SubResource("RectangleShape2D_3eadt")
+debug_color = Color(0.9216503, 0.17725345, 0.54355454, 0.41960785)
+
 [node name="WorldCollision" type="CollisionShape2D" parent="." unique_id=2062709653]
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="EatPrompt" type="Control" parent="." unique_id=1362928536]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -23.0
+offset_top = -42.0
+offset_right = 21.0
+offset_bottom = -16.0
+
+[node name="InputPrompt" type="TextureRect" parent="EatPrompt" unique_id=229559270]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = 26.0
+offset_bottom = 12.0
+grow_vertical = 2
+texture = ExtResource("3_x0jl3")
+stretch_mode = 5
+script = ExtResource("4_x0jl3")
+key = 69
+events = Array[InputEvent]([SubResource("InputEventKey_evndh")])
+metadata/_custom_type_script = "uid://beanwg2i2vcef"
+
+[node name="Label" type="Label" parent="EatPrompt" unique_id=1724721376]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "at!"
+horizontal_alignment = 2
+
+[node name="Eating QTE" type="Control" parent="." unique_id=1689681273]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -31.0
+offset_top = -36.0
+offset_right = 32.0
+offset_bottom = -14.0
+script = ExtResource("5_j31ep")
+
+[node name="QTEBar" type="TextureRect" parent="Eating QTE" unique_id=1978299945]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_6t23p")
+expand_mode = 2
+
+[node name="QTEArrow" type="TextureRect" parent="Eating QTE" unique_id=1235089291]
+layout_mode = 1
+offset_right = 9.999985
+offset_bottom = 11.0
+texture = ExtResource("7_n8jd0")
+expand_mode = 1
+
+[node name="QTEAnimation" type="AnimationPlayer" parent="Eating QTE" unique_id=1717121431]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_8sqrr")
+
+[connection signal="body_entered" from="EatingRange" to="." method="_on_eating_range_body_entered"]
+[connection signal="body_exited" from="EatingRange" to="." method="_on_eating_range_body_exited"]
+[connection signal="exit_green" from="Eating QTE" to="." method="_on_eating_qte_exit_green"]
+[connection signal="in_the_green" from="Eating QTE" to="." method="_on_eating_qte_in_the_green"]
+[connection signal="time_up" from="Eating QTE" to="." method="_on_eating_qte_time_up"]
