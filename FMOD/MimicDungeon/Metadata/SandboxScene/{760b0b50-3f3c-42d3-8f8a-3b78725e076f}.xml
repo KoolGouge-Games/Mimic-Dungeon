@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="SandboxScene" id="{760b0b50-3f3c-42d3-8f8a-3b78725e076f}">
+		<property name="name">
+			<value>Game End and replay</value>
+		</property>
+		<relationship name="folder">
+			<destination>{fd953cfd-5067-4cc3-bbbd-3eddc2a8f0c4}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{a846c565-bc79-4821-982c-de39a9bbec1e}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{18165858-5616-42fa-b524-1e4f2380bbc5}</destination>
+		</relationship>
+		<relationship name="emitters">
+			<destination>{10ef0700-91fd-4a02-a955-1f299b6cc3de}</destination>
+			<destination>{ca05ba6e-0d85-4f57-81f1-a50b64f2a488}</destination>
+		</relationship>
+	</object>
+	<object class="MarkerTrack" id="{a846c565-bc79-4821-982c-de39a9bbec1e}" />
+	<object class="Timeline" id="{18165858-5616-42fa-b524-1e4f2380bbc5}" />
+	<object class="SandboxEmitter" id="{10ef0700-91fd-4a02-a955-1f299b6cc3de}">
+		<property name="positionZ">
+			<value>4.20000029</value>
+		</property>
+		<property name="rotationY">
+			<value>-12.8513651</value>
+		</property>
+		<relationship name="event">
+			<destination>{565e3f86-e44b-475c-a55b-b3882115e9c3}</destination>
+		</relationship>
+	</object>
+	<object class="SandboxEmitter" id="{ca05ba6e-0d85-4f57-81f1-a50b64f2a488}">
+		<property name="positionX">
+			<value>0.174999908</value>
+		</property>
+		<property name="positionZ">
+			<value>-1.55000007</value>
+		</property>
+		<property name="rotationY">
+			<value>161.902328</value>
+		</property>
+		<relationship name="event">
+			<destination>{319bdbb6-2988-4b9a-be64-f64cab373fd8}</destination>
+		</relationship>
+	</object>
+</objects>

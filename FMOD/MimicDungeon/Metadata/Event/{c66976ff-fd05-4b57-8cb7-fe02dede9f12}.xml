@@ -8,7 +8,7 @@
 			<value>NPC_Fear_Stinger</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9b19d7df-5429-428f-a92f-c7dc747ea549}</destination>
@@ -87,7 +87,7 @@
 	</object>
 	<object class="MultiSound" id="{8260f638-6f90-4426-962a-a88d747038b1}">
 		<relationship name="sounds">
-			<destination>{19fe390e-0b24-4685-b68a-171db432af00}</destination>
+			<destination>{ad590a48-ebcc-474a-94a8-1a8e255f35e7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{1287693a-b1a0-4a99-a198-7a314421fd0f}">
@@ -102,7 +102,14 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6d218fc9-ae60-4ffd-a56f-6d58cdc3d24e}" />
-	<object class="SingleSound" id="{19fe390e-0b24-4685-b68a-171db432af00}" />
+	<object class="SingleSound" id="{ad590a48-ebcc-474a-94a8-1a8e255f35e7}">
+		<property name="startOffset">
+			<value>12.5</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{b1b00974-8873-4611-a475-96e73bace551}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{8b86ecac-6d73-4dee-bb75-dd6fb1d6d985}" />
 	<object class="MixerBusFader" id="{6223bb0a-8491-4047-b35a-7ae7679ac302}" />
 </objects>
