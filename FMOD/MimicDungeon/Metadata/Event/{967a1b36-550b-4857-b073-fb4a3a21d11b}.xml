@@ -8,7 +8,7 @@
 			<value>Knight_Death</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9816fe5a-09dc-4260-96fb-325ef7577d78}</destination>
@@ -87,7 +87,7 @@
 	</object>
 	<object class="MultiSound" id="{3adda9bd-fce0-4d31-afdc-080628fd818e}">
 		<relationship name="sounds">
-			<destination>{56102e8b-f043-49ce-ba96-12038ee074e1}</destination>
+			<destination>{100cfa3f-e58b-49d0-8f75-a3f763923051}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{204caf45-8bc6-4267-b0a1-d1aa0e0e730c}">
@@ -102,7 +102,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{f731bbbf-153e-4f86-b838-7008f14eb23c}" />
-	<object class="SingleSound" id="{56102e8b-f043-49ce-ba96-12038ee074e1}" />
+	<object class="SingleSound" id="{100cfa3f-e58b-49d0-8f75-a3f763923051}">
+		<relationship name="audioFile">
+			<destination>{d3f9f718-64af-4a80-9898-8f5628944714}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{89403d63-d881-4b09-b5a7-cabf9c291bdf}" />
 	<object class="MixerBusFader" id="{ff8df07d-9366-42fc-93b5-c48c350b37c3}" />
 </objects>

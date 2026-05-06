@@ -8,7 +8,7 @@
 			<value>Cleric_Death</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{3a21232e-5ab2-46aa-93d5-44e70ff630d9}</destination>
@@ -87,7 +87,7 @@
 	</object>
 	<object class="MultiSound" id="{e5c06378-2521-46ce-b5eb-ee212cd048aa}">
 		<relationship name="sounds">
-			<destination>{c4d05f63-f78b-4fac-9c7a-dd5c38396ef9}</destination>
+			<destination>{28f59dea-adb3-468d-9ea0-83a22019b4a8}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{ecfe0ed6-2ac6-463c-a41f-6fd5309b8ecd}">
@@ -102,7 +102,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{075481c8-d6a2-49fc-8791-6afe0be4f01e}" />
-	<object class="SingleSound" id="{c4d05f63-f78b-4fac-9c7a-dd5c38396ef9}" />
+	<object class="SingleSound" id="{28f59dea-adb3-468d-9ea0-83a22019b4a8}">
+		<relationship name="audioFile">
+			<destination>{2a7feda1-ee40-4e25-97ef-570ebaac960d}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{63ba0d79-6603-4b95-a928-fd925ca0d79b}" />
 	<object class="MixerBusFader" id="{97320b4f-dbe5-4022-b156-1963e2ba799c}" />
 </objects>

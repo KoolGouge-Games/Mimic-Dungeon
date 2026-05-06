@@ -8,7 +8,7 @@
 			<value>Mage_Death</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{ae1d3042-8bec-40d4-a78d-cfd421ae75fb}</destination>
@@ -87,7 +87,7 @@
 	</object>
 	<object class="MultiSound" id="{39847cd1-60f8-4ecb-a678-6a118255a273}">
 		<relationship name="sounds">
-			<destination>{437e7b83-3a03-43ab-aa40-7c889835336e}</destination>
+			<destination>{3e8e5548-a7d8-407b-b3f1-2ba0937fc794}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{4f2e5d48-2e40-4ac2-a5e8-805147b4ca43}">
@@ -102,7 +102,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{585d73f8-f177-4b9c-b548-1e6f13ece32a}" />
-	<object class="SingleSound" id="{437e7b83-3a03-43ab-aa40-7c889835336e}" />
+	<object class="SingleSound" id="{3e8e5548-a7d8-407b-b3f1-2ba0937fc794}">
+		<relationship name="audioFile">
+			<destination>{3c295413-5a6f-49ce-a331-dd8d6871a70d}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{c0533512-bfd5-436b-ba0e-c8d150d5fc4c}" />
 	<object class="MixerBusFader" id="{0426dbfe-6edc-42aa-8398-9b2ef6dc53fa}" />
 </objects>

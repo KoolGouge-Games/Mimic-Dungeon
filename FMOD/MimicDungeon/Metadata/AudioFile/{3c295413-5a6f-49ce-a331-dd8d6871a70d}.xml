@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{3c295413-5a6f-49ce-a331-dd8d6871a70d}">
+		<property name="assetPath">
+			<value>SFX/Screams/MageDeath.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.5024263038548753</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3027dd1b-8859-4a79-b3e6-819dc2654f35}</destination>
+		</relationship>
+	</object>
+</objects>
