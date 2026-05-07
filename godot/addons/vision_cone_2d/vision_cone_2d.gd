@@ -54,6 +54,9 @@ var _last_redraw_time: int = 0
 @onready var _angle_half: float = _angle/2.
 @onready var _angular_delta: float = _angle / ray_count
 
+@onready var visible_vision_cone: Polygon2D = $VisionConeRenderer
+@onready var vision_cone_collider: Area2D = $VisionConeArea
+
 func _process(_delta: float) -> void:
 	if debug_lines or debug_shape:
 		queue_redraw()
@@ -139,3 +142,10 @@ func _on_vision_cone_area_body_exited(body: Node2D) -> void:
 func _on_vision_cone_area_area_exited(area: Area2D) -> void:
 	pass # Replace with function body.
 
+func disable_detection() -> void:
+	visible_vision_cone.visible = false
+	vision_cone_collider.monitoring = false
+
+func enable_detection() -> void:
+	visible_vision_cone.visible = true
+	vision_cone_collider.monitoring = true

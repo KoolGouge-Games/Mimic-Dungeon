@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Adventurer
 
 @onready var navigation: NavigationAgent2D = $NavigationAgent2D
 @onready var vision: VisionCone2D = $VisionCone2D

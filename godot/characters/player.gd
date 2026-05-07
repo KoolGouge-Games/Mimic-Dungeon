@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var player_speed = 300.0
 @onready var eating_prompt: Control = %EatPrompt
