@@ -4,7 +4,6 @@ extends Blackboard
 
 func _ready() -> void:
 	set_value("player", player)
-	print(player)
 
 func _process(_delta: float) -> void:
 	pass

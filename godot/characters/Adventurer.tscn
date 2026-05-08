@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="4_kq6e1"]
 [ext_resource type="Script" uid="uid://bllb4xudnoh24" path="res://characters/adventurer-behavior/blackboard.gd" id="4_o8pjp"]
 [ext_resource type="Script" uid="uid://c4sxubyv7fhwa" path="res://characters/adventurer-behavior/los_to_player_bh.gd" id="6_itu75"]
-[ext_resource type="Script" uid="uid://cbnbvj8prv63i" path="res://addons/beehave/nodes/leaves/condition.gd" id="7_e06qe"]
 [ext_resource type="Script" uid="uid://cv74jjdrwevpr" path="res://addons/beehave/nodes/leaves/action.gd" id="8_blp6y"]
 [ext_resource type="Script" uid="uid://b5dcugec6e6n" path="res://characters/adventurer-behavior/player_is_moving.gd" id="9_1r0sb"]
 [ext_resource type="Script" uid="uid://bbaojjriq676j" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="9_o8pjp"]
@@ -15,6 +14,8 @@
 [ext_resource type="Script" uid="uid://crkjak4kyv56m" path="res://addons/beehave/nodes/decorators/inverter.gd" id="10_pc8je"]
 [ext_resource type="Script" uid="uid://ds4ltm8ik2c6" path="res://characters/adventurer-behavior/player_is_mimic.gd" id="10_sxnvl"]
 [ext_resource type="Script" uid="uid://dxj5pxsh0xtdq" path="res://characters/adventurer-behavior/resolve_fear.gd" id="12_u1c04"]
+[ext_resource type="Script" uid="uid://b2ovnc86umgsg" path="res://characters/adventurer-behavior/choose_poi.gd" id="14_pc8je"]
+[ext_resource type="Script" uid="uid://gp781ytnpfoe" path="res://characters/adventurer-behavior/walk_to_poi.gd" id="15_u1c04"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g50n2"]
 animations = [{
@@ -32,11 +33,20 @@ size = Vector2(32, 32)
 
 [node name="Adventurer" type="CharacterBody2D" unique_id=1649974806 node_paths=PackedStringArray("visionCone")]
 collision_layer = 4
+motion_mode = 1
 script = ExtResource("1_o4l1e")
 visionCone = NodePath("VisionCone2D/VisionConeRenderer")
 alertColor = Color(0.6, 0.27058825, 0.24705882, 0.36862746)
+movement_speed = 5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1275747233]
+path_desired_distance = 40.0
+target_desired_distance = 30.0
+avoidance_enabled = true
+radius = 221.41
+avoidance_layers = 3
+avoidance_mask = 3
+debug_enabled = true
 
 [node name="VisionCone2D" parent="." unique_id=692985966 instance=ExtResource("10_itu75")]
 angle_deg = 45
@@ -107,17 +117,19 @@ script = ExtResource("9_o8pjp")
 metadata/_custom_type_script = "uid://bbaojjriq676j"
 
 [node name="Choose POI" type="Node" parent="BeehaveTree/SelectorComposite/Loot Sequence" unique_id=1940751508]
-script = ExtResource("7_e06qe")
+script = ExtResource("14_pc8je")
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
 [node name="Walk to POI" type="Node" parent="BeehaveTree/SelectorComposite/Loot Sequence" unique_id=2119344469]
-script = ExtResource("8_blp6y")
+script = ExtResource("15_u1c04")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="Loot POI" type="Node" parent="BeehaveTree/SelectorComposite/Loot Sequence" unique_id=1247063586]
 script = ExtResource("8_blp6y")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_velocity_computed"]
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]
 

@@ -1,4 +1,7 @@
 extends Area2D
+class_name Interactable
+
+@export var ObjectType: Global.ObjectTypes = Global.ObjectTypes.BASIC
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
