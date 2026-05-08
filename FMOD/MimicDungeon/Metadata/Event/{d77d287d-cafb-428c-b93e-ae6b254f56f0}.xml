@@ -150,6 +150,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{63111895-9049-47ad-bc25-c7cc6484d89a}">
+		<property name="volume">
+			<value>-7</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -227,7 +230,7 @@
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>10.5</value>
+			<value>7.5</value>
 		</property>
 	</object>
 	<object class="TransitionSourceFadeOutCurve" id="{6265ad58-cea8-4b2a-bf1b-4a3a1292e856}">
