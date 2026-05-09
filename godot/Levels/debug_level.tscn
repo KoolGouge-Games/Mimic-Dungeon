@@ -1,10 +1,9 @@
 [gd_scene format=4 uid="uid://cihpie45hwukk"]
 
-[ext_resource type="Script" uid="uid://df83itspfe1br" path="res://Levels/level_1.gd" id="1_0urlm"]
+[ext_resource type="Script" uid="uid://df83itspfe1br" path="res://Levels/debug_level.gd" id="1_0urlm"]
 [ext_resource type="Texture2D" uid="uid://cebsr54yupggb" path="res://assets/tilesets/atlas_floor-16x16.png" id="1_dilhk"]
 [ext_resource type="PackedScene" uid="uid://c53ykeqdvjly1" path="res://characters/player.tscn" id="1_n0qsc"]
 [ext_resource type="Texture2D" uid="uid://dfvvkfeiou41v" path="res://assets/tilesets/Dungeon_Tileset.png" id="2_3mhv4"]
-[ext_resource type="PackedScene" uid="uid://bbjo8503ramx0" path="res://globals/interactable.tscn" id="4_rf6l5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3mhv4"]
 resource_name = "Floor"
@@ -229,11 +228,11 @@ sources/0 = SubResource("TileSetAtlasSource_3mhv4")
 sources/1 = SubResource("TileSetAtlasSource_rf6l5")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_syshm"]
-vertices = PackedVector2Array(707, 121.89844, 707.9531, 323.04688, 540, 323.9375, 540, 180.14844, 676.85156, 91, 451.4375, 244.96875, 29, 244.02344, 29, 26.023438, 451.4375, 26.96875, 454.45313, 93.09375, 454.45313, 178.85156, 707.75, 91.75)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9, 10), PackedInt32Array(4, 11, 0), PackedInt32Array(9, 4, 3, 10)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(19, 16, 461, 17, 464, 83, 677, 81, 718, 82, 717, 122, 718, 333, 530, 334, 530, 190, 464, 189, 461, 255, 19, 254)])
+vertices = PackedVector2Array(706.0781, 93, 707.90625, 324.9375, 539, 324.04688, 539, 180.29688, 452.14844, 93, 454.46094, 177.70313, 451.45313, 243, 29, 243, 29, 27, 451.14844, 27)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 7, 8, 9, 4), PackedInt32Array(6, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(19, 17, 461, 17, 462, 83, 716, 83, 718, 335, 529, 334, 529, 190, 464, 188, 461, 253, 19, 253)])
 
-[node name="Level1" type="Node2D" unique_id=617526436]
+[node name="Debug_Level" type="Node2D" unique_id=617526436]
 script = ExtResource("1_0urlm")
 
 [node name="Tileset" type="TileMapLayer" parent="." unique_id=912352910]
@@ -253,11 +252,8 @@ limit_top = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Interactable" parent="." unique_id=577584369 instance=ExtResource("4_rf6l5")]
-position = Vector2(696, 102)
-
 [node name="NPCSpawner" type="Marker2D" parent="." unique_id=1974030943]
-position = Vector2(417, 237)
+position = Vector2(559, 314)
 
 [node name="Button" type="Button" parent="." unique_id=580525858]
 offset_left = 125.0
@@ -267,7 +263,8 @@ offset_bottom = 246.0
 text = "Queue Adventurer
 "
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1299758065]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1232976609]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_syshm")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
