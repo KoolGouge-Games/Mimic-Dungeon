@@ -18,3 +18,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 
 func _target_reached():
 	reached_destination = true
+
+func interrupt(actor: Node, blackboard: Blackboard) -> void:
+	actor.target_location = actor
+	blackboard.set_value("POIChoice", null)
