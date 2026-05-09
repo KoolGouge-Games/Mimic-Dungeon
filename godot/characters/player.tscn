@@ -365,6 +365,7 @@ shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="EatPrompt" type="Control" parent="." unique_id=1362928536]
 unique_name_in_owner = true
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -438,7 +439,7 @@ expand_mode = 1
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_8sqrr")
 
-[node name="TransformationSelection" type="Control" parent="." unique_id=519925245]
+[node name="TransformationSelection" type="Control" parent="." unique_id=519925245 groups=["player"]]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

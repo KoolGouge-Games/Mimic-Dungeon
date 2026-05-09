@@ -5,14 +5,16 @@ class_name Player
 @onready var eating_prompt: Control = %EatPrompt
 @onready var eating_qte: Control = $"Eating QTE"
 @onready var QTE_animation: AnimationPlayer = %QTEAnimation
-@onready var Transformation_menu: Control = $TransformationSelection
-@onready var Trans_menu_animation: AnimationPlayer = %TransMenuAnimation
+@onready var transformation_menu: Control = $TransformationSelection
 
 var eating_minigame := false
 var is_arrow_over_green := false
 var is_transformation_menu_open := false
 var is_transformed := false
 var is_moving := false
+var adventurer_to_eat: Adventurer
+
+var ObjectType: Global.ObjectTypes
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_eat"):
@@ -30,10 +32,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			is_transformed = false
 			remove_from_group("object")
 		elif is_transformation_menu_open:
-			Trans_menu_animation.play_backwards("open")
+			transformation_menu.close()
 			is_transformation_menu_open = false
 		else:
-			Trans_menu_animation.play("open")
+			transformation_menu.open()
 			is_transformation_menu_open = true
 
 func _physics_process(_delta: float) -> void:
@@ -49,13 +51,17 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_eating_range_body_exited(_body: Node2D) -> void:
+	# adventurer_to_eat = null
 	eating_prompt.visible = false
 
+func _on_eating_range_body_entered(body: Node2D) -> void:
+	if body.is_in_group("adventurers"):
+		adventurer_to_eat = body
 
-func _on_eating_range_body_entered(_body: Node2D) -> void:
 	eating_prompt.visible = true
 
 func trigger_minigame() -> void:
+	adventurer_to_eat.process_mode = Node.PROCESS_MODE_DISABLED
 	eating_prompt.visible = false
 	eating_minigame = true
 	eating_qte.visible = true
@@ -74,6 +80,7 @@ func reset_QTE() -> void:
 	eating_qte.visible = false
 	is_arrow_over_green = false
 	eating_minigame = false
+	adventurer_to_eat.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_eating_qte_in_the_green() -> void:
 	is_arrow_over_green = true
@@ -85,7 +92,6 @@ func _on_eating_qte_time_up() -> void:
 	fail_QTE()
 
 func _on_transformation_selection(type: Global.ObjectTypes) -> void:
-	print("transform into a ", type, " object")
+	ObjectType = type
 	add_to_group("object")
 	is_transformed = true
-
