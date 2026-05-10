@@ -40,6 +40,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if is_transformed:
+		direction = Vector2.ZERO
+
 	if direction:
 		velocity = direction * player_speed
 		is_moving = true
@@ -74,6 +77,10 @@ func eat_adventurer() -> void:
 func fail_QTE() -> void:
 	print("oh no!")
 	reset_QTE()
+	damage()
+
+func damage() -> void:
+	print("ow!")
 
 func reset_QTE() -> void:
 	QTE_animation.stop()

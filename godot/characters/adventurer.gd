@@ -5,12 +5,15 @@ class_name Adventurer
 @onready var vision: VisionCone2D = $VisionCone2D
 @onready var original_color = visionCone.color
 @onready var loot_timer: Timer = $LootTimer
+@onready var looting_clock: TextureProgressBar = %LootingClock
 
 @export var visionCone: Polygon2D
 @export var alertColor: Color
 @export var CLOSEST_NUM_CHOICES: int = 3
 @export var movement_speed: int
 
+@export var FAVORED_BONUS := 2
+@export var BASE_LOOTING_TIME := 10
 var sprite: AnimatedSprite2D 
 var stats: NPCStats
 
@@ -40,6 +43,7 @@ func _ready() -> void:
 
 func initialize(type: Global.NPCTypes) -> void:
 	var resourcepath := "res://Resources/npcs/%s.tres"
+
 	match type:
 		Global.NPCTypes.KNIGHT:
 			print("spawning knight")
@@ -58,13 +62,15 @@ func initialize(type: Global.NPCTypes) -> void:
 	sprite = $AnimatedSprite2D
 
 	speed = stats.Speed
-	movement_speed = stats.Speed * 100
-	fear = stats.FearValue
+	movement_speed = stats.Speed * 10
 	favored_object = stats.FavoredType
 	sprite.set_sprite_frames(stats.SpriteSheet)
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
+	if looting_clock.visible:
+		looting_clock.value = loot_timer.time_left
 
+func _physics_process(_delta: float) -> void:
 	var next_path_point: Vector2 = navigation.get_next_path_position()
 	var direction = global_position.direction_to(next_path_point)
 	var new_velocity = direction * movement_speed
@@ -101,13 +107,20 @@ func choosePOI() -> Node:
 	return choice
 
 func loot_poi() -> void:
+	print("looting")
+	var looting_time := BASE_LOOTING_TIME - stats.Speed
 	if chosen_poi.ObjectType == favored_object:
-		loot_timer.start(Global.BASE_LOOTING_TIME - (stats.Speed + Global.FAVORED_BONUS))
-	else:
-		loot_timer.star(Global.BASE_LOOTING_TIME - stats.Speed)
+		looting_time -= FAVORED_BONUS
+
+	looting_clock.max_value = looting_time
+	looting_clock.value = looting_time
+
+	looting_clock.visible = true
+
+	loot_timer.start(looting_time)
 
 func resolveFear() -> void:
-	print("fear!")
+	print("A mimic!")
 
 func _on_vision_cone_area_body_entered(_body: Node2D) -> void:
 	visionCone.color = alertColor
@@ -121,4 +134,13 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 	emit_signal("target_reached")
 
 func _on_loot_timer_timeout() -> void:
+	chosen_poi.remove_from_group("object")
+	looting_clock.visible = false
+
+	if chosen_poi.is_in_group("player"):
+		resolveFear()
+		chosen_poi.damage()
+	else:
+		value += 1
+
 	emit_signal("looting_finished")

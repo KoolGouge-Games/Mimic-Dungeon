@@ -3,16 +3,13 @@ extends ActionLeaf
 
 var finished_looting := false
 
-func tick(actor: Node, blackboard: Blackboard) -> int:
-	actor.loot_poi()
-
+func tick(actor: Node, _blackboard: Blackboard) -> int:
 	if not actor.is_connected("looting_finished", _looting_finished):
 		actor.connect("looting_finished", _looting_finished)
+		actor.loot_poi()
 
 	if finished_looting:
 		finished_looting = false
-		actor.chosen_poi.lootable = false
-		actor.value += 1
 		actor.disconnect("looting_finished", _looting_finished)
 		return SUCCESS
 	else:

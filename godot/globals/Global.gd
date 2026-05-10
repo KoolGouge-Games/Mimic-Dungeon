@@ -16,8 +16,6 @@ enum NPCTypes {
 	}
 
 var rngsus := RandomNumberGenerator.new()
-const FAVORED_BONUS := 2
-const BASE_LOOTING_TIME := 10
 
 func get_group_sorted_by_distance(group: String, position: Vector2) -> Array[Node]:
 	var nodes := get_tree().get_nodes_in_group(group)

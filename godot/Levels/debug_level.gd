@@ -15,7 +15,7 @@ func spawn_npc(type: Global.NPCTypes) -> void:
 	npc.initialize(type)
 	npc.position = spawner.position
 	add_child(npc)
+	# TODO: add the NPC to the music params
 
 func _on_button_pressed() -> void:
 	queue_npc(Global.NPCTypes.KNIGHT)
-
