@@ -6,6 +6,9 @@ class_name Adventurer
 @onready var original_color = visionCone.color
 @onready var loot_timer: Timer = $LootTimer
 @onready var looting_clock: TextureProgressBar = %LootingClock
+@onready var adventure_timer: Timer = $AdventureTimer
+@onready var adventure_clock: TextureProgressBar = %AdventureClock
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var visionCone: Polygon2D
 @export var alertColor: Color
@@ -14,13 +17,18 @@ class_name Adventurer
 
 @export var FAVORED_BONUS := 2
 @export var BASE_LOOTING_TIME := 10
+
+@export var ADV_MIN: float = 69.0 
+@export var ADV_MAX: float = 120.0
+
 var sprite: AnimatedSprite2D 
 var stats: NPCStats
 
 var nearest_poi: Area2D
 
 var speed := 5
-var fear : int
+var feared := false
+var idling := true
 var favored_object : Global.ObjectTypes
 
 var move_direction: Vector2 = Vector2.ZERO
@@ -31,15 +39,19 @@ var chosen_poi: Node:
 	get:
 		return chosen_poi
 	set(value):
-		if navigation != null:
+		if navigation != null and value != null:
 			navigation.set_target_position(value.position)
-		return value
+		chosen_poi = value
 
+signal idle_finished
 signal looting_finished
 signal target_reached
 
 func _ready() -> void:
-	add_to_group("adventurers")
+	var adventure_time := Global.rngsus.randf_range(ADV_MIN, ADV_MAX)
+	adventure_clock.max_value = adventure_time
+	adventure_clock.value = adventure_time
+	adventure_timer.start(adventure_time)
 
 func initialize(type: Global.NPCTypes) -> void:
 	var resourcepath := "res://Resources/npcs/%s.tres"
@@ -67,6 +79,7 @@ func initialize(type: Global.NPCTypes) -> void:
 	sprite.set_sprite_frames(stats.SpriteSheet)
 
 func _process(_delta: float) -> void:
+	adventure_clock.value = adventure_timer.time_left
 	if looting_clock.visible:
 		looting_clock.value = loot_timer.time_left
 
@@ -81,9 +94,9 @@ func _physics_process(_delta: float) -> void:
 		_on_velocity_computed(new_velocity)
 	velocity = new_velocity
 
-	vision.look_at(direction)
-	# 90 degrees
-	vision.rotate(-1.5707963)
+	if not idling:
+		vision.look_at(next_path_point)
+		vision.rotate(deg_to_rad(-90.0))
 
 func _on_velocity_computed(safe_velocity: Vector2):
 	velocity = safe_velocity
@@ -91,6 +104,12 @@ func _on_velocity_computed(safe_velocity: Vector2):
 
 func choosePOI() -> Node:
 	var pois := Global.get_group_sorted_by_distance("object", self.position)
+	print("pois: ", pois)
+
+	if pois.size() < 1:
+		leave()
+		return
+
 	var choiceTable: Array[float] = []
 
 	for i in range(CLOSEST_NUM_CHOICES):
@@ -121,6 +140,14 @@ func loot_poi() -> void:
 
 func resolveFear() -> void:
 	print("A mimic!")
+	var time_left = adventure_timer.time_left
+	adventure_timer.start(time_left - 1.0)
+	feared = true
+	navigation.set_target_position(position)
+
+func leave() -> void:
+	print("I'm outta here!")
+	queue_free()
 
 func _on_vision_cone_area_body_entered(_body: Node2D) -> void:
 	visionCone.color = alertColor
@@ -131,7 +158,10 @@ func _on_vision_cone_area_body_exited(_body: Node2D) -> void:
 	LOS_to_player = false
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
-	emit_signal("target_reached")
+	if feared:
+		feared = false
+	else:
+		emit_signal("target_reached")
 
 func _on_loot_timer_timeout() -> void:
 	chosen_poi.remove_from_group("object")
@@ -144,3 +174,13 @@ func _on_loot_timer_timeout() -> void:
 		value += 1
 
 	emit_signal("looting_finished")
+	
+func start_idle() -> void:
+	idling = true
+	animation_player.play("look_around")
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	idling = false
+	if anim_name == "look_around":
+		emit_signal("idle_finished")
+	

@@ -14,10 +14,123 @@
 [ext_resource type="Script" uid="uid://crkjak4kyv56m" path="res://addons/beehave/nodes/decorators/inverter.gd" id="10_pc8je"]
 [ext_resource type="Script" uid="uid://ds4ltm8ik2c6" path="res://characters/adventurer-behavior/player_is_transformed.gd" id="11_pc8je"]
 [ext_resource type="Script" uid="uid://dxj5pxsh0xtdq" path="res://characters/adventurer-behavior/resolve_fear.gd" id="12_u1c04"]
+[ext_resource type="Script" uid="uid://2qri6rrfv8ui" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="13_4b31h"]
 [ext_resource type="Script" uid="uid://b2ovnc86umgsg" path="res://characters/adventurer-behavior/choose_poi.gd" id="14_pc8je"]
-[ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="15_do4xh"]
 [ext_resource type="Script" uid="uid://gp781ytnpfoe" path="res://characters/adventurer-behavior/walk_to_poi.gd" id="15_u1c04"]
 [ext_resource type="Script" uid="uid://0regynqjuank" path="res://characters/adventurer-behavior/loot_poi.gd" id="16_pc8je"]
+[ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="19_3lrbr"]
+[ext_resource type="Script" uid="uid://dcrtdnk7qyjto" path="res://characters/adventurer-behavior/idle.gd" id="19_oyyn5"]
+[ext_resource type="Texture2D" uid="uid://cuep0f1sf1bl7" path="res://assets/UI Elements/Timer-Sphere.png" id="20_4b31h"]
+[ext_resource type="Texture2D" uid="uid://ckd5ssk5goftj" path="res://assets/UI Elements/Looting-Sphere.png" id="22_oyyn5"]
+
+[sub_resource type="Animation" id="Animation_o86xa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AdventureTimerDisplay:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.2831855]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_oyyn5"]
+resource_name = "look_around"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [6.283185307179586, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AdventureTimerDisplay:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [6.2831855, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [6.2831855, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o86xa"]
+_data = {
+&"RESET": SubResource("Animation_o86xa"),
+&"look_around": SubResource("Animation_oyyn5")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g50n2"]
 animations = [{
@@ -33,7 +146,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4l1e"]
 size = Vector2(32, 32)
 
-[node name="Adventurer" type="CharacterBody2D" unique_id=1649974806 node_paths=PackedStringArray("visionCone")]
+[node name="Adventurer" type="CharacterBody2D" unique_id=1649974806 node_paths=PackedStringArray("visionCone") groups=["adventurers"]]
 collision_layer = 4
 collision_mask = 2
 motion_mode = 1
@@ -62,6 +175,9 @@ collision_mask = 2
 [node name="VisionConeCollider" parent="VisionCone2D/VisionConeArea" index="0"]
 polygon = PackedVector2Array(0, 0, -76, 185, 76, 184)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1891656053]
+libraries/ = SubResource("AnimationLibrary_o86xa")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1281409735]
 texture_filter = 1
 scale = Vector2(2, 2)
@@ -71,6 +187,76 @@ sprite_frames = SubResource("SpriteFrames_g50n2")
 shape = SubResource("RectangleShape2D_o4l1e")
 
 [node name="LootTimer" type="Timer" parent="." unique_id=51422143]
+
+[node name="AdventureTimer" type="Timer" parent="." unique_id=338944990]
+
+[node name="AdventureTimerDisplay" type="Control" parent="." unique_id=1123249929]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+rotation = 6.2831855
+pivot_offset = Vector2(0, 40)
+
+[node name="AdventureClock" type="TextureProgressBar" parent="AdventureTimerDisplay" unique_id=720755671]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 64.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+value = 43.0
+fill_mode = 5
+texture_under = ExtResource("19_3lrbr")
+texture_progress = ExtResource("20_4b31h")
+
+[node name="LootingTimerDisplay" type="Control" parent="." unique_id=1046318209]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="LootingClock" type="TextureProgressBar" parent="LootingTimerDisplay" unique_id=1496308024]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(0.5, 0.5)
+value = 43.0
+fill_mode = 5
+texture_under = ExtResource("19_3lrbr")
+texture_progress = ExtResource("22_oyyn5")
+
+[node name="Label" type="Label" parent="LootingTimerDisplay/LootingClock" unique_id=1884761787]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -4.0
+offset_right = 36.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Looting..."
 
 [node name="Blackboard" type="Node" parent="." unique_id=456921879]
 script = ExtResource("4_o8pjp")
@@ -111,7 +297,12 @@ metadata/_custom_type_script = "uid://crkjak4kyv56m"
 script = ExtResource("11_pc8je")
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
-[node name="Resolve Fear" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Notice Sequence" unique_id=1290922347]
+[node name="CooldownDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Notice Sequence" unique_id=804100486]
+script = ExtResource("13_4b31h")
+wait_time = 1.5
+metadata/_custom_type_script = "uid://2qri6rrfv8ui"
+
+[node name="Resolve Fear" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Notice Sequence/CooldownDecorator" unique_id=1290922347]
 script = ExtResource("12_u1c04")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
@@ -119,12 +310,11 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 script = ExtResource("9_o8pjp")
 metadata/_custom_type_script = "uid://bbaojjriq676j"
 
-[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Loot Sequence" unique_id=171440362]
-script = ExtResource("15_do4xh")
-wait_time = 2.0
-metadata/_custom_type_script = "uid://dorri1tul8gfx"
+[node name="Idle" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Loot Sequence" unique_id=958468603]
+script = ExtResource("19_oyyn5")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
-[node name="Choose POI" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Loot Sequence/DelayDecorator" unique_id=1940751508]
+[node name="Choose POI" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Loot Sequence" unique_id=1940751508]
 script = ExtResource("14_pc8je")
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
@@ -140,6 +330,8 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_velocity_computed"]
 [connection signal="body_entered" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_entered"]
 [connection signal="body_exited" from="VisionCone2D/VisionConeArea" to="." method="_on_vision_cone_area_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="LootTimer" to="." method="_on_loot_timer_timeout"]
+[connection signal="timeout" from="AdventureTimer" to="." method="leave"]
 
 [editable path="VisionCone2D"]
