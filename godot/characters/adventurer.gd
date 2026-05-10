@@ -74,7 +74,7 @@ func initialize(type: Global.NPCTypes) -> void:
 	sprite = $AnimatedSprite2D
 
 	speed = stats.Speed
-	movement_speed = stats.Speed * 10
+	movement_speed = stats.Speed * 20
 	favored_object = stats.FavoredType
 	sprite.set_sprite_frames(stats.SpriteSheet)
 

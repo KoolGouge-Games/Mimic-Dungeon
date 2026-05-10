@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="2_dy5jq"]
 [ext_resource type="Script" uid="uid://cfln05e4xl6b1" path="res://globals/NPCAlert.gd" id="2_iaa3o"]
 [ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/UI Elements/Rogue-Portrait.png" id="4_c7ac0"]
-[ext_resource type="Texture2D" uid="uid://ln8rujcqvu8a" path="res://assets/UI Elements/Queuing-Sphere.png" id="5_tpsyu"]
+[ext_resource type="Texture2D" uid="uid://djskvya7yocvt" path="res://assets/UI Elements/Empty-Bar.png" id="4_kgrki"]
+[ext_resource type="Texture2D" uid="uid://1bogad1by0qk" path="res://assets/UI Elements/Bar-Border.png" id="5_hljhf"]
+[ext_resource type="Texture2D" uid="uid://dd2sgxrhxoir6" path="res://assets/UI Elements/Full-Bar.png" id="6_1xow5"]
 
 [node name="World" type="Node2D" unique_id=802943821]
 script = ExtResource("1_c7ac0")
@@ -34,6 +36,24 @@ script = ExtResource("2_iaa3o")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -33.0
+offset_right = -46.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+step = 0.1
+value = 98.0
+texture_under = ExtResource("4_kgrki")
+texture_over = ExtResource("5_hljhf")
+texture_progress = ExtResource("6_1xow5")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/NPCAlert" unique_id=812817775]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -43,13 +63,9 @@ offset_left = -64.0
 offset_top = -64.0
 grow_horizontal = 0
 grow_vertical = 0
-step = 0.1
-value = 50.0
-fill_mode = 5
-texture_under = ExtResource("2_dy5jq")
-texture_progress = ExtResource("5_tpsyu")
+texture = ExtResource("2_dy5jq")
 
-[node name="NPCProfile" type="TextureRect" parent="CanvasLayer/NPCAlert/TimerBar" unique_id=205893208]
+[node name="NPCProfile" type="TextureRect" parent="CanvasLayer/NPCAlert/TextureRect" unique_id=205893208]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -69,19 +85,12 @@ texture = ExtResource("4_c7ac0")
 unique_name_in_owner = true
 one_shot = true
 
-[node name="Label" type="Label" parent="CanvasLayer/NPCAlert" unique_id=872271501]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -138.0
-offset_top = -43.0
-offset_right = -70.0
-offset_bottom = -20.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="Label" type="Label" parent="CanvasLayer/NPCAlert" unique_id=635828343]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 215.0
+offset_right = 418.0
+offset_bottom = 238.0
 text = "Up Next:"
 
 [connection signal="queue_adventurer" from="Level1" to="." method="_on_queue_adventurer"]
