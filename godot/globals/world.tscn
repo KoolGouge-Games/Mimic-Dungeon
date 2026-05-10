@@ -13,7 +13,7 @@
 script = ExtResource("1_c7ac0")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=320680658]
-bank_paths = ["res://assets/fmod/Master.bank", "res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.assets.bank"]
+bank_paths = ["res://assets/fmod/Master.bank", "res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/INTERFACE.bank", "res://assets/fmod/INTERFACE.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank", "res://assets/fmod/SFX.bank", "res://assets/fmod/SFX.assets.bank"]
 
 [node name="Level1" parent="." unique_id=617526436 instance=ExtResource("1_ldosu")]
 position = Vector2(0, 1)

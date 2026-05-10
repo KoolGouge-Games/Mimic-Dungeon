@@ -285,6 +285,7 @@ script = ExtResource("1_0urlm")
 [node name="MusicPlayer" type="FmodEventEmitter2D" parent="." unique_id=272130218]
 event_name = "event:/Gameplay"
 event_guid = "{8af59a6c-65e2-47c2-9cbc-8d6efdca9ea4}"
+autoplay = true
 fmod_parameters/rogue-active/id = 2194131539567539340
 fmod_parameters/rogue-active = "false"
 fmod_parameters/rogue-active/labels = PackedStringArray("false", "true")
