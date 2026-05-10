@@ -1,7 +1,7 @@
 extends Control
 
 @onready var NPCTimer: Timer = %NPCTimer
-@onready var TimerBar: ProgressBar = %TimerBar
+@onready var TimerBar: TextureProgressBar = %TimerBar
 @onready var portriatElement: TextureRect = %NPCProfile
 
 signal spawnNPC

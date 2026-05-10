@@ -1,16 +1,13 @@
 [gd_scene format=3 uid="uid://bkwvammdgf7uc"]
 
 [ext_resource type="Script" uid="uid://d0flob88nqxnq" path="res://globals/world.gd" id="1_c7ac0"]
-[ext_resource type="PackedScene" uid="uid://cihpie45hwukk" path="res://Levels/level_1.tscn" id="1_ldosu"]
+[ext_resource type="PackedScene" uid="uid://cihpie45hwukk" path="res://Levels/debug_level.tscn" id="1_ldosu"]
 [ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="2_dy5jq"]
 [ext_resource type="Script" uid="uid://cfln05e4xl6b1" path="res://globals/NPCAlert.gd" id="2_iaa3o"]
 [ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/UI Elements/Rogue-Portrait.png" id="4_c7ac0"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpsyu"]
-bg_color = Color(0.2159017, 0.21590173, 0.21590161, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgfpr"]
-bg_color = Color(0.87329835, 0.87329847, 0.87329817, 1)
+[ext_resource type="Texture2D" uid="uid://djskvya7yocvt" path="res://assets/UI Elements/Empty-Bar.png" id="4_kgrki"]
+[ext_resource type="Texture2D" uid="uid://1bogad1by0qk" path="res://assets/UI Elements/Bar-Border.png" id="5_hljhf"]
+[ext_resource type="Texture2D" uid="uid://dd2sgxrhxoir6" path="res://assets/UI Elements/Full-Bar.png" id="6_1xow5"]
 
 [node name="World" type="Node2D" unique_id=802943821]
 script = ExtResource("1_c7ac0")
@@ -19,10 +16,12 @@ script = ExtResource("1_c7ac0")
 bank_paths = ["res://assets/fmod/Master.bank", "res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.assets.bank"]
 
 [node name="Level1" parent="." unique_id=617526436 instance=ExtResource("1_ldosu")]
+position = Vector2(0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1616854312]
 
 [node name="NPCAlert" type="Control" parent="CanvasLayer" unique_id=1785213978]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 3
@@ -30,9 +29,11 @@ anchors_preset = 0
 offset_left = 1.0
 offset_right = 481.0
 offset_bottom = 271.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
 script = ExtResource("2_iaa3o")
 
-[node name="TimerBar" type="ProgressBar" parent="CanvasLayer/NPCAlert" unique_id=698977530]
+[node name="TimerBar" type="TextureProgressBar" parent="CanvasLayer/NPCAlert" unique_id=1332906290]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
@@ -40,26 +41,28 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 41.0
-offset_top = -31.0
-offset_right = -11.0
-offset_bottom = -7.0
+offset_left = 6.0
+offset_top = -33.0
+offset_right = -46.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_tpsyu")
-theme_override_styles/fill = SubResource("StyleBoxFlat_sgfpr")
-value = 50.0
-show_percentage = false
+step = 0.1
+value = 98.0
+texture_under = ExtResource("4_kgrki")
+texture_over = ExtResource("5_hljhf")
+texture_progress = ExtResource("6_1xow5")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NPCAlert" unique_id=812817775]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -71.0
-offset_right = 69.0
-offset_bottom = -7.0
+offset_left = -64.0
+offset_top = -64.0
+grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("2_dy5jq")
 
@@ -82,6 +85,14 @@ texture = ExtResource("4_c7ac0")
 [node name="NPCTimer" type="Timer" parent="CanvasLayer/NPCAlert" unique_id=1133341176]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="Label" type="Label" parent="CanvasLayer/NPCAlert" unique_id=635828343]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 215.0
+offset_right = 418.0
+offset_bottom = 238.0
+text = "Up Next:"
 
 [connection signal="queue_adventurer" from="Level1" to="." method="_on_queue_adventurer"]
 [connection signal="spawnNPC" from="CanvasLayer/NPCAlert" to="." method="_on_npc_alert_spawn_npc"]

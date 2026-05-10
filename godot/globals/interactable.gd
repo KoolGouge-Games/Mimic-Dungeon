@@ -1,6 +1,6 @@
-extends Resource
-class_name interactable
+extends Area2D
+class_name Interactable
 
-@export var type: Global.ObjectTypes
-var sprite: Sprite2D
+@export var ObjectType: Global.ObjectTypes = Global.ObjectTypes.BASIC
+var lootable := false
 
