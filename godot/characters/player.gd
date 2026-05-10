@@ -103,3 +103,4 @@ func _on_transformation_selection(type: Global.ObjectTypes) -> void:
 	ObjectType = type
 	add_to_group("object")
 	is_transformed = true
+	is_transformation_menu_open = false

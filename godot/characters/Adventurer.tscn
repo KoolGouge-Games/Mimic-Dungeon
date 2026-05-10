@@ -187,6 +187,7 @@ sprite_frames = SubResource("SpriteFrames_g50n2")
 shape = SubResource("RectangleShape2D_o4l1e")
 
 [node name="LootTimer" type="Timer" parent="." unique_id=51422143]
+one_shot = true
 
 [node name="AdventureTimer" type="Timer" parent="." unique_id=338944990]
 
