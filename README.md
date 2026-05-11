@@ -17,5 +17,6 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [ ] tie all the audio to their relative objects
 
 ### Stretch Goals
+- [ ] Get FMOD to work in the web
 - [ ] Add controller support
 - [ ] Add key rebinding
