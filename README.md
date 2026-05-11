@@ -3,7 +3,7 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 
 ## Alex TODO
 - [ ] get all the object sprites to show up 
-- [ ] fix looting logic so that POIs are lootable by different npcs
+- [ ] add a restock timer (like 30sec?) for looted POIs
 - [ ] Impelement logic for eating adventurers
   - [ ] have the mimic un-transform after the eating minigame
 - [ ] add "running away" logic for when an adventurer spots a mimic
