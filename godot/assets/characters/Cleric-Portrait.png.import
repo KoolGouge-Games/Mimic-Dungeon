@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d10noc8vj460k"
-path="res://.godot/imported/Knight-Portrait.png-2310b6ff8f59bc1b54374febe5a34bd0.ctex"
+uid="uid://baniuwbq1sghe"
+path="res://.godot/imported/Cleric-Portrait.png-9b1a07615d0b343c5d1e2233f22a98eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI Elements/Knight-Portrait.png"
-dest_files=["res://.godot/imported/Knight-Portrait.png-2310b6ff8f59bc1b54374febe5a34bd0.ctex"]
+source_file="res://assets/characters/Cleric-Portrait.png"
+dest_files=["res://.godot/imported/Cleric-Portrait.png-9b1a07615d0b343c5d1e2233f22a98eb.ctex"]
 
 [params]
 

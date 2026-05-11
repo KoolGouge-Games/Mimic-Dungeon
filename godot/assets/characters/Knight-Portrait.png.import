@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baamarsoukc2k"
-path="res://.godot/imported/Mage-Portrait.png-b1577d64bb5f9eb656d63fa0be44ff03.ctex"
+uid="uid://d10noc8vj460k"
+path="res://.godot/imported/Knight-Portrait.png-bbe7cfe22835faf50466c6cdab31914e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI Elements/Mage-Portrait.png"
-dest_files=["res://.godot/imported/Mage-Portrait.png-b1577d64bb5f9eb656d63fa0be44ff03.ctex"]
+source_file="res://assets/characters/Knight-Portrait.png"
+dest_files=["res://.godot/imported/Knight-Portrait.png-bbe7cfe22835faf50466c6cdab31914e.ctex"]
 
 [params]
 

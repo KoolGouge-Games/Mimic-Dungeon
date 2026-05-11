@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 
 func startNPCTimer(duration: float, NPCType: Global.NPCTypes):
 	var npcString: String
-	var pathString := "res://assets/UI Elements/%s-Portrait.png"
+	var pathString := "res://assets/characters/%s-Portrait.png"
 	npc_type = NPCType
 
 	match NPCType:

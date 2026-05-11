@@ -2,17 +2,5 @@
 
 [ext_resource type="Script" uid="uid://cg3r4vjyhd8o0" path="res://globals/interactable.gd" id="1_a2a47"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q013p"]
-size = Vector2(32, 32)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q013p"]
-size = Vector2(32, 32)
-
-[node name="Interactable" type="Area2D" unique_id=577584369 groups=["object"]]
+[node name="Interactable" type="Sprite2D" unique_id=1142406827 groups=["object"]]
 script = ExtResource("1_a2a47")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1734458856]
-shape = SubResource("RectangleShape2D_q013p")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=567078256]
-texture = SubResource("PlaceholderTexture2D_q013p")

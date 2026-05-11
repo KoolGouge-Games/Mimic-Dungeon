@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7jvg4caewahn"
-path="res://.godot/imported/knight-spritesheet.png-541746216de66a1207ddbf1baee31100.ctex"
+uid="uid://cmqdhakhi23wc"
+path="res://.godot/imported/Cursed.png-60b9be9c6cec525b62fb199a27f6087d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/knight-spritesheet.png"
-dest_files=["res://.godot/imported/knight-spritesheet.png-541746216de66a1207ddbf1baee31100.ctex"]
+source_file="res://assets/objects/Cursed.png"
+dest_files=["res://.godot/imported/Cursed.png-60b9be9c6cec525b62fb199a27f6087d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baniuwbq1sghe"
-path="res://.godot/imported/Cleric-Portrait.png-26e55254ee35ee3e2545a92842b6a5e4.ctex"
+uid="uid://bjjaodaeg3jny"
+path="res://.godot/imported/Locked.png-840316e14c3697bfe06c97180d54636f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI Elements/Cleric-Portrait.png"
-dest_files=["res://.godot/imported/Cleric-Portrait.png-26e55254ee35ee3e2545a92842b6a5e4.ctex"]
+source_file="res://assets/objects/Locked.png"
+dest_files=["res://.godot/imported/Locked.png-840316e14c3697bfe06c97180d54636f.ctex"]
 
 [params]
 

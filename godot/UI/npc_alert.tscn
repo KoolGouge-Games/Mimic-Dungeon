@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfln05e4xl6b1" path="res://globals/NPCAlert.gd" id="1_k3gpo"]
 [ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="2_7m4xp"]
-[ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/UI Elements/Rogue-Portrait.png" id="3_0ld3h"]
+[ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/characters/Rogue-Portrait.png" id="3_0ld3h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpsyu"]
 bg_color = Color(0.2159017, 0.21590173, 0.21590161, 1)

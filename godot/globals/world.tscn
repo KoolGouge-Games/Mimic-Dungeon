@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bkwvammdgf7uc"]
 
 [ext_resource type="Script" uid="uid://d0flob88nqxnq" path="res://globals/world.gd" id="1_c7ac0"]
-[ext_resource type="PackedScene" uid="uid://cihpie45hwukk" path="res://Levels/debug_level.tscn" id="1_ldosu"]
 [ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="2_dy5jq"]
 [ext_resource type="Script" uid="uid://cfln05e4xl6b1" path="res://globals/NPCAlert.gd" id="2_iaa3o"]
-[ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/UI Elements/Rogue-Portrait.png" id="4_c7ac0"]
+[ext_resource type="PackedScene" uid="uid://dk17obqk825vt" path="res://Levels/level_1.tscn" id="2_kgrki"]
+[ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/characters/Rogue-Portrait.png" id="4_c7ac0"]
 [ext_resource type="Texture2D" uid="uid://djskvya7yocvt" path="res://assets/UI Elements/Empty-Bar.png" id="4_kgrki"]
 [ext_resource type="Texture2D" uid="uid://1bogad1by0qk" path="res://assets/UI Elements/Bar-Border.png" id="5_hljhf"]
 [ext_resource type="Texture2D" uid="uid://dd2sgxrhxoir6" path="res://assets/UI Elements/Full-Bar.png" id="6_1xow5"]
@@ -15,8 +15,7 @@ script = ExtResource("1_c7ac0")
 [node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=320680658]
 bank_paths = ["res://assets/fmod/Master.bank", "res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/INTERFACE.bank", "res://assets/fmod/INTERFACE.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank", "res://assets/fmod/SFX.bank", "res://assets/fmod/SFX.assets.bank"]
 
-[node name="Level1" parent="." unique_id=617526436 instance=ExtResource("1_ldosu")]
-position = Vector2(0, 1)
+[node name="Level_1" parent="." unique_id=1571971992 instance=ExtResource("2_kgrki")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1616854312]
 
@@ -94,6 +93,5 @@ offset_right = 418.0
 offset_bottom = 238.0
 text = "Up Next:"
 
-[connection signal="queue_adventurer" from="Level1" to="." method="_on_queue_adventurer"]
 [connection signal="spawnNPC" from="CanvasLayer/NPCAlert" to="." method="_on_npc_alert_spawn_npc"]
 [connection signal="timeout" from="CanvasLayer/NPCAlert/NPCTimer" to="CanvasLayer/NPCAlert" method="_on_npc_timer_timeout"]

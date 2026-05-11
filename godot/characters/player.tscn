@@ -20,10 +20,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eadt"]
-size = Vector2(64, 64)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eadt"]
 size = Vector2(32, 32)
 
 [sub_resource type="InputEventKey" id="InputEventKey_evndh"]
@@ -348,9 +348,11 @@ player_speed = 100.0
 [node name="FmodListener2D" type="FmodListener2D" parent="." unique_id=498211185]
 
 [node name="MimicSprites" type="AnimatedSprite2D" parent="." unique_id=604007131]
-position = Vector2(2.1457672e-06, -1.4305115e-06)
-scale = Vector2(0.25, 0.24999999)
+scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_3eadt")
+
+[node name="WorldCollision" type="CollisionShape2D" parent="." unique_id=2062709653]
+shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="EatingRange" type="Area2D" parent="." unique_id=547941446]
 collision_layer = 2
@@ -359,9 +361,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatingRange" unique_id=1877460289]
 shape = SubResource("RectangleShape2D_3eadt")
 debug_color = Color(0.9216503, 0.17725345, 0.54355454, 0.41960785)
-
-[node name="WorldCollision" type="CollisionShape2D" parent="." unique_id=2062709653]
-shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="EatPrompt" type="Control" parent="." unique_id=1362928536]
 unique_name_in_owner = true
@@ -407,6 +406,7 @@ text = "at!"
 horizontal_alignment = 2
 
 [node name="Eating QTE" type="Control" parent="." unique_id=1689681273]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 0

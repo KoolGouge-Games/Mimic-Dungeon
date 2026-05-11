@@ -29,8 +29,8 @@ PromptManager="*uid://r330iydg8cmc"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=270
+window/size/viewport_width=240
+window/size/viewport_height=135
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
@@ -38,7 +38,7 @@ window/per_pixel_transparency/allowed=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/input_prompts/plugin.cfg", "res://addons/vision_cone_2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/input_prompts/plugin.cfg", "res://addons/ldtk-importer/plugin.cfg", "res://addons/vision_cone_2d/plugin.cfg")
 
 [global_group]
 

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var NPCAlertUI: Control = %NPCAlert
 
-@onready var current_level := $Level1
+@onready var current_level := $Debug_Level
 
 func _on_queue_adventurer(type: Global.NPCTypes) -> void:
 	NPCAlertUI.startNPCTimer(3.0, type)
