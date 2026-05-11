@@ -8,6 +8,9 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
   - [ ] have the mimic un-transform after the eating minigame
 - [ ] add "running away" logic for when an adventurer spots a mimic
 - [ ] Implement score/level clear mechanics
+- [ ] Implement a timer and display clear times
+- [ ] Add a "level complete" screen
+- [ ] Add a level selector screen?
 - [ ] Add a Start menu
 - [ ] Add a Pause menu
 - [ ] Implement Adventurer animation logic
@@ -20,3 +23,7 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [ ] Get FMOD to work in the web
 - [ ] Add controller support
 - [ ] Add key rebinding
+
+### Post Jam Stretch Goals
+- [ ] Add Multiplayer
+- [ ] Procedurally generated levels
