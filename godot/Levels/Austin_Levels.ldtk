@@ -352,7 +352,7 @@
 				"levelIid": "7c86c480-21a0-11f1-ba45-51cace1d04bf",
 				"layerIid": "7c86c482-21a0-11f1-ba45-3f1e907b0729",
 				"entityIid": "0497dd60-48b0-11f1-a22d-a52bdc89dbf8"
-			}, "worldX": 80, "worldY": 240, "widPx": 16, "heiPx": 16, "fields" : {} },
+			}, "worldX": 96, "worldY": 240, "widPx": 16, "heiPx": 16, "fields" : {} },
 			{ "iids": {
 				"worldIid": "576e7f40-21a0-11f1-9e31-cfa1ef619554",
 				"levelIid": "7c86c480-21a0-11f1-ba45-51cace1d04bf",
