@@ -1,14 +1,22 @@
 extends Control
 
-signal in_the_green
-signal exit_green
-signal time_up
+signal fail
+signal succeed
+
+var is_in_green := false
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("player_eat"):
+			if is_in_green:
+				succeed.emit()
+			else:
+				fail.emit()
 
 func green() -> void:
-	in_the_green.emit()
+	is_in_green = true
 
 func red() -> void:
-	exit_green.emit()
+	is_in_green = false
 
 func finish() -> void:
-	time_up.emit()
+	fail.emit()

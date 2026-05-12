@@ -7,8 +7,6 @@ class_name Player
 @onready var QTE_animation: AnimationPlayer = %QTEAnimation
 @onready var transformation_menu: Control = $TransformationSelection
 
-var eating_minigame := false
-var is_arrow_over_green := false
 var is_transformation_menu_open := false
 var is_transformed := false
 var is_moving := false
@@ -16,15 +14,11 @@ var adventurer_to_eat: Adventurer
 
 var ObjectType: Global.ObjectTypes
 
+signal ate_adventurer
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_eat"):
-		if eating_minigame:
-			if is_arrow_over_green:
-				eat_adventurer()
-			else:
-				fail_QTE()
-
-		elif eating_prompt.visible:
+		if eating_prompt.visible:
 			trigger_minigame()
 	
 	if event.is_action_pressed("player_transform"):
@@ -55,7 +49,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_eating_range_body_exited(_body: Node2D) -> void:
-	# adventurer_to_eat = null
+	adventurer_to_eat = null
 	eating_prompt.visible = false
 
 func _on_eating_range_body_entered(body: Node2D) -> void:
@@ -65,14 +59,16 @@ func _on_eating_range_body_entered(body: Node2D) -> void:
 	eating_prompt.visible = true
 
 func trigger_minigame() -> void:
-	adventurer_to_eat.process_mode = Node.PROCESS_MODE_DISABLED
 	eating_prompt.visible = false
-	eating_minigame = true
 	eating_qte.visible = true
+	get_tree().paused = true
+	is_transformed = false
+	remove_from_group("object")
 	QTE_animation.play("eating_qte")
 	
 func eat_adventurer() -> void:
-	print("om nom nom")
+	ate_adventurer.emit(adventurer_to_eat.value)
+	adventurer_to_eat.leave()
 	reset_QTE()
 
 func fail_QTE() -> void:
@@ -86,15 +82,8 @@ func damage() -> void:
 func reset_QTE() -> void:
 	QTE_animation.stop()
 	eating_qte.visible = false
-	is_arrow_over_green = false
-	eating_minigame = false
-	adventurer_to_eat.process_mode = Node.PROCESS_MODE_INHERIT
-
-func _on_eating_qte_in_the_green() -> void:
-	is_arrow_over_green = true
-
-func _on_eating_qte_exit_green() -> void:
-	is_arrow_over_green = false
+	adventurer_to_eat = null
+	get_tree().paused = false
 
 func _on_eating_qte_time_up() -> void:
 	fail_QTE()
