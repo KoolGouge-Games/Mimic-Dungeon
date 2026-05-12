@@ -1,6 +1,52 @@
 [gd_scene format=3 uid="uid://bbjo8503ramx0"]
 
 [ext_resource type="Script" uid="uid://cg3r4vjyhd8o0" path="res://globals/interactable.gd" id="1_a2a47"]
+[ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="2_7d3ks"]
+[ext_resource type="Texture2D" uid="uid://dcyutmus3k24t" path="res://assets/objects/Basic.png" id="2_8bn8a"]
+[ext_resource type="Texture2D" uid="uid://ckd5ssk5goftj" path="res://assets/UI Elements/Looting-Sphere.png" id="3_8bn8a"]
 
-[node name="Interactable" type="Sprite2D" unique_id=1142406827 groups=["object"]]
+[node name="Interactable" type="Node2D" unique_id=1591342654 groups=["object"]]
 script = ExtResource("1_a2a47")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=42049337]
+texture_filter = 1
+texture = ExtResource("2_8bn8a")
+centered = false
+
+[node name="RespawnTimer" type="Timer" parent="." unique_id=2056736369]
+wait_time = 45.0
+one_shot = true
+
+[node name="RespawnTimerDisplay" type="Control" parent="." unique_id=467467017]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.554748
+offset_right = 25.963524
+offset_bottom = 10.000001
+grow_vertical = 2
+rotation = 6.2831855
+pivot_offset = Vector2(0, 20)
+
+[node name="RespawnClock" type="TextureProgressBar" parent="RespawnTimerDisplay" unique_id=2126644858]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.000004
+offset_right = 48.0
+offset_bottom = 64.0
+grow_horizontal = 0
+scale = Vector2(0.25, 0.25)
+max_value = 45.0
+step = 0.1
+value = 30.0
+fill_mode = 5
+texture_under = ExtResource("2_7d3ks")
+texture_progress = ExtResource("3_8bn8a")
+
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

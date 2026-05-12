@@ -175,6 +175,7 @@ func _on_loot_timer_timeout() -> void:
 		value += 1
 
 	emit_signal("looting_finished")
+	chosen_poi.start_respawn()
 	
 func start_idle() -> void:
 	idling = true
