@@ -36,6 +36,7 @@ fmod_parameters/knight-active/id = -8893075591905016170
 fmod_parameters/knight-active = "false"
 fmod_parameters/knight-active/labels = PackedStringArray("false", "true")
 fmod_parameters/knight-active/variant_type = 4
+process_mode = 3
 
 [node name="Ground_Auto" type="TileMapLayer" parent="." unique_id=383871799]
 texture_filter = 1
