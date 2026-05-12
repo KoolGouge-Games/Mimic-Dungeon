@@ -4,7 +4,12 @@ extends Node2D
 @onready var LevelCompleteUI: Control = %LevelComplete
 @onready var pause_menu: Control = %PauseMenu
 @onready var quit_confirmation: Control = %QuitConfirmation
+
 @onready var global_animations: AnimationPlayer = %GlobalAnimations
+
+@onready var pause_muffle: FmodEventEmitter2D = %PauseMuffle
+@onready var pause_open_sfx: FmodEventEmitter2D = %PauseSFX
+@onready var ui_cancel_sfx: FmodEventEmitter2D = %UICancel
 
 @onready var current_level := $Level_1
 
@@ -21,6 +26,15 @@ func pause() -> void:
 	get_tree().paused = true
 	pause_menu.visible = true
 	global_animations.play("open_pause_menu")
+	pause_open_sfx.play()
+	pause_muffle.play()
+
+func unpause() -> void:
+	get_tree().paused = false
+	global_animations.play_backwards("open_pause_menu")
+	pause_menu.visible = false
+	close_quit_confirmation()
+	ui_cancel_sfx.play()
 
 func go_to_options() -> void:
 	print("to do!")
@@ -35,11 +49,6 @@ func open_quit_confirmation() -> void:
 func close_quit_confirmation() -> void:
 	quit_confirmation.visible = false
 
-func unpause() -> void:
-	get_tree().paused = false
-	global_animations.play_backwards("open_pause_menu")
-	pause_menu.visible = false
-	close_quit_confirmation()
 
 func _on_queue_adventurer(type: Global.NPCTypes) -> void:
 	NPCAlertUI.startNPCTimer(3.0, type)

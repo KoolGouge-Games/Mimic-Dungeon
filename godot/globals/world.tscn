@@ -91,7 +91,7 @@ max_adventurers = 1
 [node name="NPCAlert" type="Control" parent="CanvasLayer" unique_id=1785213978]
 unique_name_in_owner = true
 visible = false
-z_index = 2
+z_index = 1
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 3
 anchors_preset = 0
@@ -180,6 +180,7 @@ unique_name_in_owner = true
 process_mode = 3
 visible = false
 modulate = Color(1, 1, 1, 0)
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -229,6 +230,7 @@ unique_name_in_owner = true
 process_mode = 3
 visible = false
 modulate = Color(1, 1, 1, 0)
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,6 +284,7 @@ text = "Quit"
 unique_name_in_owner = true
 process_mode = 3
 visible = false
+z_index = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -334,6 +337,25 @@ unique_name_in_owner = true
 process_mode = 3
 root_node = NodePath("../LevelComplete")
 libraries/ = SubResource("AnimationLibrary_woqnj")
+
+[node name="Sound" type="Node" parent="CanvasLayer" unique_id=1336459720]
+process_mode = 3
+
+[node name="PauseMuffle" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=1408708646]
+event_name = "snapshot:/Pause"
+event_guid = "{2c2341bb-4b38-4243-a015-61a17024e002}"
+unique_name_in_owner = true
+
+[node name="PauseSFX" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=362813959]
+event_name = "event:/INTERFACE/UI Pause Menu"
+event_guid = "{453b164e-b5dd-4e67-a7c2-392e131d406c}"
+volume = 0.5
+unique_name_in_owner = true
+
+[node name="UICancel" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=657843114]
+event_name = "event:/INTERFACE/UI Cancel"
+event_guid = "{fb656b78-db75-4e9f-8596-2e00c676bc0d}"
+unique_name_in_owner = true
 
 [connection signal="player_won" from="Level_1" to="." method="_on_player_won"]
 [connection signal="queue_adventurer" from="Level_1" to="." method="_on_queue_adventurer"]
