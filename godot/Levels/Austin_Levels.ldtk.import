@@ -1,0 +1,37 @@
+[remap]
+
+importer="ldtk.import"
+type="PackedScene"
+uid="uid://2cjrx3h77la2"
+path="res://.godot/imported/Austin_Levels.ldtk-09a2da46cbafe9fa524f5ef7de617441.scn"
+
+[deps]
+
+files=["res://Levels/tilesets/tileset_16px.res", "res://.godot/imported/Austin_Levels.ldtk-09a2da46cbafe9fa524f5ef7de617441.scn"]
+
+source_file="res://Levels/Austin_Levels.ldtk"
+dest_files=["res://.godot/imported/Austin_Levels.ldtk-09a2da46cbafe9fa524f5ef7de617441.scn", "res://Levels/tilesets/tileset_16px.res", "res://.godot/imported/Austin_Levels.ldtk-09a2da46cbafe9fa524f5ef7de617441.scn"]
+
+[params]
+
+World=""
+group_world_layers=false
+Level=""
+pack_levels=false
+Layer=""
+layers_always_visible=false
+Tileset=""
+tileset_custom_data=false
+integer_grid_tilesets=false
+atlas_texture_type=0
+Entity=""
+resolve_entityrefs=true
+use_entity_placeholders=false
+Post Import=""
+tileset_post_import=""
+entities_post_import="uid://8twccpj5huue"
+level_post_import="uid://bhn51psvklbfe"
+world_post_import=""
+Debug=""
+force_tileset_reimport=true
+verbose_output=false

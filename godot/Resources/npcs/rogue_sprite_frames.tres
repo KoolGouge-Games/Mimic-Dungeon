@@ -2,13 +2,49 @@
 
 [ext_resource type="Texture2D" uid="uid://clyuld6r02rca" path="res://assets/characters/adventurer-placeholder.png" id="1_jd2if"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd2if"]
+atlas = ExtResource("1_jd2if")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejpve"]
+atlas = ExtResource("1_jd2if")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tphmc"]
+atlas = ExtResource("1_jd2if")
+region = Rect2(0, 0, 16, 16)
+
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd2if")
+}],
+"loop": true,
+"name": &"check",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_jd2if")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejpve")
+}],
+"loop": true,
+"name": &"start_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tphmc")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]

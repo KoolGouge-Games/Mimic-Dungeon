@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_icbym")
+type = 1
 FearValue = 2
 Speed = 5
 FavoredType = 2

@@ -1,38 +1,108 @@
 [gd_scene format=3 uid="uid://bkwvammdgf7uc"]
 
 [ext_resource type="Script" uid="uid://d0flob88nqxnq" path="res://globals/world.gd" id="1_c7ac0"]
-[ext_resource type="PackedScene" uid="uid://cihpie45hwukk" path="res://Levels/level_1.tscn" id="1_ldosu"]
 [ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="2_dy5jq"]
 [ext_resource type="Script" uid="uid://cfln05e4xl6b1" path="res://globals/NPCAlert.gd" id="2_iaa3o"]
-[ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/UI Elements/Rogue-Portrait.png" id="4_c7ac0"]
+[ext_resource type="PackedScene" uid="uid://dk17obqk825vt" path="res://Levels/level_1.tscn" id="2_kgrki"]
+[ext_resource type="Script" uid="uid://ce4yhlwsm3kyj" path="res://Levels/level_1.gd" id="3_hljhf"]
+[ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/characters/Rogue-Portrait.png" id="4_c7ac0"]
+[ext_resource type="Texture2D" uid="uid://djskvya7yocvt" path="res://assets/UI Elements/Empty-Bar.png" id="4_kgrki"]
+[ext_resource type="Texture2D" uid="uid://1bogad1by0qk" path="res://assets/UI Elements/Bar-Border.png" id="5_hljhf"]
+[ext_resource type="Texture2D" uid="uid://dd2sgxrhxoir6" path="res://assets/UI Elements/Full-Bar.png" id="6_1xow5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpsyu"]
-bg_color = Color(0.2159017, 0.21590173, 0.21590161, 1)
+[sub_resource type="Animation" id="Animation_hljhf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%PauseMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgfpr"]
-bg_color = Color(0.87329835, 0.87329847, 0.87329817, 1)
+[sub_resource type="Animation" id="Animation_woqnj"]
+resource_name = "open_pause_menu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%PauseMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1xow5"]
+resource_name = "show_winscree"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_woqnj"]
+_data = {
+&"RESET": SubResource("Animation_hljhf"),
+&"open_pause_menu": SubResource("Animation_woqnj"),
+&"show_winscree": SubResource("Animation_1xow5")
+}
 
 [node name="World" type="Node2D" unique_id=802943821]
 script = ExtResource("1_c7ac0")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=320680658]
-bank_paths = ["res://assets/fmod/Master.bank", "res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.assets.bank"]
+bank_paths = ["res://assets/fmod/Master.bank", "res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/INTERFACE.bank", "res://assets/fmod/INTERFACE.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank", "res://assets/fmod/SFX.bank", "res://assets/fmod/SFX.assets.bank"]
 
-[node name="Level1" parent="." unique_id=617526436 instance=ExtResource("1_ldosu")]
+[node name="Level_1" parent="." unique_id=32258485 instance=ExtResource("2_kgrki")]
+script = ExtResource("3_hljhf")
+max_adventurers = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1616854312]
 
 [node name="NPCAlert" type="Control" parent="CanvasLayer" unique_id=1785213978]
+unique_name_in_owner = true
 visible = false
+z_index = 1
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1.0
-offset_right = 481.0
-offset_bottom = 271.0
+offset_right = 241.0
+offset_bottom = 135.5
+mouse_filter = 2
+mouse_behavior_recursive = 1
 script = ExtResource("2_iaa3o")
 
-[node name="TimerBar" type="ProgressBar" parent="CanvasLayer/NPCAlert" unique_id=698977530]
+[node name="TimerBar" type="TextureProgressBar" parent="CanvasLayer/NPCAlert" unique_id=1332906290]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
@@ -40,27 +110,33 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 41.0
-offset_top = -31.0
-offset_right = -11.0
-offset_bottom = -7.0
+offset_left = 1.0
+offset_top = -17.5
+offset_right = 189.0
+offset_bottom = 14.5
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_tpsyu")
-theme_override_styles/fill = SubResource("StyleBoxFlat_sgfpr")
-value = 50.0
-show_percentage = false
+scale = Vector2(0.5, 0.5)
+step = 0.1
+value = 98.0
+texture_under = ExtResource("4_kgrki")
+texture_over = ExtResource("5_hljhf")
+texture_progress = ExtResource("6_1xow5")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/NPCAlert" unique_id=812817775]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -71.0
-offset_right = 69.0
-offset_bottom = -7.0
+offset_left = -33.0
+offset_top = -32.5
+offset_right = 31.0
+offset_bottom = 31.5
+grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_dy5jq")
 
 [node name="NPCProfile" type="TextureRect" parent="CanvasLayer/NPCAlert/TextureRect" unique_id=205893208]
@@ -83,6 +159,210 @@ texture = ExtResource("4_c7ac0")
 unique_name_in_owner = true
 one_shot = true
 
-[connection signal="queue_adventurer" from="Level1" to="." method="_on_queue_adventurer"]
+[node name="Label" type="Label" parent="CanvasLayer/NPCAlert" unique_id=635828343]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -69.0
+offset_top = -30.5
+offset_right = -1.0
+offset_bottom = -7.5
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "Up Next:"
+
+[node name="LevelComplete" type="Control" parent="CanvasLayer" unique_id=227916589]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/LevelComplete" unique_id=1053254150]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelComplete/Panel" unique_id=1136366933]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/LevelComplete/Panel/VBoxContainer" unique_id=1363194250]
+layout_mode = 2
+text = "You are Sated for the night!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/LevelComplete/Panel/VBoxContainer" unique_id=301506240]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/LevelComplete/Panel/VBoxContainer/HBoxContainer" unique_id=775389709]
+layout_mode = 2
+text = "Retry"
+
+[node name="Button2" type="Button" parent="CanvasLayer/LevelComplete/Panel/VBoxContainer/HBoxContainer" unique_id=133124819]
+layout_mode = 2
+text = "Back to Menu"
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=608588091]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu" unique_id=2063432355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Panel" unique_id=1493223827]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -20.0
+offset_right = 28.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1135174923]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1858797974]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1215126060]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=30636057]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="QuitConfirmation" type="Control" parent="CanvasLayer" unique_id=1272626525]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+z_index = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="ColorRect" parent="CanvasLayer/QuitConfirmation" unique_id=1880766041]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.029506557, 0.029506557, 0.029506557, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/QuitConfirmation/Panel" unique_id=1768062874]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -20.0
+offset_right = 52.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/QuitConfirmation/Panel/VBoxContainer" unique_id=161984993]
+layout_mode = 2
+text = "Are you sure?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/QuitConfirmation/Panel/VBoxContainer" unique_id=502280945]
+layout_mode = 2
+alignment = 1
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/QuitConfirmation/Panel/VBoxContainer/HBoxContainer" unique_id=890311089]
+layout_mode = 2
+text = "Yes"
+
+[node name="CloseConfirmationButton" type="Button" parent="CanvasLayer/QuitConfirmation/Panel/VBoxContainer/HBoxContainer" unique_id=131154026]
+layout_mode = 2
+text = "No"
+
+[node name="GlobalAnimations" type="AnimationPlayer" parent="CanvasLayer" unique_id=839935722]
+unique_name_in_owner = true
+process_mode = 3
+root_node = NodePath("../LevelComplete")
+libraries/ = SubResource("AnimationLibrary_woqnj")
+
+[node name="Sound" type="Node" parent="CanvasLayer" unique_id=1336459720]
+process_mode = 3
+
+[node name="PauseMuffle" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=1408708646]
+event_name = "snapshot:/Pause"
+event_guid = "{2c2341bb-4b38-4243-a015-61a17024e002}"
+unique_name_in_owner = true
+
+[node name="PauseSFX" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=362813959]
+event_name = "event:/INTERFACE/UI Pause Menu"
+event_guid = "{453b164e-b5dd-4e67-a7c2-392e131d406c}"
+volume = 0.5
+unique_name_in_owner = true
+
+[node name="UICancel" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=657843114]
+event_name = "event:/INTERFACE/UI Cancel"
+event_guid = "{fb656b78-db75-4e9f-8596-2e00c676bc0d}"
+unique_name_in_owner = true
+
+[connection signal="player_won" from="Level_1" to="." method="_on_player_won"]
+[connection signal="queue_adventurer" from="Level_1" to="." method="_on_queue_adventurer"]
 [connection signal="spawnNPC" from="CanvasLayer/NPCAlert" to="." method="_on_npc_alert_spawn_npc"]
 [connection signal="timeout" from="CanvasLayer/NPCAlert/NPCTimer" to="CanvasLayer/NPCAlert" method="_on_npc_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/ResumeButton" to="." method="unpause"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/OptionsButton" to="." method="go_to_options"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/QuitButton" to="." method="open_quit_confirmation"]
+[connection signal="pressed" from="CanvasLayer/QuitConfirmation/Panel/VBoxContainer/HBoxContainer/QuitButton" to="." method="go_to_menu"]
+[connection signal="pressed" from="CanvasLayer/QuitConfirmation/Panel/VBoxContainer/HBoxContainer/CloseConfirmationButton" to="." method="close_quit_confirmation"]

@@ -1,7 +1,7 @@
 extends Control
 
 @onready var NPCTimer: Timer = %NPCTimer
-@onready var TimerBar: ProgressBar = %TimerBar
+@onready var TimerBar: TextureProgressBar = %TimerBar
 @onready var portriatElement: TextureRect = %NPCProfile
 
 signal spawnNPC
@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 
 func startNPCTimer(duration: float, NPCType: Global.NPCTypes):
 	var npcString: String
-	var pathString := "res://assets/UI Elements/%s-Portrait.png"
+	var pathString := "res://assets/characters/%s-Portrait.png"
 	npc_type = NPCType
 
 	match NPCType:

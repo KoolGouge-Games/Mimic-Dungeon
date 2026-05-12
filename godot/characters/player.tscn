@@ -2,6 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://d1eyqyjgxhbbl" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cp2vm7eddf3lc" path="res://characters/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://d2as5erfr7tji" path="res://addons/input_prompts/icons/keyboard/e.png" id="3_x0jl3"]
+[ext_resource type="Script" uid="uid://beanwg2i2vcef" path="res://addons/input_prompts/key_prompt/key_prompt.gd" id="4_x0jl3"]
+[ext_resource type="Script" uid="uid://u4bqu2f3b86g" path="res://UI/eating_qte.gd" id="5_j31ep"]
+[ext_resource type="Texture2D" uid="uid://1csmd0dxwr2e" path="res://assets/UI Elements/QTE-Bar.png" id="6_6t23p"]
+[ext_resource type="Texture2D" uid="uid://bx7hjjmeix3if" path="res://assets/UI Elements/QTE-Arrow.png" id="7_n8jd0"]
+[ext_resource type="Script" uid="uid://btmcoeu4qmxs0" path="res://UI/transformation_selection.gd" id="8_6t23p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3eadt"]
 animations = [{
@@ -15,18 +21,541 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(16, 16)
+size = Vector2(14, 14)
 
-[node name="Player" type="CharacterBody2D" unique_id=717767978]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eadt"]
+size = Vector2(32, 32)
+
+[sub_resource type="InputEventKey" id="InputEventKey_evndh"]
+keycode = 69
+
+[sub_resource type="Animation" id="Animation_q605b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QTEArrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eho78"]
+resource_name = "eating_qte"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("QTEArrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-3.355, 0), Vector2(56.53, 0), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.43333334, 0.6, 0.8, 1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"green"
+}, {
+"args": [],
+"method": &"red"
+}, {
+"args": [],
+"method": &"green"
+}, {
+"args": [],
+"method": &"red"
+}, {
+"args": [],
+"method": &"finish"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8sqrr"]
+_data = {
+&"RESET": SubResource("Animation_q605b"),
+&"eating_qte": SubResource("Animation_eho78")
+}
+
+[sub_resource type="Animation" id="Animation_j31ep"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Basic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Heavy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(53, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cursed:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(52, 51)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Locked:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, 52)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Magical:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Basic:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Heavy:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Magical:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Cursed:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Locked:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6t23p"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Basic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(22, 17), Vector2(22, 4.735)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Heavy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(24, 18), Vector2(46.74, 12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cursed:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(21, 33), Vector2(44.455, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Locked:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(18, 33), Vector2(-4.16, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Magical:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(18, 20), Vector2(-7.33, 12)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Basic:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Heavy:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.16672173),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Magical:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.16794764),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Cursed:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.16917352),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Locked:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.16917352),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n8jd0"]
+_data = {
+&"RESET": SubResource("Animation_j31ep"),
+&"open": SubResource("Animation_6t23p")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=717767978 groups=["player"]]
+z_index = 1
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_onrkg")
-player_speed = 100.0
+player_speed = 50.0
 
 [node name="FmodListener2D" type="FmodListener2D" parent="." unique_id=498211185]
+process_mode = 3
 
 [node name="MimicSprites" type="AnimatedSprite2D" parent="." unique_id=604007131]
-scale = Vector2(0.12500001, 0.12499999)
+scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_3eadt")
 
 [node name="WorldCollision" type="CollisionShape2D" parent="." unique_id=2062709653]
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="EatingRange" type="Area2D" parent="." unique_id=547941446]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EatingRange" unique_id=1877460289]
+shape = SubResource("RectangleShape2D_3eadt")
+debug_color = Color(0.9216503, 0.17725345, 0.54355454, 0.41960785)
+
+[node name="EatPrompt" type="Control" parent="." unique_id=1362928536]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -11.0
+offset_top = -26.0
+offset_right = 33.0
+scale = Vector2(0.5, 0.5)
+
+[node name="InputPrompt" type="TextureRect" parent="EatPrompt" unique_id=229559270]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = 26.0
+offset_bottom = 12.0
+grow_vertical = 2
+texture = ExtResource("3_x0jl3")
+stretch_mode = 5
+script = ExtResource("4_x0jl3")
+key = 69
+events = Array[InputEvent]([SubResource("InputEventKey_evndh")])
+metadata/_custom_type_script = "uid://beanwg2i2vcef"
+
+[node name="Label" type="Label" parent="EatPrompt" unique_id=1724721376]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "at!"
+horizontal_alignment = 2
+
+[node name="Eating QTE" type="Control" parent="." unique_id=1689681273]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -16.0
+offset_top = -22.0
+offset_right = 47.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("5_j31ep")
+
+[node name="QTEBar" type="TextureRect" parent="Eating QTE" unique_id=1978299945]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_6t23p")
+expand_mode = 2
+
+[node name="QTEArrow" type="TextureRect" parent="Eating QTE" unique_id=1235089291]
+layout_mode = 1
+offset_right = 9.999924
+offset_bottom = 11.0
+texture = ExtResource("7_n8jd0")
+expand_mode = 1
+
+[node name="QTEAnimation" type="AnimationPlayer" parent="Eating QTE" unique_id=1717121431]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_8sqrr")
+
+[node name="TransformationSelection" type="Control" parent="." unique_id=519925245 groups=["player"]]
+z_index = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_6t23p")
+
+[node name="Basic" type="Button" parent="TransformationSelection" unique_id=1240896402]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_top = -4.0
+offset_right = 29.0
+offset_bottom = 21.000008
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "Basic"
+
+[node name="Heavy" type="Button" parent="TransformationSelection" unique_id=2117608491]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -11.0
+offset_right = 33.000168
+offset_bottom = 25.000023
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "Heavy
+"
+
+[node name="Locked" type="Button" parent="TransformationSelection" unique_id=542136809]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 38.00003
+offset_bottom = 13.000069
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "Locked
+
+"
+
+[node name="Cursed" type="Button" parent="TransformationSelection" unique_id=2011161116]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -13.0
+offset_right = 38.000214
+offset_bottom = 12.00013
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "Cursed
+
+
+"
+
+[node name="Magical" type="Button" parent="TransformationSelection" unique_id=1848823847]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = -13.0
+offset_right = 33.34001
+offset_bottom = 25.00003
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "Magic
+
+
+
+"
+
+[node name="TransMenuAnimation" type="AnimationPlayer" parent="TransformationSelection" unique_id=2144756791]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_n8jd0")
+
+[connection signal="body_entered" from="EatingRange" to="." method="_on_eating_range_body_entered"]
+[connection signal="body_exited" from="EatingRange" to="." method="_on_eating_range_body_exited"]
+[connection signal="fail" from="Eating QTE" to="." method="fail_QTE"]
+[connection signal="succeed" from="Eating QTE" to="." method="eat_adventurer"]
+[connection signal="transform" from="TransformationSelection" to="." method="_on_transformation_selection"]
+[connection signal="pressed" from="TransformationSelection/Basic" to="TransformationSelection" method="_on_basic_pressed"]
+[connection signal="pressed" from="TransformationSelection/Heavy" to="TransformationSelection" method="_on_heavy_pressed"]
+[connection signal="pressed" from="TransformationSelection/Locked" to="TransformationSelection" method="_on_locked_pressed"]
+[connection signal="pressed" from="TransformationSelection/Cursed" to="TransformationSelection" method="_on_cursed_pressed"]
+[connection signal="pressed" from="TransformationSelection/Magical" to="TransformationSelection" method="_on_magical_pressed"]

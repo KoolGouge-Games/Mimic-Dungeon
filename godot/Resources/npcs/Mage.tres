@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_ibpmp")
+type = 3
 FearValue = 3
 Speed = 4
 FavoredType = 4
