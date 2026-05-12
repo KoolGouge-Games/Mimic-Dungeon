@@ -46,6 +46,7 @@ var chosen_poi: Node:
 signal idle_finished
 signal looting_finished
 signal target_reached
+signal adventurer_left
 
 func _ready() -> void:
 	var adventure_time := Global.rngsus.randf_range(ADV_MIN, ADV_MAX)
@@ -147,7 +148,7 @@ func resolveFear() -> void:
 	navigation.set_target_position(position)
 
 func leave() -> void:
-	print("I'm outta here!")
+	adventurer_left.emit(npc_type)
 	queue_free()
 
 func _on_vision_cone_area_body_entered(_body: Node2D) -> void:

@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bllb4xudnoh24" path="res://characters/adventurer-behavior/blackboard.gd" id="4_o8pjp"]
 [ext_resource type="Script" uid="uid://cw22yurt5l74k" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="6_do4xh"]
 [ext_resource type="Script" uid="uid://c4sxubyv7fhwa" path="res://characters/adventurer-behavior/los_to_player_bh.gd" id="6_itu75"]
+[ext_resource type="Texture2D" uid="uid://ln8rujcqvu8a" path="res://assets/UI Elements/Queuing-Sphere.png" id="6_oyyn5"]
 [ext_resource type="Script" uid="uid://b5dcugec6e6n" path="res://characters/adventurer-behavior/player_is_moving.gd" id="9_1r0sb"]
 [ext_resource type="Script" uid="uid://bbaojjriq676j" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="9_o8pjp"]
 [ext_resource type="PackedScene" uid="uid://kf8tqdlm8c5t" path="res://addons/vision_cone_2d/vision_cone_2d_template.tscn" id="10_itu75"]
@@ -21,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="19_3lrbr"]
 [ext_resource type="Script" uid="uid://dcrtdnk7qyjto" path="res://characters/adventurer-behavior/idle.gd" id="19_oyyn5"]
 [ext_resource type="Texture2D" uid="uid://cuep0f1sf1bl7" path="res://assets/UI Elements/Timer-Sphere.png" id="20_4b31h"]
-[ext_resource type="Texture2D" uid="uid://ckd5ssk5goftj" path="res://assets/UI Elements/Looting-Sphere.png" id="22_oyyn5"]
 
 [sub_resource type="Animation" id="Animation_o86xa"]
 length = 0.001
@@ -136,12 +136,14 @@ _data = {
 size = Vector2(16, 16)
 
 [node name="Adventurer" type="CharacterBody2D" unique_id=1649974806 node_paths=PackedStringArray("visionCone") groups=["adventurers"]]
+z_index = 1
 collision_layer = 4
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_o4l1e")
 visionCone = NodePath("VisionCone2D/VisionConeRenderer")
 alertColor = Color(0.6, 0.27058825, 0.24705882, 0.36862746)
+CLOSEST_NUM_CHOICES = 5
 movement_speed = 5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1275747233]
@@ -235,7 +237,7 @@ step = 0.1
 value = 43.0
 fill_mode = 5
 texture_under = ExtResource("19_3lrbr")
-texture_progress = ExtResource("22_oyyn5")
+texture_progress = ExtResource("6_oyyn5")
 
 [node name="Label" type="Label" parent="LootingTimerDisplay/LootingClock" unique_id=1884761787]
 layout_mode = 1
