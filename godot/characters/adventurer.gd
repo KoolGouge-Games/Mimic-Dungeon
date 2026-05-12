@@ -30,7 +30,7 @@ var speed := 5
 var feared := false
 var idling := true
 var favored_object : Global.ObjectTypes
-
+var npc_type: Global.NPCTypes
 var move_direction: Vector2 = Vector2.ZERO
 var LOS_to_player := false
 var value := 1
@@ -73,6 +73,7 @@ func initialize(type: Global.NPCTypes) -> void:
 	stats = load(resourcepath)
 	sprite = $AnimatedSprite2D
 
+	npc_type = stats.type
 	speed = stats.Speed
 	movement_speed = stats.Speed * 20
 	favored_object = stats.FavoredType
@@ -104,7 +105,6 @@ func _on_velocity_computed(safe_velocity: Vector2):
 
 func choosePOI() -> Node:
 	var pois := Global.get_group_sorted_by_distance("object", self.position)
-	print("pois: ", pois)
 
 	if pois.size() < 1:
 		leave()
@@ -127,6 +127,7 @@ func choosePOI() -> Node:
 
 func loot_poi() -> void:
 	print("looting")
+	chosen_poi.remove_from_group("object")
 	var looting_time := BASE_LOOTING_TIME - stats.Speed
 	if chosen_poi.ObjectType == favored_object:
 		looting_time -= FAVORED_BONUS
@@ -164,7 +165,6 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 		emit_signal("target_reached")
 
 func _on_loot_timer_timeout() -> void:
-	chosen_poi.remove_from_group("object")
 	looting_clock.visible = false
 
 	if chosen_poi.is_in_group("player"):

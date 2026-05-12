@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_xqnta")
+type = 2
 FearValue = 4
 Speed = 3
 FavoredType = 3
