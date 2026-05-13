@@ -28,6 +28,7 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
   - [ ] "menu open" for options
   - [ ] UI hovers?
 - [ ] add "running away" logic for when an adventurer spots a mimic
+  - [ ] set up marekers at each point on the nav mesh, then have the adventurer navigate to the one furthest from the player
   - [ ] also have player lose a point
 - [ ] Add a "how to play" screen
 - [ ] Implement a timer and display clear times
