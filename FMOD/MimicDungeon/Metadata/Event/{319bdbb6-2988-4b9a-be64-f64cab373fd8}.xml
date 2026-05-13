@@ -35,9 +35,6 @@
 		<relationship name="timeline">
 			<destination>{f85d1435-81b2-49ff-8cf1-b33f3070a285}</destination>
 		</relationship>
-		<relationship name="parameters">
-			<destination>{b75bea0d-af32-49e1-a3f2-6100e48e81d1}</destination>
-		</relationship>
 		<relationship name="banks">
 			<destination>{46b8fb7c-acbb-40cb-91a5-c936f2852005}</destination>
 		</relationship>
@@ -48,9 +45,6 @@
 		</relationship>
 	</object>
 	<object class="MasterTrack" id="{f74e255e-cffc-4793-8d10-9c7590c3253e}">
-		<relationship name="modules">
-			<destination>{7f8ce299-caa7-4449-a6f4-6b7584b2e250}</destination>
-		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{98605d0a-5f6e-4b87-9664-b91639d68fde}</destination>
 		</relationship>
@@ -90,11 +84,6 @@
 			<destination>{16f3da75-2c2c-4b1f-bcc7-1647a468a2e7}</destination>
 		</relationship>
 	</object>
-	<object class="ActionSheet" id="{b75bea0d-af32-49e1-a3f2-6100e48e81d1}">
-		<relationship name="modules">
-			<destination>{7f8ce299-caa7-4449-a6f4-6b7584b2e250}</destination>
-		</relationship>
-	</object>
 	<object class="EventMixerMaster" id="{98605d0a-5f6e-4b87-9664-b91639d68fde}">
 		<property name="volume">
 			<value>-3</value>
@@ -107,11 +96,6 @@
 		</relationship>
 		<relationship name="mixer">
 			<destination>{d6da2cff-1699-4936-8198-012bf8b48bab}</destination>
-		</relationship>
-	</object>
-	<object class="MultiSound" id="{7f8ce299-caa7-4449-a6f4-6b7584b2e250}">
-		<relationship name="sounds">
-			<destination>{eaac4ec0-37f6-41d5-8f4d-b102741971a2}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{d0458fa9-49d3-43f2-9b63-1e977798b124}">
@@ -173,11 +157,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{73fb02e7-bdd3-4612-84a1-a735f8355243}" />
-	<object class="SingleSound" id="{eaac4ec0-37f6-41d5-8f4d-b102741971a2}">
-		<relationship name="audioFile">
-			<destination>{567edd66-0d7f-468e-aec5-3cdf45750a44}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusFader" id="{45ac6d7a-4255-4564-8bad-dee640a8cb4c}" />
 	<object class="MixerBusEffectChain" id="{11340273-e49e-46de-b7b9-60bde23b1bc4}">
 		<relationship name="effects">
