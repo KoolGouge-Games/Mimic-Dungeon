@@ -34,6 +34,7 @@ var npc_type: Global.NPCTypes
 var move_direction: Vector2 = Vector2.ZERO
 var LOS_to_player := false
 var value := 1
+var is_walking = false
 
 var chosen_poi: Node:
 	get:
@@ -72,7 +73,7 @@ func initialize(type: Global.NPCTypes) -> void:
 			resourcepath = resourcepath % "Mage"
 
 	stats = load(resourcepath)
-	sprite = $AnimatedSprite2D
+	sprite = %AdventureSprite
 
 	npc_type = stats.type
 	speed = stats.Speed
@@ -84,6 +85,9 @@ func _process(_delta: float) -> void:
 	adventure_clock.value = adventure_timer.time_left
 	if looting_clock.visible:
 		looting_clock.value = loot_timer.time_left
+
+	if is_walking:
+		sprite.play("walk")
 
 func _physics_process(_delta: float) -> void:
 	var next_path_point: Vector2 = navigation.get_next_path_position()
@@ -99,6 +103,11 @@ func _physics_process(_delta: float) -> void:
 	if not idling:
 		vision.look_at(next_path_point)
 		vision.rotate(deg_to_rad(-90.0))
+
+		if Vector2.UP.angle_to(velocity) < 0:
+			sprite.flip_h = true
+		else:
+			sprite.flip_h = false
 
 func _on_velocity_computed(safe_velocity: Vector2):
 	velocity = safe_velocity
@@ -162,6 +171,7 @@ func _on_vision_cone_area_body_exited(_body: Node2D) -> void:
 func _on_navigation_agent_2d_navigation_finished() -> void:
 	if feared:
 		feared = false
+		start_idle()
 	else:
 		emit_signal("target_reached")
 
@@ -179,9 +189,13 @@ func _on_loot_timer_timeout() -> void:
 	
 func start_idle() -> void:
 	idling = true
+	sprite.play("idle")
 	animation_player.play("look_around")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	sprite.play("start_walk")
+	await sprite.animation_finished
+
 	idling = false
 	if anim_name == "look_around":
 		emit_signal("idle_finished")
