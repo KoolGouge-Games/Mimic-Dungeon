@@ -16,14 +16,15 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [x] Add a "level complete" screen
 - [x] Add a Pause menu
 - [ ] Add a Start menu
-- [ ] Add a level selector screen?
 - [ ] Implement an options menu
   - [ ] volume controls
 - [ ] Add a "how to play" screen
 - [ ] Implement a timer and display clear times
-- [ ] Implement Adventurer animation logic
+- [x] Implement Adventurer animation logic
+- [x] Implement Mimic animation logic
 - [ ] add "running away" logic for when an adventurer spots a mimic
 - [ ] tie all the audio to their relative objects
+- [ ] Add a level selector screen?
 
 ### Stretch Goals
 
