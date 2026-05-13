@@ -39,6 +39,7 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [ ] Get FMOD to work in the web
 - [ ] Add controller support
 - [ ] Add key rebinding
+  - https://youtu.be/of9O44xr0Go?si=_GeiP1xN2aA3hFv1
 
 ### Post Jam Stretch Goals
 
