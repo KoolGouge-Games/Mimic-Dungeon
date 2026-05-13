@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://bluevqw4vt762"]
-
-[ext_resource type="PackedScene" uid="uid://2cjrx3h77la2" path="res://Levels/Austin_Levels.ldtk" id="1_b7i8a"]
-
-[node name="Austin_Levels" unique_id=1324573763 instance=ExtResource("1_b7i8a")]

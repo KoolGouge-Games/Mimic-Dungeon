@@ -1,26 +1,52 @@
 [gd_scene format=4 uid="uid://c6tmp27yi5q55"]
 
-[ext_resource type="Script" uid="uid://c60qds3v1kk5h" path="res://addons/ldtk-importer/src/components/ldtk-level.gd" id="1_uwxw1"]
+[ext_resource type="Script" uid="uid://ta1x41hbqtwq" path="res://Levels/level_3.gd" id="1_absw3"]
 [ext_resource type="TileSet" uid="uid://cogl8vx3l40pl" path="res://Levels/tilesets/tileset_16px.res" id="2_ay5qi"]
-[ext_resource type="Script" uid="uid://cumh88c8f7wfj" path="res://addons/ldtk-importer/src/components/ldtk-entity-layer.gd" id="3_fa81k"]
-[ext_resource type="Texture2D" uid="uid://dfvvkfeiou41v" path="res://assets/tilesets/Dungeon_Tileset.png" id="4_ck3gp"]
 [ext_resource type="PackedScene" uid="uid://bbjo8503ramx0" path="res://globals/interactable.tscn" id="5_trpa2"]
 [ext_resource type="PackedScene" uid="uid://c53ykeqdvjly1" path="res://characters/player.tscn" id="6_4t7ew"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aq3nc"]
-atlas = ExtResource("4_ck3gp")
-region = Rect2(96, 48, 16, 16)
+[sub_resource type="Animation" id="Animation_rfktq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0urlm"]
+resource_name = "zoom"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.29999995),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_absw3"]
+_data = {
+&"RESET": SubResource("Animation_rfktq"),
+&"zoom": SubResource("Animation_0urlm")
+}
 
 [node name="Level_3" type="Node2D" unique_id=2060230483]
-script = ExtResource("1_uwxw1")
-iid = "62332b90-48b0-11f1-a22d-0ff8817a721b"
-world_position = Vector2(-240, 400)
-size = Vector2i(480, 272)
-neighbours = [{
-"dir": "n",
-"levelIid": NodePath("../Level_2")
-}]
-bg_color = Color(0.4117647, 0.41568628, 0.4745098, 1)
+script = ExtResource("1_absw3")
+
+[node name="MusicPlayer" type="FmodEventEmitter2D" parent="." unique_id=440033113]
+event_guid = "{00000039-006d-0000-1b00-00005b000000}"
 
 [node name="Ground_Auto" type="TileMapLayer" parent="." unique_id=1057543049]
 texture_filter = 1
@@ -32,732 +58,11 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAQAAEABAACAAAAAAADAAYABAACAAAAAAAWAAYABAACAAAAAAAEAAcABAADAAAAAAAQAAcABAACAAAAAAAcAAcABAACAAAAAAAXAAsABAADAAAAAAADAA0ABAADAAAAAAAIAA0ABAADAAAAAAANAA0ABAADAAAAAAASAA0ABAACAAAAAAAFAAMABAADAAUAAAANAAMABAADAAUAAAAZAAMABAADAAUAAAAHAAQABAADAAUAAAATAAQABAADAAUAAAABAAkABAADAAUAAAAGAAkABAADAAUAAAAQAAkABAADAAUAAAAVAAkABAADAAUAAAANAA8ABAADAAUAAAANAAEABAACAAAAAAABAAYABAADAAAAAAAHAAYABAADAAAAAAATAAYABAAEAAAAAAAGAAcABAADAAAAAAANAAcABAAEAAAAAAASAAcABAADAAAAAAAMAAgABAAEAAAAAAAGAAsABAAEAAAAAAALAAsABAAEAAAAAAAZAAsABAACAAAAAAAVAAwABAADAAAAAAAFAA0ABAADAAAAAAAKAA0ABAABAAAAAAAQAA0ABAADAAAAAAAUAA0ABAAEAAAAAAADAAMABAAAAAUAAAALAAMABAAAAAUAAAAXAAMABAAAAAUAAAAKAAQABAAAAAUAAAAQAAQABAAAAAUAAAAWAAQABAAAAAUAAAAJAAYABAAAAAUAAAAEAAkABAAAAAUAAAAOAAkABAAAAAUAAAATAAkABAAAAAUAAAADAAoABAAAAAUAAAAIAAoABAAAAAUAAAAcAAoABAAAAAUAAAANAAsABAAAAAUAAAASAAsABAAAAAUAAAAQAA8ABAAAAAUAAAAAAAAABAAIAAcAAAABAAAABAAIAAcAAAACAAAABAAIAAcAAAADAAAABAAIAAcAAAAEAAAABAAIAAcAAAAFAAAABAAIAAcAAAAGAAAABAAIAAcAAAAHAAAABAAIAAcAAAAIAAAABAAIAAcAAAAJAAAABAAIAAcAAAAKAAAABAAIAAcAAAALAAAABAAIAAcAAAAMAAAABAAIAAcAAAARAAAABAAIAAcAAAASAAAABAAIAAcAAAATAAAABAAIAAcAAAAUAAAABAAIAAcAAAAVAAAABAAIAAcAAAAWAAAABAAIAAcAAAAXAAAABAAIAAcAAAAYAAAABAAIAAcAAAAZAAAABAAIAAcAAAAaAAAABAAIAAcAAAAbAAAABAAIAAcAAAAcAAAABAAIAAcAAAAdAAAABAAIAAcAAAAAAAEABAAIAAcAAAAdAAEABAAIAAcAAAAAAAIABAAIAAcAAAAdAAIABAAIAAcAAAAAAAMABAAIAAcAAAAdAAMABAAIAAcAAAAAAAQABAAIAAcAAAAEAAQABAAIAAcAAAAMAAQABAAIAAcAAAAYAAQABAAIAAcAAAAdAAQABAAIAAcAAAAAAAUABAAIAAcAAAAEAAUABAAIAAcAAAAFAAUABAAIAAcAAAAGAAUABAAIAAcAAAALAAUABAAIAAcAAAAMAAUABAAIAAcAAAARAAUABAAIAAcAAAASAAUABAAIAAcAAAAXAAUABAAIAAcAAAAYAAUABAAIAAcAAAAdAAUABAAIAAcAAAAFAAYABAAIAAcAAAALAAYABAAIAAcAAAAMAAYABAAIAAcAAAARAAYABAAIAAcAAAAYAAYABAAIAAcAAAAdAAYABAAIAAcAAAAKAAcABAAIAAcAAAALAAcABAAIAAcAAAAYAAcABAAIAAcAAAAKAAgABAAIAAcAAAAYAAgABAAIAAcAAAAKAAkABAAIAAcAAAAYAAkABAAIAAcAAAAAAAoABAAIAAcAAAAFAAoABAAIAAcAAAAKAAoABAAIAAcAAAAPAAoABAAIAAcAAAAUAAoABAAIAAcAAAAYAAoABAAIAAcAAAAAAAsABAAIAAcAAAAEAAsABAAIAAcAAAAJAAsABAAIAAcAAAAPAAsABAAIAAcAAAAUAAsABAAIAAcAAAAdAAsABAAIAAcAAAAAAAwABAAIAAcAAAAEAAwABAAIAAcAAAAJAAwABAAIAAcAAAAOAAwABAAIAAcAAAAPAAwABAAIAAcAAAATAAwABAAIAAcAAAAdAAwABAAIAAcAAAAAAA0ABAAIAAcAAAAdAA0ABAAIAAcAAAAAAA4ABAAIAAcAAAAdAA4ABAAIAAcAAAAAAA8ABAAIAAcAAAAdAA8ABAAIAAcAAAAAABAABAAIAAcAAAABABAABAAIAAcAAAACABAABAAIAAcAAAADABAABAAIAAcAAAAEABAABAAIAAcAAAAFABAABAAIAAcAAAAGABAABAAIAAcAAAAHABAABAAIAAcAAAAIABAABAAIAAcAAAAJABAABAAIAAcAAAAKABAABAAIAAcAAAALABAABAAIAAcAAAAMABAABAAIAAcAAAARABAABAAIAAcAAAASABAABAAIAAcAAAATABAABAAIAAcAAAAUABAABAAIAAcAAAAVABAABAAIAAcAAAAWABAABAAIAAcAAAAXABAABAAIAAcAAAAYABAABAAIAAcAAAAZABAABAAIAAcAAAAaABAABAAIAAcAAAAbABAABAAIAAcAAAAcABAABAAIAAcAAAAdABAABAAIAAcAAAANAAAABAAAAAIAAAABAAIABAAAAAIAAAABAAMABAAAAAIAAAABAAQABAAAAAIAAAANAAQABAAAAAIAAAAZAAQABAAAAAIAAAABAAUABAAAAAIAAAAHAAUABAAAAAIAAAANAAUABAAAAAIAAAATAAUABAAAAAIAAAAZAAUABAAAAAIAAAANAAYABAAAAAIAAAAZAAYABAAAAAIAAAAZAAcABAAAAAIAAAAZAAgABAAAAAIAAAALAAkABAAAAAIAAAAZAAkABAAAAAIAAAABAAoABAAAAAIAAAAGAAoABAAAAAIAAAALAAoABAAAAAIAAAAQAAoABAAAAAIAAAAVAAoABAAAAAIAAAAZAAoABAAAAAIAAAABAAsABAAAAAIAAAAQAAsABAAAAAIAAAAVAAsABAAAAAIAAAABAAwABAAAAAIAAAAFAAwABAAAAAIAAAAKAAwABAAAAAIAAAAQAAwABAAAAAIAAAABAA0ABAAAAAIAAAABAA4ABAAAAAIAAAANABAABAAAAAIAAAAEAAMABAADAAQAAAAMAAMABAADAAQAAAAYAAMABAADAAQAAAAGAAQABAADAAQAAAARAAQABAADAAQAAAASAAQABAADAAQAAAAAAAkABAADAAQAAAAFAAkABAADAAQAAAAPAAkABAADAAQAAAAUAAkABAADAAQAAAAdAAoABAADAAQAAAACAA8ABAADAAQAAAADAA8ABAADAAQAAAAEAA8ABAADAAQAAAAFAA8ABAADAAQAAAAGAA8ABAADAAQAAAAHAA8ABAADAAQAAAAIAA8ABAADAAQAAAAJAA8ABAADAAQAAAAKAA8ABAADAAQAAAALAA8ABAADAAQAAAAMAA8ABAADAAQAAAARAA8ABAADAAQAAAASAA8ABAADAAQAAAATAA8ABAADAAQAAAAUAA8ABAADAAQAAAAVAA8ABAADAAQAAAAWAA8ABAADAAQAAAAXAA8ABAADAAQAAAAYAA8ABAADAAQAAAAZAA8ABAADAAQAAAAaAA8ABAADAAQAAAAbAA8ABAADAAQAAAAQAAAABAAFAAIAAAAcAAIABAAFAAIAAAAcAAMABAAFAAIAAAADAAQABAAFAAIAAAAcAAQABAAFAAIAAAADAAUABAAFAAIAAAAKAAUABAAFAAIAAAAQAAUABAAFAAIAAAAWAAUABAAFAAIAAAAcAAUABAAFAAIAAAAQAAYABAAFAAIAAAAcAAYABAAFAAIAAAAJAAcABAAFAAIAAAAXAAcABAAFAAIAAAAJAAgABAAFAAIAAAAXAAgABAAFAAIAAAAJAAkABAAFAAIAAAAXAAkABAAFAAIAAAAOAAoABAAFAAIAAAATAAoABAAFAAIAAAAXAAoABAAFAAIAAAADAAsABAAFAAIAAAAIAAsABAAFAAIAAAAcAAsABAAFAAIAAAADAAwABAAFAAIAAAAIAAwABAAFAAIAAAANAAwABAAFAAIAAAASAAwABAAFAAIAAAAcAAwABAAFAAIAAAAcAA0ABAAFAAIAAAAcAA4ABAAFAAIAAAAQABAABAAFAAIAAAACAAEABAACAAAAAAADAAEABAACAAAAAAAEAAEABAACAAAAAAAFAAEABAACAAAAAAAGAAEABAACAAAAAAAHAAEABAACAAAAAAAIAAEABAACAAAAAAAJAAEABAACAAAAAAAKAAEABAACAAAAAAALAAEABAACAAAAAAAMAAEABAACAAAAAAARAAEABAACAAAAAAASAAEABAACAAAAAAATAAEABAACAAAAAAAUAAEABAACAAAAAAAVAAEABAACAAAAAAAWAAEABAACAAAAAAAXAAEABAACAAAAAAAYAAEABAACAAAAAAAZAAEABAACAAAAAAAaAAEABAACAAAAAAAbAAEABAACAAAAAAAAAAYABAACAAAAAAAFAAcABAACAAAAAAARAAcABAACAAAAAAAdAAcABAACAAAAAAAYAAsABAACAAAAAAAEAA0ABAACAAAAAAAJAA0ABAACAAAAAAAOAA0ABAACAAAAAAAPAA0ABAACAAAAAAATAA0ABAACAAAAAAAFAAQABAAAAAQAAAABAA8ABAAAAAQAAAALAAQABAAFAAQAAAAXAAQABAAFAAQAAAAKAAYABAAFAAQAAAAEAAoABAAFAAQAAAAJAAoABAAFAAQAAAAOAAsABAAFAAQAAAATAAsABAAFAAQAAAAcAA8ABAAFAAQAAAAcAAEABAAFAAAAAAAEAAYABAAFAAAAAAAXAAYABAAFAAAAAAABAAEABAAAAAAAAAAGAAYABAAAAAAAAAASAAYABAAAAAAAAAAMAAcABAAAAAAAAAALAAgABAAAAAAAAAAFAAsABAAAAAAAAAAKAAsABAAAAAAAAAAUAAwABAAAAAAAAAA=")
 tile_set = ExtResource("2_ay5qi")
 
-[node name="CollisionTweaksCustom" type="TileMapLayer" parent="." unique_id=1689575086]
+[node name="Decor" type="TileMapLayer" parent="." unique_id=111579637]
+tile_map_data = PackedByteArray("AAAOAAAABAAGAAYAAAAPAAAABAAHAAYAAAAEAAEABAAAAAkAAAANAAEABAAAAAkAAAAQAAEABAAAAAkAAAAYAAEABAAAAAkAAAABAAYABAAAAAkAAAADAAYABAAAAAkAAAAHAAYABAAAAAkAAAATAAYABAAAAAkAAAAWAAYABAAAAAkAAAABAAcABAAHAAQAAAAFAAcABAAAAAkAAAANAAcABAAAAAkAAAARAAcABAAAAAkAAAAcAAcABAAAAAkAAAABAAgABAAHAAUAAAAGAAsABAAAAAkAAAALAAsABAAAAAkAAAAVAAwABAAAAAkAAAANAA0ABAAAAAkAAAAQAA0ABAAAAAkAAAATAA0ABAAAAAkAAAA=")
 tile_set = ExtResource("2_ay5qi")
 
 [node name="Entities" type="Node2D" parent="." unique_id=1875432702]
-script = ExtResource("3_fa81k")
-iid = "623352a1-48b0-11f1-a22d-8f7ef9a26aa5"
-definition = {
-"gridSize": 16.0,
-"identifier": "Entities",
-"intGridValues": [],
-"offset": Vector2i(0, 0),
-"parallax": Vector2(0, 0),
-"parallaxScaling": true,
-"type": "Entities",
-"uid": 1.0
-}
-entities = [{
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "4f5b9300-48b0-11f1-a22d-eb519d8ce12a",
-"pivot": Vector2(0, 0),
-"position": Vector2i(48, 112),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "4fc132a0-48b0-11f1-a22d-35715412cef1",
-"pivot": Vector2(0, 0),
-"position": Vector2i(48, 144),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "506bf190-48b0-11f1-a22d-47503280ed3e",
-"pivot": Vector2(0, 0),
-"position": Vector2i(96, 192),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "512815a0-48b0-11f1-a22d-b16d22473ee9",
-"pivot": Vector2(0, 0),
-"position": Vector2i(208, 160),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "51a95390-48b0-11f1-a22d-6f25f8210c1f",
-"pivot": Vector2(0, 0),
-"position": Vector2i(176, 192),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "5330ddf0-48b0-11f1-a22d-dd4581c27fc4",
-"pivot": Vector2(0, 0),
-"position": Vector2i(160, 48),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "539bd4c0-48b0-11f1-a22d-b5c3366bce5b",
-"pivot": Vector2(0, 0),
-"position": Vector2i(144, 80),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "545846f0-48b0-11f1-a22d-394eb819a5bd",
-"pivot": Vector2(0, 0),
-"position": Vector2i(304, 112),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "54d9d300-48b0-11f1-a22d-4765b675e08f",
-"pivot": Vector2(0, 0),
-"position": Vector2i(288, 160),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "55473ad0-48b0-11f1-a22d-f19099ecc070",
-"pivot": Vector2(0, 0),
-"position": Vector2i(288, 144),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "56adcfb0-48b0-11f1-a22d-b38e58eeadf5",
-"pivot": Vector2(0, 0),
-"position": Vector2i(336, 208),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "5764c3a0-48b0-11f1-a22d-b150390dbfd5",
-"pivot": Vector2(0, 0),
-"position": Vector2i(352, 112),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "57f2f9e0-48b0-11f1-a22d-fd8ac49575fe",
-"pivot": Vector2(0, 0),
-"position": Vector2i(352, 48),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "58891f60-48b0-11f1-a22d-374e11af0783",
-"pivot": Vector2(0, 0),
-"position": Vector2i(416, 48),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "5de187e0-48b0-11f1-a22d-d5e9629e9dc1",
-"pivot": Vector2(0, 0),
-"position": Vector2i(416, 112),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "6083aa00-48b0-11f1-a22d-b7141b6d34c4",
-"pivot": Vector2(0, 0),
-"position": Vector2i(432, 224),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "61bee920-48b0-11f1-a22d-877ee3080c81",
-"pivot": Vector2(0, 0),
-"position": Vector2i(384, 192),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "64c683d0-48b0-11f1-a22d-2d16db94d43b",
-"pivot": Vector2(0, 0),
-"position": Vector2i(416, 144),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "67872a70-48b0-11f1-a22d-d9feb3ab7d13",
-"pivot": Vector2(0, 0),
-"position": Vector2i(128, 144),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "6af1f3c0-48b0-11f1-a22d-0598084b68b5",
-"pivot": Vector2(0, 0),
-"position": Vector2i(208, 128),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "6d68c020-48b0-11f1-a22d-fbe6759e0f8f",
-"pivot": Vector2(0, 0),
-"position": Vector2i(256, 32),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "6f5b4150-48b0-11f1-a22d-0700aa8d38e5",
-"pivot": Vector2(0, 0),
-"position": Vector2i(304, 32),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "7170dae0-48b0-11f1-a22d-ffb314cbccfb",
-"pivot": Vector2(0, 0),
-"position": Vector2i(96, 48),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.74509805, 0.2901961, 0.18431373, 1),
-"field_defs": {
-119: {
-"identifier": "Item",
-"type": "LocalEnum.Item_Type"
-}
-},
-"hollow": false,
-"identifier": "Item",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"Item": "Item_Type.Basic_Crate"
-},
-"identifier": "Item",
-"iid": "733aec80-48b0-11f1-a22d-a1e0719a406d",
-"pivot": Vector2(0, 0),
-"position": Vector2i(112, 112),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.24313726, 0.15294118, 0.19215687, 1)
-}, {
-"definition": {
-"color": Color(0.91764706, 0.83137256, 0.6666667, 1),
-"field_defs": {},
-"hollow": false,
-"identifier": "NPC_Exit",
-"renderMode": "Rectangle",
-"tags": ["actor"],
-"tile": SubResource("AtlasTexture_aq3nc")
-},
-"fields": {},
-"identifier": "NPC_Exit",
-"iid": "a865c380-48b0-11f1-a22d-ef64234cf569",
-"pivot": Vector2(0, 0),
-"position": Vector2i(224, 0),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.91764706, 0.83137256, 0.6666667, 1)
-}, {
-"definition": {
-"color": Color(0.91764706, 0.83137256, 0.6666667, 1),
-"field_defs": {},
-"hollow": false,
-"identifier": "NPC_Exit",
-"renderMode": "Rectangle",
-"tags": ["actor"],
-"tile": SubResource("AtlasTexture_aq3nc")
-},
-"fields": {},
-"identifier": "NPC_Exit",
-"iid": "a8b73ee0-48b0-11f1-a22d-bf3560d79acf",
-"pivot": Vector2(0, 0),
-"position": Vector2i(240, 0),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.91764706, 0.83137256, 0.6666667, 1)
-}, {
-"definition": {
-"color": Color(0.91764706, 0.83137256, 0.6666667, 1),
-"field_defs": {},
-"hollow": false,
-"identifier": "NPC_Exit",
-"renderMode": "Rectangle",
-"tags": ["actor"],
-"tile": SubResource("AtlasTexture_aq3nc")
-},
-"fields": {},
-"identifier": "NPC_Exit",
-"iid": "a9853d40-48b0-11f1-a22d-d3766d4f9604",
-"pivot": Vector2(0, 0),
-"position": Vector2i(0, 112),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.91764706, 0.83137256, 0.6666667, 1)
-}, {
-"definition": {
-"color": Color(0.91764706, 0.83137256, 0.6666667, 1),
-"field_defs": {},
-"hollow": false,
-"identifier": "NPC_Exit",
-"renderMode": "Rectangle",
-"tags": ["actor"],
-"tile": SubResource("AtlasTexture_aq3nc")
-},
-"fields": {},
-"identifier": "NPC_Exit",
-"iid": "a9db9aa0-48b0-11f1-a22d-b5513959ebb5",
-"pivot": Vector2(0, 0),
-"position": Vector2i(0, 128),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.91764706, 0.83137256, 0.6666667, 1)
-}, {
-"definition": {
-"color": Color(1, 1, 1, 1),
-"field_defs": {
-123: {
-"identifier": "NPC_type",
-"type": "LocalEnum.NPC_type"
-}
-},
-"hollow": false,
-"identifier": "NPC_Spawn",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"NPC_type": "NPC_type.Knight"
-},
-"identifier": "NPC_Spawn",
-"iid": "b2970440-48b0-11f1-a22d-e7f9629b1c86",
-"pivot": Vector2(0, 0),
-"position": Vector2i(464, 128),
-"size": Vector2i(16, 16),
-"smart_color": Color(1, 1, 1, 1)
-}, {
-"definition": {
-"color": Color(1, 1, 1, 1),
-"field_defs": {
-123: {
-"identifier": "NPC_type",
-"type": "LocalEnum.NPC_type"
-}
-},
-"hollow": false,
-"identifier": "NPC_Spawn",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {
-"NPC_type": "NPC_type.Knight"
-},
-"identifier": "NPC_Spawn",
-"iid": "b33762f0-48b0-11f1-a22d-4581cbbf953c",
-"pivot": Vector2(0, 0),
-"position": Vector2i(224, 256),
-"size": Vector2i(16, 16),
-"smart_color": Color(1, 1, 1, 1)
-}, {
-"definition": {
-"color": Color(0.84313726, 0.4627451, 0.2627451, 1),
-"field_defs": {},
-"hollow": false,
-"identifier": "Player_Spawn",
-"renderMode": "Tile",
-"tags": ["actor"],
-"tile": null
-},
-"fields": {},
-"identifier": "Player_Spawn",
-"iid": "b61de110-48b0-11f1-a22d-9bbea6272421",
-"pivot": Vector2(0, 0),
-"position": Vector2i(240, 112),
-"size": Vector2i(16, 16),
-"smart_color": Color(0.84313726, 0.4627451, 0.2627451, 1)
-}]
 
 [node name="Interactable" parent="Entities" unique_id=1591342654 instance=ExtResource("5_trpa2")]
 position = Vector2(48, 112)
@@ -831,20 +136,44 @@ position = Vector2(96, 48)
 [node name="_Node2D_53886" parent="Entities" unique_id=1246140033 instance=ExtResource("5_trpa2")]
 position = Vector2(112, 112)
 
-[node name="_Marker2D_53887" type="Marker2D" parent="Entities" unique_id=634489017]
-position = Vector2(464, 128)
-
-[node name="_Marker2D_53888" type="Marker2D" parent="Entities" unique_id=1231167549]
-position = Vector2(224, 256)
-
-[node name="Player" parent="Entities" unique_id=717767978 instance=ExtResource("6_4t7ew")]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1349417052]
 position = Vector2(240, 112)
 
-[node name="Decor" type="TileMapLayer" parent="." unique_id=111579637]
-tile_map_data = PackedByteArray("AAAOAAAABAAGAAYAAAAPAAAABAAHAAYAAAAEAAEABAAAAAkAAAANAAEABAAAAAkAAAAQAAEABAAAAAkAAAAYAAEABAAAAAkAAAABAAYABAAAAAkAAAADAAYABAAAAAkAAAAHAAYABAAAAAkAAAATAAYABAAAAAkAAAAWAAYABAAAAAkAAAABAAcABAAHAAQAAAAFAAcABAAAAAkAAAANAAcABAAAAAkAAAARAAcABAAAAAkAAAAcAAcABAAAAAkAAAABAAgABAAHAAUAAAAGAAsABAAAAAkAAAALAAsABAAAAAkAAAAVAAwABAAAAAkAAAANAA0ABAAAAAkAAAAQAA0ABAAAAAkAAAATAA0ABAAAAAkAAAA=")
-tile_set = ExtResource("2_ay5qi")
+[node name="NPCSpawner" type="Marker2D" parent="." unique_id=1231167549]
+position = Vector2(240, 257)
 
-[node name="_Camera2D_53889" type="Camera2D" parent="." unique_id=1349417052]
+[node name="NPCSpawner2" type="Marker2D" parent="." unique_id=634489017]
+position = Vector2(467, 142)
 
-[node name="_FmodEventEmitter2D_53890" type="FmodEventEmitter2D" parent="." unique_id=440033113]
-event_guid = "{00000039-006d-0000-1b00-00005b000000}"
+[node name="Player" parent="." unique_id=717767978 instance=ExtResource("6_4t7ew")]
+position = Vector2(240, 112)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player" unique_id=630428891]
+remote_path = NodePath("../../Camera2D")
+
+[node name="AdventurerTimer" type="Timer" parent="." unique_id=924527834]
+wait_time = 10.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=742400568]
+
+[node name="ScoreDisplay" type="Label" parent="CanvasLayer" unique_id=236438782]
+unique_name_in_owner = true
+offset_left = 49.0
+offset_top = 1.0
+offset_right = 134.0
+offset_bottom = 24.0
+text = "0/12"
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=2001865772]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score:"
+
+[node name="CameraAnimation" type="AnimationPlayer" parent="." unique_id=1832406246]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_absw3")
+
+[connection signal="ate_adventurer" from="Player" to="." method="_on_player_ate_adventurer"]
+[connection signal="start_eating" from="Player" to="." method="_on_player_start_eating"]
+[connection signal="stop_eating" from="Player" to="." method="_on_player_stop_eating"]
