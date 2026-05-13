@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dayiydnybrkbc" path="res://assets/UI Elements/itch-logo.svg" id="4_rkptg"]
 [ext_resource type="Texture2D" uid="uid://cb63tl47bvxd6" path="res://assets/UI Elements/fmod-logo.png" id="5_t3mph"]
 [ext_resource type="Texture2D" uid="uid://pc27ockof38a" path="res://assets/UI Elements/godot-logo.png" id="6_kkyop"]
+[ext_resource type="PackedScene" uid="uid://d4fb65gg54see" path="res://globals/How to play.tscn" id="8_rkptg"]
 
 [node name="MainMenu" type="Control" unique_id=425031023]
 layout_mode = 3
@@ -168,6 +169,10 @@ text = "Yes"
 [node name="CloseConfirmationButton" type="Button" parent="QuitConfirmation/Panel/VBoxContainer/HBoxContainer" unique_id=1220855684]
 layout_mode = 2
 text = "No"
+
+[node name="HowToPlay" parent="." unique_id=802803651 instance=ExtResource("8_rkptg")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
