@@ -19,6 +19,7 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [x] Implement Adventurer animation logic
 - [x] Implement Mimic animation logic
 - [ ] set up export settings for submission
+- [ ] implement object type indicators
 - [ ] Implement an options menu
   - [ ] volume controls
 - [ ] tie all the audio to their relative objects
