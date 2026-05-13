@@ -18,7 +18,7 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [x] Implement Adventurer animation logic
 - [x] Implement Mimic animation logic
 - [x] Add a "how to play" screen
-- [ ] pull the player to display over the timers/adventurers
+- [x] pull the player to display over the timers/adventurers
 - [ ] set up export settings for submission
 - [ ] implement object type indicators
 - [ ] Implement an options menu
