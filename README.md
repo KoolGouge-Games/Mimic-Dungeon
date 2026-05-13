@@ -22,6 +22,7 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [ ] implement object type indicators
 - [ ] Implement an options menu
   - [ ] volume controls
+    - You can use the method `var bus = FmodServer.get_bus("path")`. It should return a FmodBus, which you can use to directly control its sound `bus.set_volume(x)` 
 - [ ] tie all the audio to their relative objects
   - [ ] mimic footsteps
   - [ ] "you won" music
