@@ -15,19 +15,25 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [x] Implement score/level clear mechanics
 - [x] Add a "level complete" screen
 - [x] Add a Pause menu
-- [ ] Add a Start menu
-- [ ] Implement an options menu
-  - [ ] volume controls
-- [ ] Add a "how to play" screen
-- [ ] Implement a timer and display clear times
+- [x] Add a Start menu
 - [x] Implement Adventurer animation logic
 - [x] Implement Mimic animation logic
-- [ ] add "running away" logic for when an adventurer spots a mimic
+- [ ] set up export settings for submission
+- [ ] Implement an options menu
+  - [ ] volume controls
 - [ ] tie all the audio to their relative objects
-- [ ] Add a level selector screen?
+  - [ ] mimic footsteps
+  - [ ] "you won" music
+  - [ ] "menu open" for options
+  - [ ] UI hovers?
+- [ ] add "running away" logic for when an adventurer spots a mimic
+  - [ ] also have player lose a point
+- [ ] Add a "how to play" screen
+- [ ] Implement a timer and display clear times
 
 ### Stretch Goals
 
+- [ ] Add a level selector screen?
 - [ ] Get FMOD to work in the web
 - [ ] Add controller support
 - [ ] Add key rebinding
