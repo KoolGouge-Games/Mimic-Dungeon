@@ -31,8 +31,5 @@
 		<property name="threshold">
 			<value>-30</value>
 		</property>
-		<relationship name="sidechains">
-			<destination>{921a29f7-59f0-44e5-a33c-6b37fed3ef75}</destination>
-		</relationship>
 	</object>
 </objects>
