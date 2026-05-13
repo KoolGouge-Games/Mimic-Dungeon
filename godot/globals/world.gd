@@ -27,7 +27,7 @@ func pause() -> void:
 	pause_menu.visible = true
 	global_animations.play("open_pause_menu")
 	pause_open_sfx.play()
-	pause_muffle.play()
+	current_level.on_pause()
 
 func unpause() -> void:
 	get_tree().paused = false
@@ -35,6 +35,7 @@ func unpause() -> void:
 	pause_menu.visible = false
 	close_quit_confirmation()
 	ui_cancel_sfx.play()
+	current_level.on_unpause()
 
 func go_to_options() -> void:
 	print("to do!")
@@ -48,7 +49,6 @@ func open_quit_confirmation() -> void:
 
 func close_quit_confirmation() -> void:
 	quit_confirmation.visible = false
-
 
 func _on_queue_adventurer(type: Global.NPCTypes) -> void:
 	NPCAlertUI.startNPCTimer(3.0, type)

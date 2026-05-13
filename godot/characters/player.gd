@@ -6,15 +6,25 @@ class_name Player
 @onready var eating_qte: Control = $"Eating QTE"
 @onready var QTE_animation: AnimationPlayer = %QTEAnimation
 @onready var transformation_menu: Control = $TransformationSelection
+@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var Transform_effect: AnimatedSprite2D = $TransformEffect
+
+@onready var transform_sfx: FmodEventEmitter2D = %Transform
+@onready var minigame_start_sfx : FmodEventEmitter2D = %MinigameStart
+@onready var minigame_success_stinger: FmodEventEmitter2D = %MinigameSuccess
+@onready var minigame_fail_stinger: FmodEventEmitter2D = %MinigameFail
 
 var is_transformation_menu_open := false
 var is_transformed := false
 var is_moving := false
+var prev_direction: Vector2 = Vector2.ZERO
 var adventurer_to_eat: Adventurer
 
 var ObjectType: Global.ObjectTypes
 
 signal ate_adventurer
+signal start_eating
+signal stop_eating
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_eat"):
@@ -25,6 +35,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if is_transformed:
 			is_transformed = false
 			remove_from_group("object")
+			Transform_effect.play("default")
+			transform_sfx.play_one_shot()
 		elif is_transformation_menu_open:
 			transformation_menu.close()
 			is_transformation_menu_open = false
@@ -34,11 +46,18 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+
+	if Vector2.UP.angle_to(prev_direction) < 0:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
+
 	if is_transformed:
 		is_moving = false
 		return
 
 	if direction:
+		prev_direction = direction
 		velocity = direction * player_speed
 		is_moving = true
 	else:
@@ -47,6 +66,14 @@ func _physics_process(_delta: float) -> void:
 		is_moving = false
 
 	move_and_slide()
+
+func _process(_delta: float) -> void:
+	if is_moving:
+		sprite.play("walk")
+	elif is_transformed:
+		sprite.play("transformed_idle")
+	else:
+		sprite.play("Idle")
 
 func _on_eating_range_body_exited(_body: Node2D) -> void:
 	adventurer_to_eat = null
@@ -59,20 +86,29 @@ func _on_eating_range_body_entered(body: Node2D) -> void:
 	eating_prompt.visible = true
 
 func trigger_minigame() -> void:
-	eating_prompt.visible = false
-	eating_qte.visible = true
+	start_eating.emit()
 	get_tree().paused = true
+	sprite.play("bite_start")
+	minigame_start_sfx.play()
 	is_transformed = false
+	eating_prompt.visible = false
 	remove_from_group("object")
+	await sprite.animation_finished
+	eating_qte.visible = true
 	QTE_animation.play("eating_qte")
 	
 func eat_adventurer() -> void:
+	print("succeed!")
+	minigame_success_stinger.play()
+	sprite.play("bite_success")
 	ate_adventurer.emit(adventurer_to_eat.value)
 	adventurer_to_eat.leave()
 	reset_QTE()
 
 func fail_QTE() -> void:
-	print("oh no!")
+	print("failed")
+	minigame_fail_stinger.play()
+	sprite.play("bite_fail")
 	reset_QTE()
 	damage()
 
@@ -80,8 +116,10 @@ func damage() -> void:
 	print("ow!")
 
 func reset_QTE() -> void:
-	QTE_animation.stop()
 	eating_qte.visible = false
+	QTE_animation.stop()
+	await sprite.animation_finished
+	stop_eating.emit()
 	adventurer_to_eat = null
 	get_tree().paused = false
 
@@ -89,6 +127,8 @@ func _on_eating_qte_time_up() -> void:
 	fail_QTE()
 
 func _on_transformation_selection(type: Global.ObjectTypes) -> void:
+	Transform_effect.play("default")
+	transform_sfx.play_one_shot()
 	ObjectType = type
 	add_to_group("object")
 	is_transformed = true

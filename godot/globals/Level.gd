@@ -7,6 +7,7 @@ class_name Level_Script
 @onready var spawner: Marker2D = $NPCSpawner
 @onready var music_player: FmodEventEmitter2D = $MusicPlayer
 @onready var score_display: Label = %ScoreDisplay
+@onready var camera_animation: AnimationPlayer = $CameraAnimation
 
 signal queue_adventurer
 
@@ -69,3 +70,18 @@ func _on_player_ate_adventurer(value: int) -> void:
 
 	if player_score >= max_score:
 		player_won.emit(player_score)
+
+func _on_player_start_eating() -> void:
+	music_player.paused = true
+	camera_animation.play("zoom")
+
+func _on_player_stop_eating() -> void:
+	camera_animation.play_backwards("zoom")
+
+func on_pause() -> void:
+	print("pausing!")
+	music_player.set_parameter("PauseParam", "PausedParam")
+
+func on_unpause() -> void:
+	print("unpausing")
+	music_player.set_parameter("PauseParam", "UnpausedParam")
