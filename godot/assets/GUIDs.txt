@@ -1,0 +1,49 @@
+{46b8fb7c-acbb-40cb-91a5-c936f2852005} bank:/INTERFACE
+{fd47a806-1dd2-00fb-0be6-01bb3e2925c5} bank:/INTERFACE.assets
+{89077a0e-32e7-4d36-991a-5ef649ae53b6} bank:/MUSIC
+{32f82974-838e-0d06-0359-967b85025676} bank:/MUSIC.assets
+{28505c0f-b235-4b7d-8785-8007a0de2796} bank:/Master
+{93af0f75-035c-0b4d-1dc6-488a6c722256} bank:/Master.assets
+{b04d7cdb-c34e-073f-01cc-0af9512d210e} bank:/Master.strings
+{8aa4203f-e907-43a7-a5bf-4b03578716a2} bank:/SFX
+{315b7345-586e-0397-3ffc-838e9b2b1362} bank:/SFX.assets
+{0535372e-6010-40ce-8542-218906b52c07} bus:/
+{d5d9edb6-8499-4a59-95ce-b36c062849d8} bus:/INTERFACE
+{2e57688a-5afd-4759-b10f-66a4606252f6} bus:/MUSIC
+{0faf35c7-d198-4379-9ed2-34abd195db3f} bus:/PLAYER
+{1259b7bd-7922-4b58-aaf5-b0818618fddc} bus:/Reverb
+{7c6d04e3-a715-4623-9e34-57c39a82aba6} bus:/SFX
+{565e3f86-e44b-475c-a55b-b3882115e9c3} event:/INTERFACE/Game End
+{319bdbb6-2988-4b9a-be64-f64cab373fd8} event:/INTERFACE/Game Start
+{fb656b78-db75-4e9f-8596-2e00c676bc0d} event:/INTERFACE/UI Cancel
+{4c7b0159-c274-4bf3-bd46-54db6a57a206} event:/INTERFACE/UI Confirm
+{387cfb50-38ce-48a3-89c3-d399b004881b} event:/INTERFACE/UI Highlight
+{453b164e-b5dd-4e67-a7c2-392e131d406c} event:/INTERFACE/UI Pause Menu
+{8af59a6c-65e2-47c2-9cbc-8d6efdca9ea4} event:/MUSIC/Gameplay
+{3969d2dd-2fc1-4794-a970-8b56ca92d428} event:/MUSIC/Gameplay 2
+{bc670b34-b77e-408e-8ac4-099d1f0cf8e2} event:/MUSIC/Start Menu
+{5b911847-5267-44b3-b8d0-251a7b0eebe0} event:/MiniGame/MiniGame_Input
+{75d5286f-3554-4dbd-909b-0b240cfcfa2d} event:/MiniGame/MiniGame_Stinger
+{2d5eb830-234d-475b-ad6f-903ca474fc37} event:/MiniGame/PC_Eat_Fail
+{50e439c7-d8ab-4c05-a240-ad496b8bdef4} event:/MiniGame/PC_Eat_Success
+{f6684f1d-9f39-4e52-89b5-9cb9de6e1b08} event:/PLAYER/PC_Move
+{78a65ccd-848d-4b3f-895f-1c7690bc4e11} event:/PLAYER/PC_Transform
+{dca66e26-c31a-43e7-b902-2dfcce600192} event:/SFX/Cleric/Cleric_Death
+{88ea362f-e66e-4b84-932f-cfc9a5bf4f13} event:/SFX/Cleric/Cleric_Move
+{967a1b36-550b-4857-b073-fb4a3a21d11b} event:/SFX/Knight/Knight_Death
+{e893518b-d000-413e-bd66-11ae4f231696} event:/SFX/Knight/Knight_Move
+{aa6152dc-d059-4696-8f19-da11d5a40bfd} event:/SFX/Mage/Mage_Death
+{849e19c4-d57f-4e50-b337-2cd896fc2280} event:/SFX/Mage/Mage_Move
+{c66976ff-fd05-4b57-8cb7-fe02dede9f12} event:/SFX/NPC_Fear_Stinger
+{3648718e-17e8-45f2-a20c-84f4ab91ac58} event:/SFX/Rogue/Rogue_Death
+{ecfeb34b-626e-46ea-a3ce-b711d0147030} event:/SFX/Rogue/Rogue_Move
+{d77d287d-cafb-428c-b93e-ae6b254f56f0} event:/SFX/search
+{b4c99aa9-f931-49fd-90d8-526cf2371b74} event:/SFX/search_complete
+{1eb8658b-23a2-4047-822f-7acd4ab72509} parameter:/Distance
+{ce6a10cb-44e5-4f64-b41a-af4b0d828a74} parameter:/PauseParam
+{9bf2af75-3165-46b7-87ce-2abc21f3e376} parameter:/cleric-active
+{78cf141c-1a94-4003-b0ee-b9fe1787ac0c} parameter:/knight-active
+{3e621726-e128-46f0-bed1-a1861e8e251f} parameter:/mage-active
+{137c557c-6a79-4ace-9c6b-ce86b8f3c2d9} parameter:/rogue-active
+{b3ed127f-fd94-4584-acec-20b5a4455bd8} snapshot:/End Screen
+{2c2341bb-4b38-4243-a015-61a17024e002} snapshot:/Pause
