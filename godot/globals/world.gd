@@ -41,7 +41,7 @@ func go_to_options() -> void:
 	print("to do!")
 
 func go_to_menu() -> void:
-	print("to do!")
+	SceneTransition.load_scene("res://globals/main_menu.tscn")
 
 func open_quit_confirmation() -> void:
 	print("confirming")

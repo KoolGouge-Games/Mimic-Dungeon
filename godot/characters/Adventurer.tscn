@@ -6,6 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c88yjkm2dq77g" path="res://Resources/npcs/rogue_sprite_frames.tres" id="3_oyyn5"]
 [ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="4_kq6e1"]
 [ext_resource type="Script" uid="uid://bllb4xudnoh24" path="res://characters/adventurer-behavior/blackboard.gd" id="4_o8pjp"]
+[ext_resource type="Theme" uid="uid://b0o4vns8simb0" path="res://Resources/game_theme.tres" id="4_o86xa"]
 [ext_resource type="Script" uid="uid://cw22yurt5l74k" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="6_do4xh"]
 [ext_resource type="Script" uid="uid://c4sxubyv7fhwa" path="res://characters/adventurer-behavior/los_to_player_bh.gd" id="6_itu75"]
 [ext_resource type="Texture2D" uid="uid://ln8rujcqvu8a" path="res://assets/UI Elements/Queuing-Sphere.png" id="6_oyyn5"]
@@ -195,6 +196,7 @@ offset_right = 20.0
 grow_vertical = 0
 rotation = 6.2831855
 pivot_offset = Vector2(0, 20)
+theme = ExtResource("4_o86xa")
 
 [node name="AdventureClock" type="TextureProgressBar" parent="AdventureTimerDisplay" unique_id=720755671]
 unique_name_in_owner = true
@@ -225,6 +227,7 @@ offset_left = -20.0
 offset_top = -20.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("4_o86xa")
 
 [node name="LootingClock" type="TextureProgressBar" parent="LootingTimerDisplay" unique_id=1496308024]
 unique_name_in_owner = true
@@ -247,12 +250,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -36.0
-offset_top = -4.0
-offset_right = 36.0
-offset_bottom = 19.0
+offset_left = -48.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_font_sizes/font_size = 10
 text = "Looting..."
 
 [node name="Blackboard" type="Node" parent="." unique_id=456921879]

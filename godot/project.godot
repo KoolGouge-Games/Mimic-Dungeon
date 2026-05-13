@@ -15,7 +15,7 @@ General/banks_path="res://assets/fmod"
 [application]
 
 config/name="Mimic Game"
-run/main_scene="uid://bkwvammdgf7uc"
+run/main_scene="uid://dte1ebrf3ai7t"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -26,6 +26,7 @@ BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
 FmodManager="*uid://cds10pm7hwn3p"
 PromptManager="*uid://r330iydg8cmc"
+SceneTransition="*uid://bih72iywyhf8y"
 
 [display]
 

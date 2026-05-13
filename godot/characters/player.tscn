@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bvqtk4571om8k" path="res://assets/characters/transformation-effect-animationsheet.png" id="3_q605b"]
 [ext_resource type="Texture2D" uid="uid://d2as5erfr7tji" path="res://addons/input_prompts/icons/keyboard/e.png" id="3_x0jl3"]
 [ext_resource type="Script" uid="uid://beanwg2i2vcef" path="res://addons/input_prompts/key_prompt/key_prompt.gd" id="4_x0jl3"]
+[ext_resource type="Theme" uid="uid://b0o4vns8simb0" path="res://Resources/game_theme.tres" id="5_eho78"]
 [ext_resource type="Script" uid="uid://u4bqu2f3b86g" path="res://UI/eating_qte.gd" id="5_j31ep"]
 [ext_resource type="Texture2D" uid="uid://1csmd0dxwr2e" path="res://assets/UI Elements/QTE-Bar.png" id="6_6t23p"]
 [ext_resource type="Texture2D" uid="uid://bx7hjjmeix3if" path="res://assets/UI Elements/QTE-Arrow.png" id="7_n8jd0"]
@@ -177,21 +178,9 @@ region = Rect2(512, 64, 32, 32)
 atlas = ExtResource("2_n8jd0")
 region = Rect2(544, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n5dgj"]
-atlas = ExtResource("2_n8jd0")
-region = Rect2(576, 64, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_jj65b"]
 atlas = ExtResource("2_n8jd0")
 region = Rect2(608, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o853v"]
-atlas = ExtResource("2_n8jd0")
-region = Rect2(640, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jtsf"]
-atlas = ExtResource("2_n8jd0")
-region = Rect2(672, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d1wi5"]
 atlas = ExtResource("2_n8jd0")
@@ -204,10 +193,6 @@ region = Rect2(736, 64, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_70c3j"]
 atlas = ExtResource("2_n8jd0")
 region = Rect2(768, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cmnif"]
-atlas = ExtResource("2_n8jd0")
-region = Rect2(800, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yx1cl"]
 atlas = ExtResource("2_n8jd0")
@@ -548,16 +533,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_kmwdt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n5dgj")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_jj65b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o853v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2jtsf")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d1wi5")
@@ -567,9 +543,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_70c3j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cmnif")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yx1cl")
@@ -1019,7 +992,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(22, 17), Vector2(22, 4.735)]
+"values": [Vector2(21.58, 29.27), Vector2(22.75, 9.75)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1031,7 +1004,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(24, 18), Vector2(46.74, 12)]
+"values": [Vector2(21.580002, 29.27), Vector2(45, 19)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1043,7 +1016,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(21, 33), Vector2(44.455, 40)]
+"values": [Vector2(21.580002, 29.27), Vector2(41, 40)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1055,7 +1028,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(18, 33), Vector2(-4.16, 40)]
+"values": [Vector2(21.58, 29.27), Vector2(2, 40)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1067,7 +1040,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(18, 20), Vector2(-7.33, 12)]
+"values": [Vector2(21.58, 29.27), Vector2(1.0000019, 19)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1164,7 +1137,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_3eadt")
 animation = &"bite_success"
 autoplay = "Idle"
-frame = 30
+frame = 26
 frame_progress = 1.0
 
 [node name="TransformEffect" type="AnimatedSprite2D" parent="." unique_id=1602641163]
@@ -1184,6 +1157,7 @@ offset_left = -11.0
 offset_top = -26.0
 offset_right = 33.0
 scale = Vector2(0.5, 0.5)
+theme = ExtResource("5_eho78")
 
 [node name="InputPrompt" type="TextureRect" parent="EatPrompt" unique_id=229559270]
 texture_filter = 1
@@ -1209,13 +1183,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = -11.5
-offset_bottom = 11.5
+offset_left = -22.0
+offset_top = -7.0
+offset_right = 2.0
+offset_bottom = 3.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_font_sizes/font_size = 8
 text = "at!"
 horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="Eating QTE" type="Control" parent="." unique_id=1689681273]
 process_mode = 2
@@ -1226,6 +1203,7 @@ offset_left = -16.0
 offset_top = -22.0
 offset_right = 47.0
 scale = Vector2(0.5, 0.5)
+theme = ExtResource("5_eho78")
 script = ExtResource("5_j31ep")
 
 [node name="QTEBar" type="TextureRect" parent="Eating QTE" unique_id=1978299945]
@@ -1266,12 +1244,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_left = -31.0
+offset_top = -33.0
+offset_right = 33.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_eho78")
 script = ExtResource("8_6t23p")
 
 [node name="Basic" type="Button" parent="TransformationSelection" unique_id=1240896402]
@@ -1282,11 +1261,10 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -10.0
 offset_top = -4.0
-offset_right = 29.0
-offset_bottom = 21.000008
+offset_right = 25.0
+offset_bottom = 11.000027
 grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 12
 text = "Basic"
 
 [node name="Heavy" type="Button" parent="TransformationSelection" unique_id=2117608491]
@@ -1296,11 +1274,10 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -11.0
-offset_right = 33.000168
-offset_bottom = 25.000023
+offset_right = 24.000046
+offset_bottom = 15.0
 grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 12
 text = "Heavy
 "
 
@@ -1312,11 +1289,10 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = -12.0
 offset_top = -12.0
-offset_right = 38.00003
-offset_bottom = 13.000069
+offset_right = 28.0
+offset_bottom = 3.0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 12
 text = "Locked
 
 "
@@ -1331,12 +1307,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -12.0
 offset_top = -13.0
-offset_right = 38.000214
-offset_bottom = 12.00013
+offset_right = 28.000046
+offset_bottom = 2.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 12
 text = "Cursed
 
 
@@ -1346,10 +1321,9 @@ text = "Cursed
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_left = -13.0
-offset_right = 33.34001
-offset_bottom = 25.00003
+offset_right = 22.0
+offset_bottom = 15.0
 scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 12
 text = "Magic
 
 
