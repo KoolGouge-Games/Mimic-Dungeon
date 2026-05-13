@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dte1ebrf3ai7t"]
+
+[ext_resource type="Texture2D" uid="uid://biq1hej63omit" path="res://assets/UI Elements/SPLASHART_PLACEHOLDER.png" id="1_hkdpt"]
+[ext_resource type="Theme" uid="uid://b0o4vns8simb0" path="res://Resources/game_theme.tres" id="1_tq5tf"]
+
+[node name="MainMenu" type="Control" unique_id=425031023]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=698119774]
+bank_paths = ["res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank"]
+
+[node name="Background" type="TextureRect" parent="." unique_id=757378812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tq5tf")
+texture = ExtResource("1_hkdpt")
+expand_mode = 1
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="." unique_id=787388299]
+event_name = "event:/MUSIC/Start Menu"
+event_guid = "{bc670b34-b77e-408e-8ac4-099d1f0cf8e2}"
+autoplay = true
+volume = 0.5
+
+[node name="FmodListener2D" type="FmodListener2D" parent="." unique_id=107936063]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1287247485]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -53.0
+offset_right = -17.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=80628759]
+texture_filter = 2
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_tq5tf")
+text = "Start"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=475376590]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_tq5tf")
+text = "Options"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=853830007]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_tq5tf")
+text = "Quit"

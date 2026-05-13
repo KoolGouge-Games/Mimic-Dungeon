@@ -1,0 +1,28 @@
+[gd_resource type="Theme" format=3 uid="uid://b0o4vns8simb0"]
+
+[ext_resource type="FontFile" uid="uid://cn2ack01ywc8c" path="res://assets/Fonts/PressStart2P-Regular.ttf" id="1_wdlgr"]
+[ext_resource type="Texture2D" uid="uid://dsod2c74vka3x" path="res://assets/UI Elements/Complete_UI_Book_Styles_Pack_Free_v1.0/01_TravelBookLite/Sprites Animated/UI_TravelBook_Button01a_4-hover.png" id="2_kafu2"]
+[ext_resource type="Texture2D" uid="uid://nqj5mq7gbius" path="res://assets/UI Elements/Complete_UI_Book_Styles_Pack_Free_v1.0/01_TravelBookLite/Sprites/UI_TravelBook_BookCover01a.png" id="3_kafu2"]
+[ext_resource type="Texture2D" uid="uid://ddtucx61woo6o" path="res://assets/UI Elements/Complete_UI_Book_Styles_Pack_Free_v1.0/01_TravelBookLite/Sprites Animated/UI_TravelBook_Button01a_2.png" id="4_uasvd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2wcj0"]
+texture = ExtResource("2_kafu2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kxliy"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("3_kafu2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_18lyr"]
+texture = ExtResource("4_uasvd")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[resource]
+Button/font_sizes/font_size = 10
+Button/fonts/font = ExtResource("1_wdlgr")
+Button/styles/hover = SubResource("StyleBoxTexture_2wcj0")
+Button/styles/normal = SubResource("StyleBoxTexture_kxliy")
+Button/styles/pressed = SubResource("StyleBoxTexture_18lyr")

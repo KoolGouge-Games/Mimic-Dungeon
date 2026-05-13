@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://btn2ytft7oul6" path="res://characters/adventurer.gd" id="1_o4l1e"]
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_relmg"]
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_o4l1e"]
-[ext_resource type="SpriteFrames" uid="uid://bpem7g5riqygb" path="res://Resources/npcs/cleric_sprite_frames.tres" id="3_oyyn5"]
+[ext_resource type="SpriteFrames" uid="uid://c88yjkm2dq77g" path="res://Resources/npcs/rogue_sprite_frames.tres" id="3_oyyn5"]
 [ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="4_kq6e1"]
 [ext_resource type="Script" uid="uid://bllb4xudnoh24" path="res://characters/adventurer-behavior/blackboard.gd" id="4_o8pjp"]
 [ext_resource type="Script" uid="uid://cw22yurt5l74k" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="6_do4xh"]
@@ -40,7 +40,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/path = NodePath("AdventureSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -92,7 +92,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/path = NodePath("AdventureSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -169,15 +169,16 @@ polygon = PackedVector2Array(0, 0, -76, 185, 76, 184)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1891656053]
 libraries/ = SubResource("AnimationLibrary_o86xa")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1281409735]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1589068814]
+shape = SubResource("RectangleShape2D_o4l1e")
+
+[node name="AdventureSprite" type="AnimatedSprite2D" parent="." unique_id=1281409735]
+unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("3_oyyn5")
-animation = &"idle"
+animation = &"start_walk"
 autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1589068814]
-shape = SubResource("RectangleShape2D_o4l1e")
 
 [node name="LootTimer" type="Timer" parent="." unique_id=51422143]
 one_shot = true

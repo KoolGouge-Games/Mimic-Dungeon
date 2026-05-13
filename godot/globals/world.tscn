@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="2_dy5jq"]
 [ext_resource type="Script" uid="uid://cfln05e4xl6b1" path="res://globals/NPCAlert.gd" id="2_iaa3o"]
 [ext_resource type="PackedScene" uid="uid://dk17obqk825vt" path="res://Levels/level_1.tscn" id="2_kgrki"]
-[ext_resource type="Script" uid="uid://ce4yhlwsm3kyj" path="res://Levels/level_1.gd" id="3_hljhf"]
 [ext_resource type="Texture2D" uid="uid://2jfkkvyskkm8" path="res://assets/characters/Rogue-Portrait.png" id="4_c7ac0"]
 [ext_resource type="Texture2D" uid="uid://djskvya7yocvt" path="res://assets/UI Elements/Empty-Bar.png" id="4_kgrki"]
 [ext_resource type="Texture2D" uid="uid://1bogad1by0qk" path="res://assets/UI Elements/Bar-Border.png" id="5_hljhf"]
 [ext_resource type="Texture2D" uid="uid://dd2sgxrhxoir6" path="res://assets/UI Elements/Full-Bar.png" id="6_1xow5"]
+[ext_resource type="Theme" uid="uid://b0o4vns8simb0" path="res://Resources/game_theme.tres" id="9_hljhf"]
 
 [sub_resource type="Animation" id="Animation_hljhf"]
 length = 0.001
@@ -83,7 +83,6 @@ script = ExtResource("1_c7ac0")
 bank_paths = ["res://assets/fmod/Master.bank", "res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/INTERFACE.bank", "res://assets/fmod/INTERFACE.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank", "res://assets/fmod/SFX.bank", "res://assets/fmod/SFX.assets.bank"]
 
 [node name="Level_1" parent="." unique_id=32258485 instance=ExtResource("2_kgrki")]
-script = ExtResource("3_hljhf")
 max_adventurers = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1616854312]
@@ -228,7 +227,6 @@ text = "Back to Menu"
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=608588091]
 unique_name_in_owner = true
 process_mode = 3
-visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 2
 layout_mode = 3
@@ -237,6 +235,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_hljhf")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu" unique_id=2063432355]
 layout_mode = 1
@@ -268,6 +267,7 @@ horizontal_alignment = 1
 [node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1858797974]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("9_hljhf")
 text = "Resume"
 
 [node name="OptionsButton" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1215126060]

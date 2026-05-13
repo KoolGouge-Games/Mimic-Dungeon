@@ -7,15 +7,17 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	if not actor.is_connected("target_reached", _target_reached):
 		actor.connect("target_reached", _target_reached)
 
-	if actor.chosen_poi == null:
+	if actor.feared:
 		blackboard.set_value("POIChoice", null)
 		return FAILURE
 	elif reached_destination:
 		reached_destination = false
 		blackboard.set_value("POIChoice", null)
 		actor.disconnect("target_reached", _target_reached)
+		actor.is_walking = false
 		return SUCCESS
 	else:
+		actor.is_walking = true
 		return RUNNING
 
 func _target_reached():
