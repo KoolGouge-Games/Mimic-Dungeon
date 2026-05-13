@@ -171,7 +171,6 @@ func _on_vision_cone_area_body_exited(_body: Node2D) -> void:
 func _on_navigation_agent_2d_navigation_finished() -> void:
 	if feared:
 		feared = false
-		start_idle()
 	else:
 		emit_signal("target_reached")
 
