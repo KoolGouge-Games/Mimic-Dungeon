@@ -1110,7 +1110,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=717767978 groups=["player"]]
-z_index = 1
+z_index = 50
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_onrkg")
