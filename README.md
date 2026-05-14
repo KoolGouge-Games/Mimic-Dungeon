@@ -29,15 +29,15 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [x] add "running away" logic for when an adventurer spots a mimic
   - [x] set up markers on the nav mesh, then have the adventurer navigate to the one furthest from the player for like, 1 second
   - [x] also have player lose a point
-- [ ] tie all the audio to their relative objects
-  - [ ] mimic footsteps
-  - [ ] adventurer footsteps
+- [x] tie all the audio to their relative objects
+  - [x] mimic footsteps
+  - [ ] ~~adventurer footsteps~~ <- doesn't work for some reason.
   - [x] "you won" music
   - [x] "menu open" for options
-- [ ] have the mimic turn to face the adventurer he's eating
 
 ### Stretch Goals
 
+- [ ] have the mimic turn to face the adventurer he's eating
 - [ ] Implement a timer and display clear times
 - [ ] Add a level selector screen + more levels
 - [ ] Get FMOD to work in the web
