@@ -24,6 +24,5 @@ func _target_reached():
 	reached_destination = true
 
 func interrupt(actor: Node, blackboard: Blackboard) -> void:
-	print("interrupted!")
 	actor.chosen_poi = null
 	blackboard.set_value("POIChoice", null)

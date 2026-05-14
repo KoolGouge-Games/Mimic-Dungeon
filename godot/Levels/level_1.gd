@@ -48,14 +48,10 @@ func spawn_npc(type: Global.NPCTypes) -> void:
 	current_adventurers += 1
 
 func _on_adventurer_timer_timeout() -> void:
-	print(max_adventurers)
 	if current_adventurers < max_adventurers:
 		queue_npc(Global.NPCTypes.values().pick_random())
-	else: 
-		print("too many adventurers!")
 
 func _on_adventurer_left(type: Global.NPCTypes) -> void:
-	print("adventurer left")
 	current_adventurers -= 1
 	match type:
 		Global.NPCTypes.KNIGHT:
