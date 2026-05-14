@@ -1890,21 +1890,25 @@ process_mode = 3
 [node name="MinigameStart" type="FmodEventEmitter2D" parent="Audio" unique_id=1716657024]
 event_name = "event:/MiniGame/MiniGame_Stinger"
 event_guid = "{75d5286f-3554-4dbd-909b-0b240cfcfa2d}"
+volume = 0.5
 unique_name_in_owner = true
 
 [node name="MinigameSuccess" type="FmodEventEmitter2D" parent="Audio" unique_id=1574141816]
 event_name = "event:/MiniGame/PC_Eat_Success"
 event_guid = "{50e439c7-d8ab-4c05-a240-ad496b8bdef4}"
+volume = 0.5
 unique_name_in_owner = true
 
 [node name="MinigameFail" type="FmodEventEmitter2D" parent="Audio" unique_id=38238473]
 event_name = "event:/MiniGame/PC_Eat_Fail"
 event_guid = "{2d5eb830-234d-475b-ad6f-903ca474fc37}"
+volume = 0.5
 unique_name_in_owner = true
 
 [node name="Steps" type="FmodEventEmitter2D" parent="Audio" unique_id=651852042]
 event_name = "event:/PLAYER/PC_Move"
 event_guid = "{f6684f1d-9f39-4e52-89b5-9cb9de6e1b08}"
+volume = 0.7
 unique_name_in_owner = true
 
 [node name="Transform" type="FmodEventEmitter2D" parent="Audio" unique_id=442472129]

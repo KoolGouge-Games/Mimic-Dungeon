@@ -266,16 +266,19 @@ text = "Looting..."
 [node name="Loot" type="FmodEventEmitter2D" parent="Audio" unique_id=908558960]
 event_name = "event:/SFX/search"
 event_guid = "{d77d287d-cafb-428c-b93e-ae6b254f56f0}"
+volume = 0.7
 unique_name_in_owner = true
 
 [node name="FinishLoot" type="FmodEventEmitter2D" parent="Audio" unique_id=1546522162]
 event_name = "event:/SFX/search_complete"
 event_guid = "{b4c99aa9-f931-49fd-90d8-526cf2371b74}"
+volume = 0.7
 unique_name_in_owner = true
 
 [node name="Alert" type="FmodEventEmitter2D" parent="Audio" unique_id=587981573]
 event_name = "event:/SFX/NPC_Fear_Stinger"
 event_guid = "{c66976ff-fd05-4b57-8cb7-fe02dede9f12}"
+volume = 0.7
 unique_name_in_owner = true
 
 [node name="Blackboard" type="Node" parent="." unique_id=456921879]
