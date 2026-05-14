@@ -19,8 +19,8 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [x] Implement Mimic animation logic
 - [x] Add a "how to play" screen
 - [x] pull the player to display over the timers/adventurers
-- [ ] set up export settings for submission
-- [ ] implement object type indicators
+- [x] set up export settings for submission
+- [x] implement object type indicators
 - [ ] Implement an options menu
   - [ ] volume controls
     - You can use the method `var bus = FmodServer.get_bus("path")`. It should return a FmodBus, which you can use to directly control its sound `bus.set_volume(x)`
