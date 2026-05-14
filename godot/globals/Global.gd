@@ -15,6 +15,9 @@ enum NPCTypes {
 	MAGE
 	}
 
+# TODO: Add Controller Support
+# const CONTROLLER_LABELS: Dictionary
+
 var rngsus := RandomNumberGenerator.new()
 
 func get_group_sorted_by_distance(group: String, position: Vector2) -> Array[Node]:

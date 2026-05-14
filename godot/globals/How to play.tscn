@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://d4fb65gg54see"]
 
+[ext_resource type="Script" uid="uid://0cvow444uqx7" path="res://globals/how_to_play.gd" id="1_i7yo6"]
 [ext_resource type="Theme" uid="uid://b0o4vns8simb0" path="res://Resources/game_theme.tres" id="1_l8ya6"]
 [ext_resource type="Texture2D" uid="uid://b0cin5gxyabbh" path="res://assets/UI Elements/Complete_UI_Book_Styles_Pack_Free_v1.0/01_TravelBookLite/Sprites/UI_TravelBook_Popup01a.png" id="2_ne64o"]
 [ext_resource type="Texture2D" uid="uid://b4ahopln1i4ab" path="res://assets/UI Elements/SimpleKeys/SimpleKeys/Jumbo/Dark/Single PNGs/W.png" id="3_ei820"]
@@ -245,6 +246,43 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_i7yo6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOut:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.03137255, 0.03137255, 0.03137255, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uqo6q"]
+resource_name = "fade_to_black"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOut:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.03137255, 0.03137255, 0.03137255, 0), Color(0.03137255, 0.03137255, 0.03137255, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ht4j"]
+_data = {
+&"RESET": SubResource("Animation_i7yo6"),
+&"fade_to_black": SubResource("Animation_uqo6q")
+}
+
 [node name="HowToPlay" type="Control" unique_id=802803651]
 layout_mode = 3
 anchors_preset = 15
@@ -252,6 +290,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_i7yo6")
 
 [node name="BG" type="ColorRect" parent="." unique_id=283824538]
 layout_mode = 1
@@ -290,6 +329,7 @@ button_mask = 0
 text = "How To Play"
 
 [node name="Page1" type="Control" parent="Panel" unique_id=706894988]
+unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 4.0
 offset_top = 3.0
@@ -356,34 +396,47 @@ size_flags_vertical = 3
 theme = ExtResource("1_l8ya6")
 icon = ExtResource("9_ei820")
 
-[node name="Page 2" type="Control" parent="Panel" unique_id=673265695]
+[node name="Back Button" type="Button" parent="Panel/Page1" unique_id=723132205]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 26.0
+offset_right = 60.0
+offset_bottom = 49.0
+rotation = 3.1415927
+scale = Vector2(0.7, 0.7)
+size_flags_vertical = 3
+theme = ExtResource("1_l8ya6")
+icon = ExtResource("9_ei820")
+
+[node name="Page2" type="Control" parent="Panel" unique_id=673265695]
+unique_name_in_owner = true
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Screenshot" type="Sprite2D" parent="Panel/Page 2" unique_id=686629187]
+[node name="Screenshot" type="Sprite2D" parent="Panel/Page2" unique_id=686629187]
 position = Vector2(61.154373, 79.109375)
 scale = Vector2(0.2556708, 0.25567085)
 texture = ExtResource("9_kc18a")
 
-[node name="cursor" type="Sprite2D" parent="Panel/Page 2" unique_id=10240759]
+[node name="cursor" type="Sprite2D" parent="Panel/Page2" unique_id=10240759]
 texture_filter = 1
 position = Vector2(65.00001, 66)
 scale = Vector2(0.64285713, 0.6428572)
 texture = ExtResource("10_3n6i2")
 
-[node name="E" type="Sprite2D" parent="Panel/Page 2" unique_id=1708422102]
+[node name="E" type="Sprite2D" parent="Panel/Page2" unique_id=1708422102]
 position = Vector2(120, 34.3)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_7dn2h")
 
-[node name="Q" type="Sprite2D" parent="Panel/Page 2" unique_id=720704765]
+[node name="Q" type="Sprite2D" parent="Panel/Page2" unique_id=720704765]
 position = Vector2(20, 34.3)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("8_atelb")
 
-[node name="q does what" type="Button" parent="Panel/Page 2" unique_id=1954459677]
+[node name="q does what" type="Button" parent="Panel/Page2" unique_id=1954459677]
 layout_mode = 0
 offset_left = 35.0
 offset_top = 30.0
@@ -395,7 +448,7 @@ theme = ExtResource("1_l8ya6")
 button_mask = 0
 text = "transform to hide"
 
-[node name="e does what" type="Button" parent="Panel/Page 2" unique_id=126271565]
+[node name="e does what" type="Button" parent="Panel/Page2" unique_id=126271565]
 layout_mode = 0
 offset_left = 135.0
 offset_top = 30.0
@@ -407,7 +460,7 @@ theme = ExtResource("1_l8ya6")
 button_mask = 0
 text = "press to eat adventurers!"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/Page 2" unique_id=1729679090]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/Page2" unique_id=1729679090]
 position = Vector2(167, 80)
 scale = Vector2(1.7031254, 1.7031254)
 sprite_frames = SubResource("SpriteFrames_wboba")
@@ -415,7 +468,7 @@ animation = &"bite_start"
 autoplay = "bite_start"
 flip_h = true
 
-[node name="Prev Page Button" type="Button" parent="Panel/Page 2" unique_id=1276240367]
+[node name="Prev Page Button" type="Button" parent="Panel/Page2" unique_id=1276240367]
 layout_mode = 0
 offset_left = 34.0
 offset_top = 26.0
@@ -426,3 +479,50 @@ scale = Vector2(0.7, 0.7)
 size_flags_vertical = 3
 theme = ExtResource("1_l8ya6")
 icon = ExtResource("9_ei820")
+
+[node name="Start Button" type="Button" parent="Panel/Page2" unique_id=1519805322]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 10.0
+offset_right = 227.0
+offset_bottom = 33.0
+scale = Vector2(0.7, 0.7)
+size_flags_vertical = 3
+theme = ExtResource("1_l8ya6")
+text = "START"
+icon = ExtResource("9_ei820")
+icon_alignment = 2
+
+[node name="PageFwd" type="FmodEventEmitter2D" parent="." unique_id=1271808937]
+event_name = "event:/INTERFACE/UI Confirm"
+event_guid = "{4c7b0159-c274-4bf3-bd46-54db6a57a206}"
+unique_name_in_owner = true
+
+[node name="PageBck" type="FmodEventEmitter2D" parent="." unique_id=1435975013]
+event_name = "event:/INTERFACE/UI Cancel"
+event_guid = "{fb656b78-db75-4e9f-8596-2e00c676bc0d}"
+unique_name_in_owner = true
+
+[node name="GameStart" type="FmodEventEmitter2D" parent="." unique_id=520982487]
+event_name = "event:/INTERFACE/Game Start"
+event_guid = "{319bdbb6-2988-4b9a-be64-f64cab373fd8}"
+unique_name_in_owner = true
+
+[node name="FadeOut" type="ColorRect" parent="." unique_id=1035066437]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03137255, 0.03137255, 0.03137255, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1842536750]
+libraries/ = SubResource("AnimationLibrary_8ht4j")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Panel/Page1/Next Page Button" to="." method="_on_next_page_button_pressed"]
+[connection signal="pressed" from="Panel/Page1/Back Button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Panel/Page2/Prev Page Button" to="." method="_on_prev_page_button_pressed"]
+[connection signal="pressed" from="Panel/Page2/Start Button" to="." method="_on_start_button_pressed"]

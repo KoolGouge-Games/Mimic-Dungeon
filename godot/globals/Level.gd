@@ -1,11 +1,13 @@
 extends Node
-class_name Level_Script
+# class_name Level_Script
 
 @export var max_adventurers := 3
 @export var max_score := 12
+@export var SCORE_PENALTY := 1
 
 @onready var spawner: Marker2D = $NPCSpawner
 @onready var music_player: FmodEventEmitter2D = $MusicPlayer
+@onready var npc_spawn_sfx: FmodEventEmitter2D = $NPCSpawned
 @onready var score_display: Label = %ScoreDisplay
 @onready var camera_animation: AnimationPlayer = $CameraAnimation
 
@@ -30,6 +32,7 @@ func spawn_npc(type: Global.NPCTypes) -> void:
 	npc.initialize(type)
 	npc.position = spawner.position
 	add_child(npc)
+	npc_spawn_sfx.play_one_shot()
 
 	match type:
 		Global.NPCTypes.KNIGHT:
@@ -79,9 +82,16 @@ func _on_player_stop_eating() -> void:
 	camera_animation.play_backwards("zoom")
 
 func on_pause() -> void:
-	print("pausing!")
 	music_player.set_parameter("PauseParam", "PausedParam")
 
 func on_unpause() -> void:
-	print("unpausing")
 	music_player.set_parameter("PauseParam", "UnpausedParam")
+
+func _on_player_damage_score() -> void:
+	var new_score = player_score - SCORE_PENALTY
+	if new_score < 0:
+		new_score = 0
+
+	player_score = new_score
+	score_display.text = str(player_score, "/", max_score)
+

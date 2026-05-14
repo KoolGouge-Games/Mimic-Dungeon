@@ -50,7 +50,6 @@ script = ExtResource("1_rfktq")
 event_name = "event:/MUSIC/Gameplay"
 event_guid = "{8af59a6c-65e2-47c2-9cbc-8d6efdca9ea4}"
 autoplay = true
-volume = 0.5
 fmod_parameters/rogue-active/id = 2194131539567539340
 fmod_parameters/rogue-active = "false"
 fmod_parameters/rogue-active/labels = PackedStringArray("false", "true")
@@ -72,6 +71,10 @@ fmod_parameters/PauseParam = "UnpausedParam"
 fmod_parameters/PauseParam/labels = PackedStringArray("UnpausedParam", "PausedParam")
 fmod_parameters/PauseParam/variant_type = 4
 process_mode = 3
+
+[node name="NPCSpawned" type="FmodEventEmitter2D" parent="." unique_id=1311787663]
+event_name = "event:/SFX/QueueDoor"
+event_guid = "{aabdf2b0-0c8a-49d7-a2cc-3818bbac57e2}"
 
 [node name="Ground_Auto" type="TileMapLayer" parent="." unique_id=383871799]
 texture_filter = 1
@@ -248,7 +251,7 @@ position = Vector2(432, 176)
 position = Vector2(304, 160)
 
 [node name="AdventurerTimer" type="Timer" parent="." unique_id=867788441]
-wait_time = 10.0
+wait_time = 7.0
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=629395420]
@@ -273,7 +276,20 @@ text = "0/12"
 process_mode = 3
 libraries/ = SubResource("AnimationLibrary_77x7w")
 
+[node name="RunPoint" type="Marker2D" parent="." unique_id=442045982 groups=["run point"]]
+position = Vector2(422, 54)
+
+[node name="RunPoint2" type="Marker2D" parent="." unique_id=788020298 groups=["run point"]]
+position = Vector2(417, 215)
+
+[node name="RunPoint3" type="Marker2D" parent="." unique_id=1662783801 groups=["run point"]]
+position = Vector2(42, 193)
+
+[node name="RunPoint4" type="Marker2D" parent="." unique_id=1594658841 groups=["run point"]]
+position = Vector2(52, 52)
+
 [connection signal="ate_adventurer" from="Player" to="." method="_on_player_ate_adventurer"]
+[connection signal="damage_score" from="Player" to="." method="_on_player_damage_score"]
 [connection signal="start_eating" from="Player" to="." method="_on_player_start_eating"]
 [connection signal="stop_eating" from="Player" to="." method="_on_player_stop_eating"]
 [connection signal="timeout" from="AdventurerTimer" to="." method="_on_adventurer_timer_timeout"]

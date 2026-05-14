@@ -14,6 +14,11 @@ class_name Player
 @onready var minigame_success_stinger: FmodEventEmitter2D = %MinigameSuccess
 @onready var minigame_fail_stinger: FmodEventEmitter2D = %MinigameFail
 
+@onready var heavy_indicator: ColorRect = %HeavyIndicator
+@onready var cursed_indicator: ColorRect = %CursedIndicator
+@onready var locked_indicator: ColorRect = %LockedIndicator
+@onready var magic_indicator: ColorRect = %MagicInidicator
+
 var is_transformation_menu_open := false
 var is_transformed := false
 var is_moving := false
@@ -25,6 +30,7 @@ var ObjectType: Global.ObjectTypes
 signal ate_adventurer
 signal start_eating
 signal stop_eating
+signal damage_score
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_eat"):
@@ -37,6 +43,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			remove_from_group("object")
 			Transform_effect.play("default")
 			transform_sfx.play_one_shot()
+			turn_off_indicator()
 		elif is_transformation_menu_open:
 			transformation_menu.close()
 			is_transformation_menu_open = false
@@ -98,30 +105,31 @@ func trigger_minigame() -> void:
 	QTE_animation.play("eating_qte")
 	
 func eat_adventurer() -> void:
-	print("succeed!")
+	eating_qte.visible = false
+	QTE_animation.stop()
+	var eat_value = adventurer_to_eat.value
+	adventurer_to_eat.leave()
+	adventurer_to_eat = null
 	minigame_success_stinger.play()
 	sprite.play("bite_success")
-	ate_adventurer.emit(adventurer_to_eat.value)
-	adventurer_to_eat.leave()
-	reset_QTE()
+	await sprite.animation_finished
+	get_tree().paused = false
+	ate_adventurer.emit(eat_value)
+	stop_eating.emit()
 
 func fail_QTE() -> void:
-	print("failed")
+	eating_qte.visible = false
+	QTE_animation.stop()
 	minigame_fail_stinger.play()
 	sprite.play("bite_fail")
-	reset_QTE()
+	await sprite.animation_finished
+	get_tree().paused = false
+	stop_eating.emit()
+	adventurer_to_eat = null
 	damage()
 
 func damage() -> void:
-	print("ow!")
-
-func reset_QTE() -> void:
-	eating_qte.visible = false
-	QTE_animation.stop()
-	await sprite.animation_finished
-	stop_eating.emit()
-	adventurer_to_eat = null
-	get_tree().paused = false
+	damage_score.emit()
 
 func _on_eating_qte_time_up() -> void:
 	fail_QTE()
@@ -130,6 +138,24 @@ func _on_transformation_selection(type: Global.ObjectTypes) -> void:
 	Transform_effect.play("default")
 	transform_sfx.play_one_shot()
 	ObjectType = type
+	turn_on_type_indicator(type)
 	add_to_group("object")
 	is_transformed = true
 	is_transformation_menu_open = false
+
+func turn_on_type_indicator(type: Global.ObjectTypes) -> void:
+	match type:
+		Global.ObjectTypes.HEAVY:
+			heavy_indicator.visible = true
+		Global.ObjectTypes.LOCKED:
+			locked_indicator.visible = true
+		Global.ObjectTypes.CURSED:
+			cursed_indicator.visible = true
+		Global.ObjectTypes.MAGICAL:
+			magic_indicator.visible = true
+
+func turn_off_indicator() -> void:
+	heavy_indicator.visible = false
+	locked_indicator.visible = false
+	cursed_indicator.visible = false
+	magic_indicator.visible = false

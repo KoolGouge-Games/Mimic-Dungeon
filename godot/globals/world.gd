@@ -4,12 +4,15 @@ extends Node2D
 @onready var LevelCompleteUI: Control = %LevelComplete
 @onready var pause_menu: Control = %PauseMenu
 @onready var quit_confirmation: Control = %QuitConfirmation
+@onready var options_menu: Control = %OptionsMenu
 
 @onready var global_animations: AnimationPlayer = %GlobalAnimations
 
 @onready var pause_muffle: FmodEventEmitter2D = %PauseMuffle
 @onready var pause_open_sfx: FmodEventEmitter2D = %PauseSFX
 @onready var ui_cancel_sfx: FmodEventEmitter2D = %UICancel
+@onready var ui_confirm_sfx: FmodEventEmitter2D = %UIConfirm
+@onready var game_win_music: FmodEventEmitter2D = %WinMusic
 
 @onready var current_level := $Level_1
 
@@ -30,15 +33,16 @@ func pause() -> void:
 	current_level.on_pause()
 
 func unpause() -> void:
-	get_tree().paused = false
 	global_animations.play_backwards("open_pause_menu")
 	pause_menu.visible = false
 	close_quit_confirmation()
 	ui_cancel_sfx.play()
+	get_tree().paused = false
 	current_level.on_unpause()
 
 func go_to_options() -> void:
-	print("to do!")
+	ui_confirm_sfx.play_one_shot()
+	options_menu.visible = true
 
 func go_to_menu() -> void:
 	SceneTransition.load_scene("res://globals/main_menu.tscn")
@@ -57,5 +61,15 @@ func _on_npc_alert_spawn_npc(type: Global.NPCTypes) -> void:
 	current_level.spawn_npc(type)
 
 func _on_player_won(_score: int) -> void:
+	current_level.on_pause()
+	get_tree().paused = true
 	LevelCompleteUI.visible = true
 	global_animations.play("show_winscree")
+	game_win_music.play()
+
+func _on_retry_button_pressed() -> void:
+	SceneTransition.reload_scene()	
+
+func _on_back_button_pressed() -> void:
+	SceneTransition.load_scene("res://globals/main_menu.tscn")
+

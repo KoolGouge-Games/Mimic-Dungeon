@@ -13,6 +13,7 @@ class_name Adventurer
 @export var visionCone: Polygon2D
 @export var alertColor: Color
 @export var CLOSEST_NUM_CHOICES: int = 3
+@export var NOTICE_PENALTY:= 2.0
 @export var movement_speed: int
 
 @export var FAVORED_BONUS := 2
@@ -20,6 +21,8 @@ class_name Adventurer
 
 @export var ADV_MIN: float = 69.0 
 @export var ADV_MAX: float = 120.0
+
+var footsteps: FmodEventEmitter2D
 
 var sprite: AnimatedSprite2D 
 var stats: NPCStats
@@ -35,6 +38,11 @@ var move_direction: Vector2 = Vector2.ZERO
 var LOS_to_player := false
 var value := 1
 var is_walking = false
+
+const STEP_DELAY = 0.2
+var step_timer = 0
+
+@onready var player: Player = get_tree().get_first_node_in_group("player")
 
 var chosen_poi: Node:
 	get:
@@ -54,6 +62,15 @@ func _ready() -> void:
 	adventure_clock.max_value = adventure_time
 	adventure_clock.value = adventure_time
 	adventure_timer.start(adventure_time)
+	match npc_type:
+		Global.NPCTypes.KNIGHT:
+			footsteps = %KnightStep
+		Global.NPCTypes.ROGUE:
+			footsteps = %RogueStep
+		Global.NPCTypes.CLERIC:
+			footsteps = %ClericStep
+		Global.NPCTypes.MAGE:
+			footsteps = %MageStep
 
 func initialize(type: Global.NPCTypes) -> void:
 	var resourcepath := "res://Resources/npcs/%s.tres"
@@ -89,7 +106,7 @@ func _process(_delta: float) -> void:
 	if is_walking:
 		sprite.play("walk")
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var next_path_point: Vector2 = navigation.get_next_path_position()
 	var direction = global_position.direction_to(next_path_point)
 	var new_velocity = direction * movement_speed
@@ -108,6 +125,15 @@ func _physics_process(_delta: float) -> void:
 			sprite.flip_h = true
 		else:
 			sprite.flip_h = false
+
+	footsteps.play_one_shot()
+	# if is_walking:
+	# 	if step_timer <= 0:
+	# 		print("playing step")
+	# 		footsteps.play()
+	# 		step_timer = STEP_DELAY
+	# 	step_timer -= delta
+
 
 func _on_velocity_computed(safe_velocity: Vector2):
 	velocity = safe_velocity
@@ -149,12 +175,36 @@ func loot_poi() -> void:
 
 	loot_timer.start(looting_time)
 
+func _on_loot_timer_timeout() -> void:
+	looting_clock.visible = false
+
+	if chosen_poi.is_in_group("player"):
+		resolveFear()
+		chosen_poi.damage()
+	else:
+		value += 1
+
+	emit_signal("looting_finished")
+	chosen_poi.start_respawn()
+
+func interrupt_looting() -> void:
+	looting_clock.visible = false
+	loot_timer.stop()
+	if chosen_poi:
+		chosen_poi.add_to_group("object")
+
 func resolveFear() -> void:
 	print("A mimic!")
 	var time_left = adventure_timer.time_left
-	adventure_timer.start(time_left - 1.0)
+	adventure_timer.start(time_left - NOTICE_PENALTY)
+	player.damage()
 	feared = true
-	navigation.set_target_position(position)
+	var run_position = get_furthest_run_point()
+	navigation.set_target_position(run_position)
+
+func get_furthest_run_point() -> Vector2:
+	var corners = Global.get_group_sorted_by_distance("run point", player.position)
+	return corners[-1].position
 
 func leave() -> void:
 	adventurer_left.emit(npc_type)
@@ -174,22 +224,15 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 	else:
 		emit_signal("target_reached")
 
-func _on_loot_timer_timeout() -> void:
-	looting_clock.visible = false
-
-	if chosen_poi.is_in_group("player"):
-		resolveFear()
-		chosen_poi.damage()
-	else:
-		value += 1
-
-	emit_signal("looting_finished")
-	chosen_poi.start_respawn()
 	
 func start_idle() -> void:
 	idling = true
 	sprite.play("idle")
 	animation_player.play("look_around")
+
+func stop_idle() -> void:
+	idling = false
+	animation_player.stop()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	sprite.play("start_walk")

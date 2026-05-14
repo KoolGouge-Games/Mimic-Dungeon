@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dayiydnybrkbc" path="res://assets/UI Elements/itch-logo.svg" id="4_rkptg"]
 [ext_resource type="Texture2D" uid="uid://cb63tl47bvxd6" path="res://assets/UI Elements/fmod-logo.png" id="5_t3mph"]
 [ext_resource type="Texture2D" uid="uid://pc27ockof38a" path="res://assets/UI Elements/godot-logo.png" id="6_kkyop"]
+[ext_resource type="PackedScene" uid="uid://d4fb65gg54see" path="res://globals/How to play.tscn" id="8_rkptg"]
+[ext_resource type="PackedScene" uid="uid://bny6cs5gfr1ss" path="res://globals/options_menu.tscn" id="9_t3mph"]
 
 [node name="MainMenu" type="Control" unique_id=425031023]
 layout_mode = 3
@@ -19,7 +21,7 @@ theme = ExtResource("1_tq5tf")
 script = ExtResource("2_12vh2")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=698119774]
-bank_paths = ["res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank"]
+bank_paths = ["res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank", "res://assets/fmod/SFX.bank", "res://assets/fmod/SFX.assets.bank"]
 
 [node name="Background" type="TextureRect" parent="." unique_id=757378812]
 layout_mode = 1
@@ -36,7 +38,6 @@ expand_mode = 1
 event_name = "event:/MUSIC/Start Menu"
 event_guid = "{bc670b34-b77e-408e-8ac4-099d1f0cf8e2}"
 autoplay = true
-volume = 0.5
 
 [node name="FmodListener2D" type="FmodListener2D" parent="." unique_id=107936063]
 
@@ -168,6 +169,19 @@ text = "Yes"
 [node name="CloseConfirmationButton" type="Button" parent="QuitConfirmation/Panel/VBoxContainer/HBoxContainer" unique_id=1220855684]
 layout_mode = 2
 text = "No"
+
+[node name="HowToPlay" parent="." unique_id=802803651 instance=ExtResource("8_rkptg")]
+visible = false
+layout_mode = 1
+
+[node name="OptionsMenu" parent="." unique_id=874650874 instance=ExtResource("9_t3mph")]
+visible = false
+layout_mode = 1
+
+[node name="OpenMenu" type="FmodEventEmitter2D" parent="." unique_id=191492655]
+event_name = "event:/INTERFACE/UI Pause Menu"
+event_guid = "{453b164e-b5dd-4e67-a7c2-392e131d406c}"
+unique_name_in_owner = true
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
