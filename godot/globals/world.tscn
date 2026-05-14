@@ -85,6 +85,7 @@ script = ExtResource("1_c7ac0")
 bank_paths = ["res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank", "res://assets/fmod/SFX.bank", "res://assets/fmod/SFX.assets.bank"]
 
 [node name="Level_1" parent="." unique_id=32258485 instance=ExtResource("2_kgrki")]
+max_adventurers = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1616854312]
 
@@ -218,11 +219,11 @@ custom_minimum_size = Vector2(0, 22.38)
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/LevelComplete/Panel/VBoxContainer/HBoxContainer" unique_id=775389709]
+[node name="CompleteRetryButton" type="Button" parent="CanvasLayer/LevelComplete/Panel/VBoxContainer/HBoxContainer" unique_id=775389709]
 layout_mode = 2
 text = "Retry"
 
-[node name="Button2" type="Button" parent="CanvasLayer/LevelComplete/Panel/VBoxContainer/HBoxContainer" unique_id=133124819]
+[node name="CompleteBackButton" type="Button" parent="CanvasLayer/LevelComplete/Panel/VBoxContainer/HBoxContainer" unique_id=133124819]
 layout_mode = 2
 text = "Back"
 
@@ -414,6 +415,8 @@ unique_name_in_owner = true
 [connection signal="queue_adventurer" from="Level_1" to="." method="_on_queue_adventurer"]
 [connection signal="spawnNPC" from="CanvasLayer/NPCAlert" to="." method="_on_npc_alert_spawn_npc"]
 [connection signal="timeout" from="CanvasLayer/NPCAlert/NPCTimer" to="CanvasLayer/NPCAlert" method="_on_npc_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/LevelComplete/Panel/VBoxContainer/HBoxContainer/CompleteRetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelComplete/Panel/VBoxContainer/HBoxContainer/CompleteBackButton" to="." method="go_to_menu"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/ResumeButton" to="." method="unpause"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/OptionsButton" to="." method="go_to_options"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/QuitButton" to="." method="open_quit_confirmation"]

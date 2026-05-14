@@ -1587,6 +1587,7 @@ player_speed = 50.0
 
 [node name="FmodListener2D" type="FmodListener2D" parent="." unique_id=498211185]
 process_mode = 3
+process_priority = 2
 
 [node name="WorldCollision" type="CollisionShape2D" parent="." unique_id=2062709653]
 shape = SubResource("RectangleShape2D_onrkg")

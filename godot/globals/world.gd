@@ -45,10 +45,10 @@ func go_to_options() -> void:
 	options_menu.visible = true
 
 func go_to_menu() -> void:
+	get_tree().paused = false
 	SceneTransition.load_scene("res://globals/main_menu.tscn")
 
 func open_quit_confirmation() -> void:
-	print("confirming")
 	quit_confirmation.visible = true
 
 func close_quit_confirmation() -> void:
@@ -68,8 +68,6 @@ func _on_player_won(_score: int) -> void:
 	game_win_music.play()
 
 func _on_retry_button_pressed() -> void:
-	SceneTransition.reload_scene()	
-
-func _on_back_button_pressed() -> void:
-	SceneTransition.load_scene("res://globals/main_menu.tscn")
+	get_tree().paused = false
+	SceneTransition.reload_scene()
 

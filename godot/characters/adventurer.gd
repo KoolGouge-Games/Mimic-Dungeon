@@ -9,6 +9,9 @@ class_name Adventurer
 @onready var adventure_timer: Timer = $AdventureTimer
 @onready var adventure_clock: TextureProgressBar = %AdventureClock
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var looting_sfx: FmodEventEmitter2D = %Loot
+@onready var looting_finish_sfx: FmodEventEmitter2D = %FinishLoot
+@onready var alert_sfx: FmodEventEmitter2D = %Alert
 
 @export var visionCone: Polygon2D
 @export var alertColor: Color
@@ -21,8 +24,6 @@ class_name Adventurer
 
 @export var ADV_MIN: float = 69.0 
 @export var ADV_MAX: float = 120.0
-
-var footsteps: FmodEventEmitter2D
 
 var sprite: AnimatedSprite2D 
 var stats: NPCStats
@@ -62,15 +63,6 @@ func _ready() -> void:
 	adventure_clock.max_value = adventure_time
 	adventure_clock.value = adventure_time
 	adventure_timer.start(adventure_time)
-	match npc_type:
-		Global.NPCTypes.KNIGHT:
-			footsteps = %KnightStep
-		Global.NPCTypes.ROGUE:
-			footsteps = %RogueStep
-		Global.NPCTypes.CLERIC:
-			footsteps = %ClericStep
-		Global.NPCTypes.MAGE:
-			footsteps = %MageStep
 
 func initialize(type: Global.NPCTypes) -> void:
 	var resourcepath := "res://Resources/npcs/%s.tres"
@@ -106,7 +98,7 @@ func _process(_delta: float) -> void:
 	if is_walking:
 		sprite.play("walk")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var next_path_point: Vector2 = navigation.get_next_path_position()
 	var direction = global_position.direction_to(next_path_point)
 	var new_velocity = direction * movement_speed
@@ -125,15 +117,6 @@ func _physics_process(delta: float) -> void:
 			sprite.flip_h = true
 		else:
 			sprite.flip_h = false
-
-	footsteps.play_one_shot()
-	# if is_walking:
-	# 	if step_timer <= 0:
-	# 		print("playing step")
-	# 		footsteps.play()
-	# 		step_timer = STEP_DELAY
-	# 	step_timer -= delta
-
 
 func _on_velocity_computed(safe_velocity: Vector2):
 	velocity = safe_velocity
@@ -162,7 +145,8 @@ func choosePOI() -> Node:
 	return choice
 
 func loot_poi() -> void:
-	print("looting")
+	looting_sfx.play()
+	sprite.play("check")
 	chosen_poi.remove_from_group("object")
 	var looting_time := BASE_LOOTING_TIME - stats.Speed
 	if chosen_poi.ObjectType == favored_object:
@@ -176,6 +160,8 @@ func loot_poi() -> void:
 	loot_timer.start(looting_time)
 
 func _on_loot_timer_timeout() -> void:
+	looting_sfx.stop()
+	looting_finish_sfx.play()
 	looting_clock.visible = false
 
 	if chosen_poi.is_in_group("player"):
@@ -194,7 +180,7 @@ func interrupt_looting() -> void:
 		chosen_poi.add_to_group("object")
 
 func resolveFear() -> void:
-	print("A mimic!")
+	alert_sfx.play()
 	var time_left = adventure_timer.time_left
 	adventure_timer.start(time_left - NOTICE_PENALTY)
 	player.damage()

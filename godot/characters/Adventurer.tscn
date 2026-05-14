@@ -139,7 +139,7 @@ _data = {
 size = Vector2(16, 16)
 
 [node name="Adventurer" type="CharacterBody2D" unique_id=1649974806 node_paths=PackedStringArray("visionCone") groups=["adventurers"]]
-z_index = 1
+z_index = 2
 collision_layer = 4
 collision_mask = 2
 motion_mode = 1
@@ -262,31 +262,6 @@ theme_override_font_sizes/font_size = 10
 text = "Looting..."
 
 [node name="Audio" type="Node" parent="." unique_id=246469932]
-process_mode = 3
-
-[node name="KnightStep" type="FmodEventEmitter2D" parent="Audio" unique_id=871065949]
-event_name = "event:/SFX/Knight/Knight_Move"
-event_guid = "{e893518b-d000-413e-bd66-11ae4f231696}"
-volume = 2.0
-unique_name_in_owner = true
-
-[node name="RogueStep" type="FmodEventEmitter2D" parent="Audio" unique_id=1834051112]
-event_name = "event:/SFX/Rogue/Rogue_Move"
-event_guid = "{ecfeb34b-626e-46ea-a3ce-b711d0147030}"
-volume = 2.0
-unique_name_in_owner = true
-
-[node name="ClericStep" type="FmodEventEmitter2D" parent="Audio" unique_id=1205639062]
-event_name = "event:/SFX/Cleric/Cleric_Move"
-event_guid = "{88ea362f-e66e-4b84-932f-cfc9a5bf4f13}"
-volume = 2.0
-unique_name_in_owner = true
-
-[node name="MageStep" type="FmodEventEmitter2D" parent="Audio" unique_id=1264621239]
-event_name = "event:/SFX/Mage/Mage_Move"
-event_guid = "{849e19c4-d57f-4e50-b337-2cd896fc2280}"
-volume = 2.0
-unique_name_in_owner = true
 
 [node name="Loot" type="FmodEventEmitter2D" parent="Audio" unique_id=908558960]
 event_name = "event:/SFX/search"

@@ -65,11 +65,13 @@ _data = {
 }
 
 [node name="SceneTransition" type="CanvasLayer" unique_id=1789712188]
+process_mode = 3
 layer = 100
 script = ExtResource("1_8lqr7")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1658871976]
 visible = false
+z_index = 100
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

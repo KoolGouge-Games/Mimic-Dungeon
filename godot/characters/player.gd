@@ -13,6 +13,7 @@ class_name Player
 @onready var minigame_start_sfx : FmodEventEmitter2D = %MinigameStart
 @onready var minigame_success_stinger: FmodEventEmitter2D = %MinigameSuccess
 @onready var minigame_fail_stinger: FmodEventEmitter2D = %MinigameFail
+@onready var footsteps: FmodEventEmitter2D = %Steps
 
 @onready var heavy_indicator: ColorRect = %HeavyIndicator
 @onready var cursed_indicator: ColorRect = %CursedIndicator
@@ -26,6 +27,9 @@ var prev_direction: Vector2 = Vector2.ZERO
 var adventurer_to_eat: Adventurer
 
 var ObjectType: Global.ObjectTypes
+
+var step_timer := 0.0
+const STEP_DELAY := 0.6
 
 signal ate_adventurer
 signal start_eating
@@ -51,7 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			transformation_menu.open()
 			is_transformation_menu_open = true
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 	if Vector2.UP.angle_to(prev_direction) < 0:
@@ -67,6 +71,10 @@ func _physics_process(_delta: float) -> void:
 		prev_direction = direction
 		velocity = direction * player_speed
 		is_moving = true
+		if step_timer <= 0:
+			footsteps.play()
+			step_timer = STEP_DELAY
+		step_timer -= delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, player_speed)
 		velocity.y = move_toward(velocity.y, 0, player_speed)
