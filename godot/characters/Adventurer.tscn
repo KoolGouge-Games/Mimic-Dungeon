@@ -21,8 +21,10 @@
 [ext_resource type="Script" uid="uid://gp781ytnpfoe" path="res://characters/adventurer-behavior/walk_to_poi.gd" id="15_u1c04"]
 [ext_resource type="Script" uid="uid://0regynqjuank" path="res://characters/adventurer-behavior/loot_poi.gd" id="16_pc8je"]
 [ext_resource type="Texture2D" uid="uid://dkdnymxipf2wy" path="res://assets/UI Elements/Prediction-Sphere.png" id="19_3lrbr"]
+[ext_resource type="Script" uid="uid://we22430vcb44" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="19_hobq1"]
 [ext_resource type="Script" uid="uid://dcrtdnk7qyjto" path="res://characters/adventurer-behavior/idle.gd" id="19_oyyn5"]
 [ext_resource type="Texture2D" uid="uid://cuep0f1sf1bl7" path="res://assets/UI Elements/Timer-Sphere.png" id="20_4b31h"]
+[ext_resource type="Script" uid="uid://ctknxocah2js3" path="res://characters/adventurer-behavior/run_away.gd" id="20_7nug6"]
 
 [sub_resource type="Animation" id="Animation_o86xa"]
 length = 0.001
@@ -259,6 +261,48 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 10
 text = "Looting..."
 
+[node name="Audio" type="Node" parent="." unique_id=246469932]
+process_mode = 3
+
+[node name="KnightStep" type="FmodEventEmitter2D" parent="Audio" unique_id=871065949]
+event_name = "event:/SFX/Knight/Knight_Move"
+event_guid = "{e893518b-d000-413e-bd66-11ae4f231696}"
+volume = 2.0
+unique_name_in_owner = true
+
+[node name="RogueStep" type="FmodEventEmitter2D" parent="Audio" unique_id=1834051112]
+event_name = "event:/SFX/Rogue/Rogue_Move"
+event_guid = "{ecfeb34b-626e-46ea-a3ce-b711d0147030}"
+volume = 2.0
+unique_name_in_owner = true
+
+[node name="ClericStep" type="FmodEventEmitter2D" parent="Audio" unique_id=1205639062]
+event_name = "event:/SFX/Cleric/Cleric_Move"
+event_guid = "{88ea362f-e66e-4b84-932f-cfc9a5bf4f13}"
+volume = 2.0
+unique_name_in_owner = true
+
+[node name="MageStep" type="FmodEventEmitter2D" parent="Audio" unique_id=1264621239]
+event_name = "event:/SFX/Mage/Mage_Move"
+event_guid = "{849e19c4-d57f-4e50-b337-2cd896fc2280}"
+volume = 2.0
+unique_name_in_owner = true
+
+[node name="Loot" type="FmodEventEmitter2D" parent="Audio" unique_id=908558960]
+event_name = "event:/SFX/search"
+event_guid = "{d77d287d-cafb-428c-b93e-ae6b254f56f0}"
+unique_name_in_owner = true
+
+[node name="FinishLoot" type="FmodEventEmitter2D" parent="Audio" unique_id=1546522162]
+event_name = "event:/SFX/search_complete"
+event_guid = "{b4c99aa9-f931-49fd-90d8-526cf2371b74}"
+unique_name_in_owner = true
+
+[node name="Alert" type="FmodEventEmitter2D" parent="Audio" unique_id=587981573]
+event_name = "event:/SFX/NPC_Fear_Stinger"
+event_guid = "{c66976ff-fd05-4b57-8cb7-fe02dede9f12}"
+unique_name_in_owner = true
+
 [node name="Blackboard" type="Node" parent="." unique_id=456921879]
 script = ExtResource("4_o8pjp")
 metadata/_custom_type_script = "uid://dme5f24l0edsf"
@@ -300,11 +344,20 @@ metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
 [node name="CooldownDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Notice Sequence" unique_id=804100486]
 script = ExtResource("13_4b31h")
-wait_time = 1.5
+wait_time = 2.0
 metadata/_custom_type_script = "uid://2qri6rrfv8ui"
 
 [node name="Resolve Fear" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Notice Sequence/CooldownDecorator" unique_id=1290922347]
 script = ExtResource("12_u1c04")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="TimeLimiterDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Notice Sequence" unique_id=1515462135]
+script = ExtResource("19_hobq1")
+wait_time = 1.0
+metadata/_custom_type_script = "uid://we22430vcb44"
+
+[node name="Run Away" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Notice Sequence/TimeLimiterDecorator" unique_id=1047396202]
+script = ExtResource("20_7nug6")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="Loot Sequence" type="Node" parent="BeehaveTree/SelectorReactiveComposite" unique_id=1343768041]
@@ -326,6 +379,8 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 [node name="Loot POI" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Loot Sequence" unique_id=1247063586]
 script = ExtResource("16_pc8je")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="Timer" type="Timer" parent="." unique_id=1385939092]
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_velocity_computed"]

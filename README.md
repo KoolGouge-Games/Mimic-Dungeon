@@ -21,19 +21,20 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [x] pull the player to display over the timers/adventurers
 - [x] set up export settings for submission
 - [x] implement object type indicators
-- [ ] Implement an options menu
-  - [ ] volume controls
+- [x] Implement an options menu
+  - [x] volume controls
     - You can use the method `var bus = FmodServer.get_bus("path")`. It should return a FmodBus, which you can use to directly control its sound `bus.set_volume(x)`
-  - [ ] key rebinding
+  - [x] key rebinding
     - https://youtu.be/of9O44xr0Go?si=_GeiP1xN2aA3hFv1
-- [ ] add "running away" logic for when an adventurer spots a mimic
-  - [ ] set up markers on the nav mesh, then have the adventurer navigate to the one furthest from the player for like, 1 second
-  - [ ] also have player lose a point
+- [x] add "running away" logic for when an adventurer spots a mimic
+  - [x] set up markers on the nav mesh, then have the adventurer navigate to the one furthest from the player for like, 1 second
+  - [x] also have player lose a point
 - [ ] tie all the audio to their relative objects
   - [ ] mimic footsteps
   - [ ] adventurer footsteps
-  - [ ] "you won" music
-  - [ ] "menu open" for options
+  - [x] "you won" music
+  - [x] "menu open" for options
+- [ ] have the mimic turn to face the adventurer he's eating
 
 ### Stretch Goals
 
@@ -41,7 +42,6 @@ A Reverse Stealth game where you play as a mimic in a dungeon eating adventurers
 - [ ] Add a level selector screen + more levels
 - [ ] Get FMOD to work in the web
 - [ ] Add controller support
-- [ ] have the mimic turn to face the adventurer he's eating
 - [ ] make the dynamic music logic smarter (only cut out dynamic tracks when ALL of an adventurer type is gone)
 
 

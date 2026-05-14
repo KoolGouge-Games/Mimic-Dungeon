@@ -12,6 +12,9 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 		finished_idle = false
 		actor.disconnect("idle_finished", _idle_finished)
 		return SUCCESS
+	elif actor.feared:
+		actor.stop_idle()
+		return FAILURE
 	else:
 		return RUNNING
 	

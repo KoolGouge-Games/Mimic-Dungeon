@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://1bogad1by0qk" path="res://assets/UI Elements/Bar-Border.png" id="5_hljhf"]
 [ext_resource type="Texture2D" uid="uid://dd2sgxrhxoir6" path="res://assets/UI Elements/Full-Bar.png" id="6_1xow5"]
 [ext_resource type="Theme" uid="uid://b0o4vns8simb0" path="res://Resources/game_theme.tres" id="9_hljhf"]
+[ext_resource type="Texture2D" uid="uid://b0cin5gxyabbh" path="res://assets/UI Elements/Complete_UI_Book_Styles_Pack_Free_v1.0/01_TravelBookLite/Sprites/UI_TravelBook_Popup01a.png" id="10_1xow5"]
+[ext_resource type="PackedScene" uid="uid://bny6cs5gfr1ss" path="res://globals/options_menu.tscn" id="11_woqnj"]
 
 [sub_resource type="Animation" id="Animation_hljhf"]
 length = 0.001
@@ -80,10 +82,9 @@ _data = {
 script = ExtResource("1_c7ac0")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="." unique_id=320680658]
-bank_paths = ["res://assets/fmod/Master.bank", "res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/INTERFACE.bank", "res://assets/fmod/INTERFACE.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank", "res://assets/fmod/SFX.bank", "res://assets/fmod/SFX.assets.bank"]
+bank_paths = ["res://assets/fmod/Master.strings.bank", "res://assets/fmod/Master.bank", "res://assets/fmod/Master.assets.bank", "res://assets/fmod/MUSIC.bank", "res://assets/fmod/MUSIC.assets.bank", "res://assets/fmod/SFX.bank", "res://assets/fmod/SFX.assets.bank"]
 
 [node name="Level_1" parent="." unique_id=32258485 instance=ExtResource("2_kgrki")]
-max_adventurers = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1616854312]
 
@@ -166,14 +167,17 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -69.0
+offset_left = -73.0
 offset_top = -30.5
-offset_right = -1.0
+offset_right = 7.0
 offset_bottom = -7.5
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 10
 text = "Up Next:"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="LevelComplete" type="Control" parent="CanvasLayer" unique_id=227916589]
 unique_name_in_owner = true
@@ -224,7 +228,8 @@ text = "Back"
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=608588091]
 unique_name_in_owner = true
-process_mode = 3
+process_mode = 2
+visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 2
 layout_mode = 3
@@ -243,6 +248,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PauseMenu/Panel" unique_id=724155127]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -38.5
+offset_right = 53.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_1xow5")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Panel" unique_id=1493223827]
 layout_mode = 1
 anchors_preset = 8
@@ -259,6 +280,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer" unique_id=1135174923]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Paused"
 horizontal_alignment = 1
 
@@ -277,6 +299,12 @@ text = "Options"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
+
+[node name="OptionsMenu" parent="CanvasLayer" unique_id=874650874 instance=ExtResource("11_woqnj")]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+z_index = 3
 
 [node name="QuitConfirmation" type="Control" parent="CanvasLayer" unique_id=1272626525]
 unique_name_in_owner = true
@@ -300,6 +328,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.029506557, 0.029506557, 0.029506557, 1)
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/QuitConfirmation/Panel" unique_id=560581213]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -38.5
+offset_right = 53.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_1xow5")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/QuitConfirmation/Panel" unique_id=1768062874]
 layout_mode = 1
 anchors_preset = 8
@@ -316,6 +360,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/QuitConfirmation/Panel/VBoxContainer" unique_id=161984993]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Are you sure?"
 horizontal_alignment = 1
 
@@ -348,12 +393,21 @@ unique_name_in_owner = true
 [node name="PauseSFX" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=362813959]
 event_name = "event:/INTERFACE/UI Pause Menu"
 event_guid = "{453b164e-b5dd-4e67-a7c2-392e131d406c}"
-volume = 0.5
 unique_name_in_owner = true
 
 [node name="UICancel" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=657843114]
 event_name = "event:/INTERFACE/UI Cancel"
 event_guid = "{fb656b78-db75-4e9f-8596-2e00c676bc0d}"
+unique_name_in_owner = true
+
+[node name="UIConfirm" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=1754692847]
+event_name = "event:/INTERFACE/UI Confirm"
+event_guid = "{4c7b0159-c274-4bf3-bd46-54db6a57a206}"
+unique_name_in_owner = true
+
+[node name="WinMusic" type="FmodEventEmitter2D" parent="CanvasLayer/Sound" unique_id=1316061109]
+event_name = "event:/INTERFACE/Game End"
+event_guid = "{565e3f86-e44b-475c-a55b-b3882115e9c3}"
 unique_name_in_owner = true
 
 [connection signal="player_won" from="Level_1" to="." method="_on_player_won"]

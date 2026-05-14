@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dsod2c74vka3x" path="res://assets/UI Elements/Complete_UI_Book_Styles_Pack_Free_v1.0/01_TravelBookLite/Sprites Animated/UI_TravelBook_Button01a_4-hover.png" id="2_kafu2"]
 [ext_resource type="Texture2D" uid="uid://nqj5mq7gbius" path="res://assets/UI Elements/Complete_UI_Book_Styles_Pack_Free_v1.0/01_TravelBookLite/Sprites/UI_TravelBook_BookCover01a.png" id="3_kafu2"]
 [ext_resource type="Texture2D" uid="uid://ddtucx61woo6o" path="res://assets/UI Elements/Complete_UI_Book_Styles_Pack_Free_v1.0/01_TravelBookLite/Sprites Animated/UI_TravelBook_Button01a_2.png" id="4_uasvd"]
+[ext_resource type="Texture2D" uid="uid://bnosdxpikpoj" path="res://assets/UI Elements/Complete_UI_Book_Styles_Pack_Free_v1.0/01_TravelBookLite/Sprites/UI_TravelBook_Handle03a.png" id="5_uasvd"]
+[ext_resource type="StyleBox" uid="uid://be4kkdr0xanj" path="res://UI/new_style_box_flat.tres" id="6_2wcj0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2wcj0"]
 texture = ExtResource("2_kafu2")
@@ -18,11 +20,22 @@ texture = ExtResource("3_kafu2")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_18lyr"]
 texture = ExtResource("4_uasvd")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wcj0"]
+bg_color = Color(0.40392157, 0.0627451, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18lyr"]
+bg_color = Color(0.44313726, 0.2627451, 0.023529412, 1)
+
 [resource]
 Button/font_sizes/font_size = 5
 Button/fonts/font = ExtResource("1_wdlgr")
 Button/styles/hover = SubResource("StyleBoxTexture_2wcj0")
 Button/styles/normal = SubResource("StyleBoxTexture_kxliy")
 Button/styles/pressed = SubResource("StyleBoxTexture_18lyr")
+HSlider/icons/grabber = ExtResource("5_uasvd")
+HSlider/icons/grabber_highlight = ExtResource("5_uasvd")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_2wcj0")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_18lyr")
+HSlider/styles/slider = ExtResource("6_2wcj0")
 Label/font_sizes/font_size = 5
 Label/fonts/font = ExtResource("1_wdlgr")
